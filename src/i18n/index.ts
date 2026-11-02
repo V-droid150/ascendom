@@ -35,7 +35,18 @@ export function initI18n(language: Language = 'id'): typeof i18n {
 }
 
 export function setLanguage(language: Language): void {
-  void changeLanguage(language);
+  if (!i18n.isInitialized) initI18n(language);
+  else void changeLanguage(language);
 }
+
+/**
+ * Initialised at import time, not from an effect.
+ *
+ * `useTranslation` needs an i18next instance during the *first* render, and
+ * effects run after it — worse, during the static web export effects never run
+ * at all, so an effect-based init renders raw translation keys into the HTML.
+ * The persisted language is applied afterwards by the root layout.
+ */
+initI18n('id');
 
 export default i18n;

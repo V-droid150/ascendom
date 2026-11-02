@@ -21,6 +21,22 @@ module.exports = defineConfig([
     },
   },
   {
+    // Build scripts run in Node, not in the app bundle: they get Node globals
+    // and are allowed to log, since their output is the user-facing result.
+    files: ['scripts/**/*.mjs', 'scripts/**/*.js'],
+    languageOptions: {
+      globals: {
+        Buffer: 'readonly',
+        process: 'readonly',
+        console: 'readonly',
+        __dirname: 'readonly',
+      },
+    },
+    rules: {
+      'no-console': 'off',
+    },
+  },
+  {
     // The engine is pure game logic: it must never reach for React, Expo, or the store.
     files: ['src/engine/**/*.ts'],
     ignores: ['src/engine/__tests__/**'],

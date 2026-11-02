@@ -1322,3 +1322,684 @@ Web  INFO  %cDownload the React DevTools for a better development experience: ht
 Web Bundled 74ms app\_layout.tsx (1 module)
 Web Bundled 36ms app\dev\sprites.tsx (1 module)
 Web  WARN  react-i18next:: useTranslation: You will need to pass in an i18next instance by using initReactI18next or by passing it via props or context. In monorepo setups, make sure there is only one instance of react-i18next. {"code": "NO_I18NEXT_INSTANCE"}
+Web  WARN  [expo-notifications] Listening to push token changes is not yet fully supported on web. Adding a listener will have no effect.
+Web  WARN  [expo-notifications] Notifications handling is not yet fully supported on web. Handling notifications will have no effect.
+Web Bundled 2909ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 3066ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+λ Bundled 51ms app\index.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+react-i18next:: useTranslation: You will 
+need to pass in an i18next instance by using 
+initReactI18next or by passing it via props 
+or context. In monorepo setups, make sure 
+there is only one instance of react-i18next. 
+{ code: 'NO_I18NEXT_INSTANCE' }
+λ Bundled 95ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 801ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 4ms app\index.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+react-i18next:: useTranslation: You will 
+need to pass in an i18next instance by using 
+initReactI18next or by passing it via props 
+or context. In monorepo setups, make sure 
+there is only one instance of react-i18next. 
+{ code: 'NO_I18NEXT_INSTANCE' }
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+Web Bundled 51ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 156ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+λ Bundled 4ms app\index.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+λ Bundled 99ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 942ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 71ms app\(onboarding)\welcome.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+Web Bundled 48ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 187ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+λ Bundled 6ms app\(onboarding)\welcome.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+λ Bundled 129ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 1069ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 7ms app\(onboarding)\welcome.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+λ Bundled 111ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 978ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 6ms app\(onboarding)\welcome.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+Web Bundled 39ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 123ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+λ Bundled 6ms app\(onboarding)\welcome.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+Web Bundled 54ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 150ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+λ Bundled 6ms app\(onboarding)\welcome.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+λ Bundled 99ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 981ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 5ms app\index.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+Web Bundled 43ms node_modules\expo-router\entry.js (1 module)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web Bundled 166ms app\_layout.tsx (1 module)
+Web  WARN  [expo-notifications] Listening to push token changes is not yet fully supported on web. Adding a listener will have no effect.
+Web  WARN  [expo-notifications] Notifications handling is not yet fully supported on web. Handling notifications will have no effect.
+Web Bundled 859ms app\index.tsx (1169 modules)
+Web Bundled 287ms app\(onboarding)\_layout.tsx (702 modules)
+Web Bundled 480ms app\(onboarding)\welcome.tsx (1159 modules)
+Web Bundled 944ms app\(onboarding)\pick-gender.tsx (1403 modules)
+Web Bundled 594ms app\(onboarding)\customize.tsx (1069 modules)
+Web Bundled 532ms app\(onboarding)\first-quest.tsx (1074 modules)
+Web Bundled 1051ms app\(onboarding)\penalty.tsx (1139 modules)
+Web Bundled 408ms app\(tabs)\_layout.tsx (755 modules)
+Web Bundled 694ms app\(tabs)\quests.tsx (1085 modules)
+Web Bundled 1227ms app\(tabs)\hero.tsx (623 modules)
+ ERROR  SyntaxError: C:\Users\Kevin\ascendom\src\components\CelebrationHost.tsx: Unexpected token, expected "}" (114:7)
+
+  112 |
+  113 | interface CelebrationContent {
+> 114 |   title: string;
+      |        ^
+  115 |   body: string;
+  116 |   detail: string[];
+  117 |   cta: string;
+    at constructor (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:368:19)
+    at TypeScriptParserMixin.raise (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:6631:19)
+    at TypeScriptParserMixin.unexpected (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:6651:16)
+    at TypeScriptParserMixin.expect (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:6968:12)
+    at TypeScriptParserMixin.jsxParseExpressionContainer (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:4658:10)
+    at TypeScriptParserMixin.jsxParseElementAt (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:4732:36)
+    at TypeScriptParserMixin.jsxParseElement (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:4770:17)
+    at TypeScriptParserMixin.parseExprAtom (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:4780:19)
+    at TypeScriptParserMixin.parseExprSubscripts (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:8064:23)
+    at TypeScriptParserMixin.parseUpdate (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:8049:21)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:8029:23)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:13712:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7875:61)
+    at TypeScriptParserMixin.parseExprOps (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7880:23)
+    at TypeScriptParserMixin.parseMaybeConditional (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7857:23)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7805:21)
+    at C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:13650:39
+    at TypeScriptParserMixin.tryParse (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:6994:20)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:13650:18)
+    at C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7769:39
+    at TypeScriptParserMixin.allowInAnd (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:9424:12)
+    at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7769:17)
+    at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:9491:17)
+    at TypeScriptParserMixin.parseParenAndDistinguishExpression (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:8663:28)
+    at TypeScriptParserMixin.parseExprAtom (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:8319:23)
+    at TypeScriptParserMixin.parseExprAtom (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:4785:20)
+    at TypeScriptParserMixin.parseExprSubscripts (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:8064:23)
+    at TypeScriptParserMixin.parseUpdate (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:8049:21)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:8029:23)
+    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:13712:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7875:61)
+    at TypeScriptParserMixin.parseExprOps (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7880:23)
+    at TypeScriptParserMixin.parseMaybeConditional (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7857:23)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7805:21)
+    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:13661:20)
+    at TypeScriptParserMixin.parseExpressionBase (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7753:23)
+    at C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7749:39
+    at TypeScriptParserMixin.allowInAnd (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:9419:16)
+    at TypeScriptParserMixin.parseExpression (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:7749:17)
+    at TypeScriptParserMixin.parseReturnStatement (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:10170:28)
+    at TypeScriptParserMixin.parseStatementContent (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:9813:21)
+    at TypeScriptParserMixin.parseStatementContent (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:13383:18)
+    at TypeScriptParserMixin.parseStatementLike (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:9782:17)
+    at TypeScriptParserMixin.parseStatementListItem (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:9762:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:10344:61)
+    at TypeScriptParserMixin.parseBlockBody (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:10337:10)
+    at TypeScriptParserMixin.parseBlock (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:10325:10)
+    at TypeScriptParserMixin.parseFunctionBody (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:9095:24)
+    at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:9081:10)
+    at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\Kevin\ascendom\node_modules\@babel\parser\lib\index.js:13047:18)
+Web  ERROR  [TransformError: SyntaxError: C:\Users\Kevin\ascendom\src\components\CelebrationHost.tsx: Unexpected token, expected "}" (114:7)
+
+  112 |
+  113 | interface CelebrationContent {
+> 114 |   title: string;
+      |        ^
+  115 |   body: string;
+  116 |   detail: string[];
+  117 |   cta: string;]
+Web Bundled 1311ms app\(tabs)\settings.tsx (1183 modules)
+Web  ERROR  [ReferenceError: APP_MAX_WIDTH is not defined] 
+
+Code: CelebrationHost.tsx
+[0m [90m 209 |[39m   [90m// Modals render in a portal at the document root, outside GameWindow, so the[39m
+ [90m 210 |[39m   [90m// app's column width has to be re-applied here or they span a wide desktop.[39m
+[31m[1m>[22m[39m[90m 211 |[39m   frame[33m:[39m { width[33m:[39m [32m'100%'[39m[33m,[39m maxWidth[33m:[39m [33mAPP_MAX_WIDTH[39m }[33m,[39m
+ [90m     |[39m                                     [31m[1m^[22m[39m
+ [90m 212 |[39m   panel[33m:[39m { alignItems[33m:[39m [32m'center'[39m[33m,[39m gap[33m:[39m spacing[33m.[39mmd }[33m,[39m
+ [90m 213 |[39m   title[33m:[39m {
+ [90m 214 |[39m     fontFamily[33m:[39m fonts[33m.[39mdisplay[33m,[39m[0m
+Call Stack
+  <global> (src\components\CelebrationHost.tsx:211:37)
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\18\c7589bd69e858176aa711cc4d63b0409a1a199d34896aab68b775e3c56908fdee5b4fe.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\50\64b721abb449fbd79359c7334003a5517fa086fd21c7996cb4a68975c3972f532bfee7.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\18\c7589bd69e858176aa711cc4d63b0409a1a199d34896aab68b775e3c56908fdee5b4fe.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\68\8c62ae89af77c9fc06f205f318753f15364415b324c4cc542bd8cd31eab89cc9a78b00.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\4e\045685baf20aa4c65582adea5a89c055db831463a41857043e76c18cb8473fa06909f0.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\95\1c7d0a18440cd121f8e81519a4682c752a7c38358a618fc6a46c4fecee9475a11ff203.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\50\64b721abb449fbd79359c7334003a5517fa086fd21c7996cb4a68975c3972f532bfee7.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\c6\ea9e12940ee5d796e5ae89f9323fdc360e784a748faf0c320619ac6092c4b427fc1fad.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+[metro-file-map] Cache write error
+: Error: EMFILE: too many open files, open 'C
+:\Users\Kevin\AppData\Local\Temp\metro-file-m
+ap-expo-1d3faf228af53b4de07ec49a92594839-0530
+fe64e8e2c68fb1a0ec949a7d8fef'
+    at async open 
+(node:internal/fs/promises:640:25)
+    at async Object.writeFile 
+(node:internal/fs/promises:1253:14)
+    at async C:\Users\Kevin\ascendom\node_mod
+ules\@expo\metro-file-map\build\cache\DiskCac
+heManager.js:116:17 {
+  errno: -4066,
+  code: 'EMFILE',
+  syscall: 'open',
+  path: 'C:\\Users\\Kevin\\AppData\\Local\\Te
+mp\\metro-file-map-expo-1d3faf228af53b4de07ec
+49a92594839-0530fe64e8e2c68fb1a0ec949a7d8fef'
+}
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\68\8c62ae89af77c9fc06f205f318753f15364415b324c4cc542bd8cd31eab89cc9a78b00.mp': node:internal/fs/promises (640:25)
+
+]
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\4e\045685baf20aa4c65582adea5a89c055db831463a41857043e76c18cb8473fa06909f0.mp': node:internal/fs/promises (640:25)
+
+]
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\95\1c7d0a18440cd121f8e81519a4682c752a7c38358a618fc6a46c4fecee9475a11ff203.mp': node:internal/fs/promises (640:25)
+
+]
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\c6\ea9e12940ee5d796e5ae89f9323fdc360e784a748faf0c320619ac6092c4b427fc1fad.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\92\c6a36b10eb91c2f150f0fa00eaee719c0c222560aa80c6565926946620518c392c49f1.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\92\c6a36b10eb91c2f150f0fa00eaee719c0c222560aa80c6565926946620518c392c49f1.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\18\c7589bd69e858176aa711cc4d63b0409a1a199d34896aab68b775e3c56908fdee5b4fe.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\18\c7589bd69e858176aa711cc4d63b0409a1a199d34896aab68b775e3c56908fdee5b4fe.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\50\64b721abb449fbd79359c7334003a5517fa086fd21c7996cb4a68975c3972f532bfee7.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\50\64b721abb449fbd79359c7334003a5517fa086fd21c7996cb4a68975c3972f532bfee7.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\68\8c62ae89af77c9fc06f205f318753f15364415b324c4cc542bd8cd31eab89cc9a78b00.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\68\8c62ae89af77c9fc06f205f318753f15364415b324c4cc542bd8cd31eab89cc9a78b00.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\4e\045685baf20aa4c65582adea5a89c055db831463a41857043e76c18cb8473fa06909f0.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\4e\045685baf20aa4c65582adea5a89c055db831463a41857043e76c18cb8473fa06909f0.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\95\1c7d0a18440cd121f8e81519a4682c752a7c38358a618fc6a46c4fecee9475a11ff203.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\95\1c7d0a18440cd121f8e81519a4682c752a7c38358a618fc6a46c4fecee9475a11ff203.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\c6\ea9e12940ee5d796e5ae89f9323fdc360e784a748faf0c320619ac6092c4b427fc1fad.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\c6\ea9e12940ee5d796e5ae89f9323fdc360e784a748faf0c320619ac6092c4b427fc1fad.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\18\c7589bd69e858176aa711cc4d63b0409a1a199d34896aab68b775e3c56908fdee5b4fe.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\50\64b721abb449fbd79359c7334003a5517fa086fd21c7996cb4a68975c3972f532bfee7.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\18\c7589bd69e858176aa711cc4d63b0409a1a199d34896aab68b775e3c56908fdee5b4fe.mp': node:internal/fs/promises (640:25)
+
+]
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\50\64b721abb449fbd79359c7334003a5517fa086fd21c7996cb4a68975c3972f532bfee7.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\68\8c62ae89af77c9fc06f205f318753f15364415b324c4cc542bd8cd31eab89cc9a78b00.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\4e\045685baf20aa4c65582adea5a89c055db831463a41857043e76c18cb8473fa06909f0.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\68\8c62ae89af77c9fc06f205f318753f15364415b324c4cc542bd8cd31eab89cc9a78b00.mp': node:internal/fs/promises (640:25)
+
+]
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\4e\045685baf20aa4c65582adea5a89c055db831463a41857043e76c18cb8473fa06909f0.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\95\1c7d0a18440cd121f8e81519a4682c752a7c38358a618fc6a46c4fecee9475a11ff203.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\95\1c7d0a18440cd121f8e81519a4682c752a7c38358a618fc6a46c4fecee9475a11ff203.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\c6\ea9e12940ee5d796e5ae89f9323fdc360e784a748faf0c320619ac6092c4b427fc1fad.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\c6\ea9e12940ee5d796e5ae89f9323fdc360e784a748faf0c320619ac6092c4b427fc1fad.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\18\c7589bd69e858176aa711cc4d63b0409a1a199d34896aab68b775e3c56908fdee5b4fe.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\18\c7589bd69e858176aa711cc4d63b0409a1a199d34896aab68b775e3c56908fdee5b4fe.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\50\64b721abb449fbd79359c7334003a5517fa086fd21c7996cb4a68975c3972f532bfee7.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\50\64b721abb449fbd79359c7334003a5517fa086fd21c7996cb4a68975c3972f532bfee7.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\68\8c62ae89af77c9fc06f205f318753f15364415b324c4cc542bd8cd31eab89cc9a78b00.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\68\8c62ae89af77c9fc06f205f318753f15364415b324c4cc542bd8cd31eab89cc9a78b00.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\4e\045685baf20aa4c65582adea5a89c055db831463a41857043e76c18cb8473fa06909f0.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\d1\9a119f8c9d2cc34df2814135ee676c3d375597eff0b56662d7fb9dc4110a4d6d7586f8.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\01\6bb8c5d804b2c14afb8052fa87010cda598fa4749c69c192f725fb7f72991d38f8d1d9.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\92\c6a36b10eb91c2f150f0fa00eaee719c0c222560aa80c6565926946620518c392c49f1.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\4e\045685baf20aa4c65582adea5a89c055db831463a41857043e76c18cb8473fa06909f0.mp': node:internal/fs/promises (640:25)
+
+]
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\d1\9a119f8c9d2cc34df2814135ee676c3d375597eff0b56662d7fb9dc4110a4d6d7586f8.mp': node:internal/fs/promises (640:25)
+
+]
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\01\6bb8c5d804b2c14afb8052fa87010cda598fa4749c69c192f725fb7f72991d38f8d1d9.mp': node:internal/fs/promises (640:25)
+
+]
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\92\c6a36b10eb91c2f150f0fa00eaee719c0c222560aa80c6565926946620518c392c49f1.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\68\8c62ae89af77c9fc06f205f318753f15364415b324c4cc542bd8cd31eab89cc9a78b00.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\68\8c62ae89af77c9fc06f205f318753f15364415b324c4cc542bd8cd31eab89cc9a78b00.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\4e\045685baf20aa4c65582adea5a89c055db831463a41857043e76c18cb8473fa06909f0.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\4e\045685baf20aa4c65582adea5a89c055db831463a41857043e76c18cb8473fa06909f0.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\95\1c7d0a18440cd121f8e81519a4682c752a7c38358a618fc6a46c4fecee9475a11ff203.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\95\1c7d0a18440cd121f8e81519a4682c752a7c38358a618fc6a46c4fecee9475a11ff203.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\c6\ea9e12940ee5d796e5ae89f9323fdc360e784a748faf0c320619ac6092c4b427fc1fad.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\c6\ea9e12940ee5d796e5ae89f9323fdc360e784a748faf0c320619ac6092c4b427fc1fad.mp': node:internal/fs/promises (640:25)
+
+]
+ ERROR  Error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\92\c6a36b10eb91c2f150f0fa00eaee719c0c222560aa80c6565926946620518c392c49f1.mp'
+    at async open (node:internal/fs/promises:640:25)
+    at async Object.readFile (node:internal/fs/promises:1283:14)
+    at async BinaryFileStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\binary-file-store.js:79:20)
+    at async VaryingCacheStore.get (C:\Users\Kevin\ascendom\node_modules\@expo\metro-config\build\cache-vary\VaryingCacheStore.js:38:24)
+    at async Cache.get (C:\Users\Kevin\ascendom\node_modules\metro-cache\src\Cache.js:31:19)
+    at async Transformer.transformFile (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Transformer.js:112:16)
+    at async patchedBundler.transformFile (C:\Users\Kevin\ascendom\node_modules\expo\node_modules\@expo\cli\build\src\start\server\metro\withMetroCacheVary.js:93:22)
+    at async Object.transform (C:\Users\Kevin\ascendom\node_modules\metro\src\lib\transformHelpers.js:139:12)
+    at async transform (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\Graph.js:176:26)
+    at async visit (C:\Users\Kevin\ascendom\node_modules\metro\src\DeltaBundler\buildSubgraph.js:80:29)
+Web  ERROR  [InternalError: Metro has encountered an error: EMFILE: too many open files, open 'C:\Users\Kevin\AppData\Local\Temp\metro-cache\92\c6a36b10eb91c2f150f0fa00eaee719c0c222560aa80c6565926946620518c392c49f1.mp': node:internal/fs/promises (640:25)
+
+]

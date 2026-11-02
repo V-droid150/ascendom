@@ -29,7 +29,7 @@ export function ConfirmModal({
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
       <View style={styles.backdrop}>
-        <PixelPanel tone="dark" style={styles.panel}>
+        <PixelPanel tone="dark" frameStyle={styles.frame} style={styles.panel}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.body}>{body}</Text>
 
@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: spacing.lg,
   },
-  panel: { width: '100%', maxWidth: 400, gap: spacing.md },
+  frame: { width: '100%', maxWidth: 400 },
+  panel: { gap: spacing.md },
   title: { fontFamily: fonts.display, fontSize: fontSize.displayXs, color: colors.gold },
   body: { fontFamily: fonts.body, fontSize: fontSize.bodySm, color: colors.text },
   actions: { flexDirection: 'row', gap: spacing.sm },

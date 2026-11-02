@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Modal, StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useGameStore } from '@/store/gameStore';
 import { useSettingsStore } from '@/store/settingsStore';
@@ -10,7 +10,7 @@ import { rankForLevel } from '@/engine/ranks';
 import { PixelButton } from './PixelButton';
 import { PixelPanel } from './PixelPanel';
 import { RisingParticles } from './RisingParticles';
-import { colors, fonts, fontSize, spacing, zIndex } from '@/theme';
+import { APP_MAX_WIDTH, colors, fonts, fontSize, spacing, zIndex } from '@/theme';
 import type { Celebration } from '@/store/types';
 
 /**
@@ -62,42 +62,52 @@ export function CelebrationHost() {
   const isFall = celebration.kind === 'fall';
 
   return (
-    <View style={styles.backdrop}>
-      {!reduceMotion && !isFall && <RisingParticles color={colors.gold} />}
+    /*
+     * A real Modal rather than an absolutely-positioned overlay.
+     *
+     * An in-tree overlay unmounts on mouseup, and the browser then delivers the
+     * trailing `click` to whatever is now under the cursor — which meant
+     * dismissing a level-up could toggle the quest card beneath it and silently
+     * undo the completion that triggered the celebration.
+     */
+    <Modal visible transparent animationType="fade" onRequestClose={dismiss}>
+      <View style={styles.backdrop}>
+        {!reduceMotion && !isFall && <RisingParticles color={colors.gold} />}
 
-      <PixelPanel tone="dark" style={styles.panel}>
-        <Text style={[styles.title, isFall && styles.titleFall]}>{content.title}</Text>
+        <PixelPanel tone="dark" frameStyle={styles.frame} style={styles.panel}>
+          <Text style={[styles.title, isFall && styles.titleFall]}>{content.title}</Text>
 
-        {hero && (
-          <View style={styles.spriteRow}>
-            <HeroSprite
-              gender={hero.gender}
-              rank={rankForLevel(hero.level).rank}
-              skinTone={hero.appearance.skinTone}
-              hairStyle={hero.appearance.hairStyle}
-              hairColor={hero.appearance.hairColor}
-              cosmetics={hero.equippedCosmetics}
-              scale={5}
-              animated={!reduceMotion}
-            />
-          </View>
-        )}
+          {hero && (
+            <View style={styles.spriteRow}>
+              <HeroSprite
+                gender={hero.gender}
+                rank={rankForLevel(hero.level).rank}
+                skinTone={hero.appearance.skinTone}
+                hairStyle={hero.appearance.hairStyle}
+                hairColor={hero.appearance.hairColor}
+                cosmetics={hero.equippedCosmetics}
+                scale={5}
+                animated={!reduceMotion}
+              />
+            </View>
+          )}
 
-        <Text style={styles.body}>{content.body}</Text>
-        {content.detail.map((line) => (
-          <Text key={line} style={styles.detail}>
-            {line}
-          </Text>
-        ))}
+          <Text style={styles.body}>{content.body}</Text>
+          {content.detail.map((line) => (
+            <Text key={line} style={styles.detail}>
+              {line}
+            </Text>
+          ))}
 
-        <PixelButton
-          label={content.cta}
-          variant={isFall ? 'danger' : 'primary'}
-          onPress={dismiss}
-          style={styles.cta}
-        />
-      </PixelPanel>
-    </View>
+          <PixelButton
+            label={content.cta}
+            variant={isFall ? 'danger' : 'primary'}
+            onPress={dismiss}
+            style={styles.cta}
+          />
+        </PixelPanel>
+      </View>
+    </Modal>
   );
 }
 
@@ -196,7 +206,10 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     zIndex: zIndex.celebration,
   },
-  panel: { width: '100%', alignItems: 'center', gap: spacing.md },
+  // Modals render in a portal at the document root, outside GameWindow, so the
+  // app's column width has to be re-applied here or they span a wide desktop.
+  frame: { width: '100%', maxWidth: APP_MAX_WIDTH },
+  panel: { alignItems: 'center', gap: spacing.md },
   title: {
     fontFamily: fonts.display,
     fontSize: fontSize.displaySm,

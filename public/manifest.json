@@ -1,0 +1,40 @@
+{
+  "name": "Ascendom",
+  "short_name": "Ascendom",
+  "description": "Naik setiap hari, kuasai kerajaanmu. Habit tracker pixel-art bertema kerajaan.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#1a1c2c",
+  "background_color": "#1a1c2c",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["productivity", "lifestyle", "games"],
+  "icons": [
+    {
+      "src": "/logo192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -12,10 +12,12 @@ import {
 import { ToastProvider, useToast } from '@/components/ToastProvider';
 import { CelebrationHost } from '@/components/CelebrationHost';
 import { GameWindow } from '@/components/GameWindow';
-import { initI18n } from '@/i18n';
+import { InstallPrompt } from '@/components/InstallPrompt';
+import { setLanguage } from '@/i18n';
 import { onStorageError } from '@/store/persistAdapter';
 import { useSettingsStore } from '@/store/settingsStore';
 import { useDayRollover } from '@/hooks/useDayRollover';
+import { useNotificationSync } from '@/hooks/useNotificationSync';
 import { APP_MAX_WIDTH, colors } from '@/theme';
 
 void SplashScreen.preventAutoHideAsync();
@@ -28,8 +30,10 @@ function AppShell() {
   const toast = useToast();
   const language = useSettingsStore((state) => state.language);
 
+  // i18n is already initialised to Indonesian at import time; this applies the
+  // user's persisted choice once the settings store rehydrates.
   useEffect(() => {
-    initI18n(language);
+    setLanguage(language);
   }, [language]);
 
   useEffect(() => {
@@ -42,6 +46,7 @@ function AppShell() {
   }, [toast]);
 
   useDayRollover();
+  useNotificationSync();
 
   return (
     <GameWindow>
@@ -57,6 +62,7 @@ function AppShell() {
         <Stack.Screen name="quest/[id]" options={{ presentation: 'modal' }} />
       </Stack>
       <CelebrationHost />
+      <InstallPrompt />
     </GameWindow>
   );
 }
