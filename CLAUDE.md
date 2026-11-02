@@ -10,13 +10,21 @@ and falls through the ranks of a medieval kingdom.
 
 ## Current status
 
-**Phase 1 complete.** Engine implemented with 258 passing tests and 98%+
-statement coverage. Phase 2 (sprites) next.
+**Phases 1–4 and 6 complete.** Phase 5 (Supabase auth/sync, guilds) deliberately
+skipped: the brief asked not to over-engineer the backend and nothing in the
+product needs one. `StorageAdapter` is the seam if it is ever added.
 
-Phases: 1 Foundation/engine → 2 Sprites → 3 MVP app → 4 Depth (boss, kingdom,
-companions, bad habits) → 5 Cloud/social (skipped: optional) → 6 Portfolio polish.
+332 tests across 15 suites. Engine coverage: 98.78% statements, 95.91% branches,
+100% functions, 99.64% lines.
 
-Phases 1–4 are local-first and must work fully offline. No backend.
+Verified end to end in a browser: onboarding, completion with level-up and
+carry-over, boss damage with stat weakness, and a Fall reached via dev time
+travel (grace days, the 30/day cap, weekday-only schedules, the level-1 floor),
+plus state surviving a full dev-server restart.
+
+Remaining: deploy the web build, EAS Android APK, Lighthouse audit, native SFX.
+
+Phases 1–4 are local-first and work fully offline. No backend.
 
 ## Stack (latest stable, Nov 2026)
 
