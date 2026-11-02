@@ -176,6 +176,7 @@
     "sectionConsumables": "Supplies",
     "sectionCosmetics": "Finery",
     "cosmeticNote": "Finery is purely decorative. Rank outfits are never for sale.",
+    "capeNote": "Visible from {{rank}} onward.",
     "items": {
       "shield": {
         "name": "Royal Shield",

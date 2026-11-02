@@ -14,10 +14,14 @@ import { useToast } from '@/components/ToastProvider';
 import { useHaptics } from '@/hooks/useHaptics';
 import { useSound } from '@/hooks/useSound';
 import { MIN_CAPE_RANK } from '@/sprites';
+import { RANKS } from '@/engine/ranks';
 import { useGameStore } from '@/store/gameStore';
 import { PALETTE } from '@/theme/colors';
 import { border, colors, fonts, fontSize, spacing } from '@/theme';
 import type { PurchaseResult } from '@/engine';
+
+/** The rank at which capes start rendering, resolved to its i18n key. */
+const CAPE_RANK_ID = RANKS.find((rank) => rank.rank === MIN_CAPE_RANK)?.id ?? 'captain';
 
 export default function ShopScreen() {
   const { t } = useTranslation();
@@ -110,12 +114,10 @@ export default function ShopScreen() {
 
               <View style={styles.itemText}>
                 <Text style={styles.itemName}>{t(`shop.items.${cosmetic.id}.name`)}</Text>
+                {/* Capes only render from rank 4, so say so before they buy. */}
                 {cosmetic.slot === 'cape' && (
                   <Text style={styles.itemDesc}>
-                    {t('hero.toNextRank', {
-                      count: MIN_CAPE_RANK,
-                      rank: t('rank.captain.male'),
-                    })}
+                    {t('shop.capeNote', { rank: t(`rank.${CAPE_RANK_ID}.${hero.gender}`) })}
                   </Text>
                 )}
               </View>

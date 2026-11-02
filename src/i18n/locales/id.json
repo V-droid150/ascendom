@@ -176,6 +176,7 @@
     "sectionConsumables": "Perbekalan",
     "sectionCosmetics": "Hiasan",
     "cosmeticNote": "Hiasan hanya mempercantik. Pakaian pangkat tidak dijual.",
+    "capeNote": "Terlihat mulai pangkat {{rank}}.",
     "items": {
       "shield": {
         "name": "Perisai Kerajaan",
