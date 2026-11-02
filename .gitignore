@@ -36,6 +36,13 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# testing
+coverage/
+
+# generated PWA service worker (built by `npm run build:web`)
+public/sw.js
+public/workbox-*.js
+
 example
 
 # generated native folders
