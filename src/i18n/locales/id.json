@@ -1,0 +1,377 @@
+{
+  "common": {
+    "cancel": "Batal",
+    "save": "Simpan",
+    "delete": "Hapus",
+    "done": "Selesai",
+    "back": "Kembali",
+    "next": "Lanjut",
+    "close": "Tutup",
+    "confirm": "Ya, lanjutkan",
+    "ok": "Baik",
+    "gold": "Emas",
+    "level": "Level",
+    "levelShort": "Lv",
+    "xp": "XP",
+    "hp": "HP",
+    "loading": "Memuat kerajaan..."
+  },
+  "app": {
+    "name": "ASCENDOM",
+    "tagline": "Naik setiap hari, kuasai kerajaanmu."
+  },
+  "tabs": {
+    "quests": "Quest",
+    "hero": "Pahlawan",
+    "kingdom": "Kerajaan",
+    "shop": "Toko",
+    "settings": "Atur"
+  },
+  "onboarding": {
+    "welcome": {
+      "cta": "Mulai Petualangan"
+    },
+    "gender": {
+      "title": "Pilih pahlawanmu",
+      "subtitle": "Bisa diubah kapan saja nanti.",
+      "male": "Pria",
+      "female": "Wanita",
+      "cta": "Lanjut"
+    },
+    "customize": {
+      "title": "Rupa pahlawanmu",
+      "skinTone": "Warna kulit",
+      "hairStyle": "Gaya rambut",
+      "hairColor": "Warna rambut",
+      "nameLabel": "Nama pahlawan",
+      "namePlaceholder": "Maksimal 16 huruf",
+      "nameRequired": "Pahlawan butuh nama, Paduka.",
+      "cta": "Lanjut"
+    },
+    "firstQuest": {
+      "title": "Quest pertamamu",
+      "subtitle": "Pilih minimal satu. Tambah lagi nanti kapan pun.",
+      "graceNote": "Tiga hari pertama bebas hukuman — santai dulu.",
+      "needOne": "Pilih minimal satu quest dulu.",
+      "cta": "Lanjut",
+      "suggestions": {
+        "water": "Minum 8 gelas air",
+        "exercise": "Olahraga 15 menit",
+        "read": "Baca 10 halaman",
+        "sleep": "Tidur sebelum 23.00",
+        "walk": "Jalan 5000 langkah",
+        "journal": "Journaling"
+      }
+    },
+    "penalty": {
+      "title": "Satu hal lagi",
+      "body": "Setiap quest harian yang kau lewatkan menguras HP. Kalau HP habis, kau jatuh: turun satu level, dan bisa kehilangan pangkat beserta pakaianmu.",
+      "reassure": "Tenang. Ada Perisai Kerajaan, hari istirahat, dan tiga hari bebas hukuman di awal.",
+      "cta": "Aku siap"
+    }
+  },
+  "quests": {
+    "title": "Quest Hari Ini",
+    "dailies": "Harian",
+    "oneTime": "Sekali Jalan",
+    "badHabits": "Kebiasaan Buruk",
+    "completedSection": "Sudah Selesai",
+    "empty": "Belum ada quest. Kerajaan tidak dibangun dengan rebahan.",
+    "emptyToday": "Tidak ada quest harian hari ini. Nikmati damainya.",
+    "newQuest": "Quest Baru",
+    "allDone": "Semua quest tuntas. Rakyatmu bersorak.",
+    "undo": "Batalkan",
+    "logBad": "Catat",
+    "editHint": "Tahan untuk ubah"
+  },
+  "hero": {
+    "title": "Pahlawan",
+    "xpToNext": "{{current}} / {{needed}} XP",
+    "toNextRank": "{{count}} level lagi menuju {{rank}}",
+    "atMaxRank": "Pangkat tertinggi. Kerajaan ini milikmu.",
+    "stats": "Atribut",
+    "bestStreaks": "Rentetan Terbaik",
+    "noStreaks": "Belum ada rentetan. Mulai hari ini.",
+    "fallCount": "Jumlah jatuh",
+    "chronicle": "Babad Kerajaan",
+    "chronicleEmpty": "Babad masih kosong. Sejarahmu baru dimulai.",
+    "chronicleLegend": "30 hari terakhir",
+    "shields": "Perisai",
+    "days": "hari"
+  },
+  "stat": {
+    "strength": "Kekuatan",
+    "intelligence": "Kecerdasan",
+    "wisdom": "Kebijaksanaan",
+    "charisma": "Karisma"
+  },
+  "difficulty": {
+    "easy": "Mudah",
+    "medium": "Sedang",
+    "hard": "Sulit"
+  },
+  "habitType": {
+    "daily": "Harian",
+    "quest": "Sekali jalan"
+  },
+  "rank": {
+    "peasant": { "male": "Rakyat Jelata", "female": "Rakyat Jelata" },
+    "squire": { "male": "Pengawal", "female": "Pengawal" },
+    "knight": { "male": "Ksatria", "female": "Ksatria" },
+    "captain": { "male": "Kapten", "female": "Kapten" },
+    "noble": { "male": "Bangsawan", "female": "Bangsawan" },
+    "monarch": { "male": "Raja", "female": "Ratu" }
+  },
+  "weekday": {
+    "short": {
+      "0": "Min",
+      "1": "Sen",
+      "2": "Sel",
+      "3": "Rab",
+      "4": "Kam",
+      "5": "Jum",
+      "6": "Sab"
+    },
+    "long": {
+      "0": "Minggu",
+      "1": "Senin",
+      "2": "Selasa",
+      "3": "Rabu",
+      "4": "Kamis",
+      "5": "Jumat",
+      "6": "Sabtu"
+    }
+  },
+  "editor": {
+    "createTitle": "Quest Baru",
+    "editTitle": "Ubah Quest",
+    "titleLabel": "Nama quest",
+    "titlePlaceholder": "Contoh: Olahraga 15 menit",
+    "titleRequired": "Quest butuh nama.",
+    "iconLabel": "Ikon",
+    "typeLabel": "Jenis",
+    "difficultyLabel": "Tingkat kesulitan",
+    "statLabel": "Melatih atribut",
+    "scheduleLabel": "Hari",
+    "scheduleEveryDay": "Setiap hari",
+    "scheduleRequired": "Pilih minimal satu hari.",
+    "reminderLabel": "Pengingat",
+    "reminderOff": "Tidak ada",
+    "badHabitLabel": "Tandai sebagai kebiasaan buruk",
+    "badHabitNote": "Dicatat manual, dan tiap catatan menguras {{damage}} HP.",
+    "archive": "Arsipkan",
+    "unarchive": "Aktifkan lagi",
+    "deleteConfirmTitle": "Hapus quest ini?",
+    "deleteConfirmBody": "Riwayatnya ikut hilang. Tindakan ini tidak bisa dibatalkan.",
+    "rewardPreview": "+{{xp}} XP, +{{gold}} emas"
+  },
+  "shop": {
+    "title": "Toko Kerajaan",
+    "balance": "Emasmu: {{gold}}",
+    "buy": "Beli",
+    "owned": "Dimiliki",
+    "equip": "Pakai",
+    "equipped": "Dipakai",
+    "unequip": "Lepas",
+    "sectionConsumables": "Perbekalan",
+    "sectionCosmetics": "Hiasan",
+    "cosmeticNote": "Hiasan hanya mempercantik. Pakaian pangkat tidak dijual.",
+    "items": {
+      "shield": {
+        "name": "Perisai Kerajaan",
+        "description": "Menyerap seluruh kerusakan satu hari. Terpakai otomatis. Maksimal {{max}} disimpan."
+      },
+      "potion": {
+        "name": "Ramuan Penyembuh",
+        "description": "Memulihkan {{heal}} HP seketika. Satu kali per hari."
+      },
+      "cape_crimson": { "name": "Jubah Merah Darah" },
+      "cape_emerald": { "name": "Jubah Zamrud" },
+      "cape_azure": { "name": "Jubah Langit" },
+      "cape_violet": { "name": "Jubah Ungu Raja" },
+      "tint_gold": { "name": "Kilau Emas" },
+      "tint_frost": { "name": "Kilau Es" }
+    },
+    "errors": {
+      "insufficient_gold": "Emasmu belum cukup, Paduka.",
+      "shield_limit": "Gudang perisai sudah penuh.",
+      "potion_already_used_today": "Ramuan hari ini sudah diminum.",
+      "already_owned": "Kau sudah memilikinya.",
+      "unknown_item": "Barang itu tidak ada di toko.",
+      "hp_already_full": "HP-mu masih penuh."
+    }
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "sectionGeneral": "Umum",
+    "sectionHero": "Pahlawan",
+    "sectionData": "Data",
+    "sectionDev": "Alat Pengembang",
+    "language": "Bahasa",
+    "dayStartHour": "Hari mulai jam",
+    "dayStartHourNote": "Buat yang suka tidur subuh. Quest sebelum jam ini masih dihitung hari sebelumnya.",
+    "restDay": "Hari istirahat",
+    "restDayNone": "Tidak ada",
+    "restDayNote": "Satu hari per minggu tanpa hukuman.",
+    "notifications": "Pengingat",
+    "notificationsDenied": "Izin pengingat ditolak. Aktifkan dari pengaturan perangkat.",
+    "notificationsUnsupported": "Pengingat tidak didukung di perangkat ini.",
+    "sound": "Suara",
+    "haptics": "Getaran",
+    "reduceMotion": "Kurangi animasi",
+    "changeAppearance": "Ubah rupa pahlawan",
+    "exportData": "Ekspor data",
+    "importData": "Impor data",
+    "exportCopied": "Data tersalin ke papan klip.",
+    "importPlaceholder": "Tempel data JSON di sini",
+    "importSuccess": "Data berhasil dipulihkan.",
+    "importFailed": "Data tidak bisa dibaca. Periksa lagi formatnya.",
+    "reset": "Reset kerajaan",
+    "resetConfirm1Title": "Reset seluruh kerajaan?",
+    "resetConfirm1Body": "Semua quest, level, dan emas akan hilang.",
+    "resetConfirm2Title": "Yakin betul?",
+    "resetConfirm2Body": "Tidak ada jalan kembali setelah ini.",
+    "timeTravel": "Maju {{days}} hari",
+    "timeTravelNote": "Hanya untuk uji coba: memajukan kalender dalam aplikasi.",
+    "timeTravelReset": "Kembali ke hari nyata",
+    "timeTravelActive": "Kalender digeser {{days}} hari ke depan.",
+    "spriteLab": "Lab sprite"
+  },
+  "kingdom": {
+    "title": "Kerajaan",
+    "comingSoon": "Segera hadir",
+    "lockedNote": "Kabut masih menutupi tanah ini.",
+    "build": "Bangun",
+    "buildCost": "{{cost}} emas",
+    "nextBuilding": "Bangunan berikutnya",
+    "allBuilt": "Kerajaanmu lengkap. Megah sekali.",
+    "companions": "Pendamping",
+    "companionsEmpty": "Belum ada pendamping. Jaga rentetanmu.",
+    "companionLocked": "Terbuka di rentetan {{days}} hari",
+    "trophies": "Piala",
+    "trophiesEmpty": "Belum ada piala. Bos minggu ini menunggu.",
+    "buildings": {
+      "hut": "Gubuk",
+      "house": "Rumah",
+      "blacksmith": "Pandai Besi",
+      "tower": "Menara",
+      "castle": "Istana"
+    },
+    "companionNames": {
+      "cat": "Kucing Istana",
+      "owl": "Burung Hantu Bijak",
+      "dragonling": "Anak Naga"
+    },
+    "errors": {
+      "insufficient_gold": "Emasmu belum cukup untuk membangun ini.",
+      "missing_prerequisite": "Bangun yang sebelumnya dulu.",
+      "already_built": "Sudah berdiri.",
+      "unknown_building": "Bangunan itu tidak dikenal."
+    }
+  },
+  "boss": {
+    "title": "Bos Mingguan",
+    "names": {
+      "goblin_king": "Raja Goblin",
+      "shadow_dragon": "Naga Bayangan",
+      "lich_of_frost": "Lich Es"
+    },
+    "weakTo": "Lemah terhadap {{stat}}",
+    "hp": "{{current}} / {{max}} HP",
+    "daysLeft": "{{count}} hari lagi",
+    "lastDay": "Hari terakhir!",
+    "defeated": "Tumbang!",
+    "escaped": "Bos minggu lalu kabur. Yang baru sudah datang.",
+    "damageDealt": "-{{damage}} HP bos",
+    "rewardTitle": "Bos tumbang!",
+    "rewardBody": "Hadiah: {{gold}} emas dan satu piala.",
+    "claim": "Ambil hadiah"
+  },
+  "celebration": {
+    "levelUp": {
+      "title": "NAIK LEVEL!",
+      "body": "Kekuatanmu bertambah.",
+      "level": "Level {{level}}"
+    },
+    "rankUp": {
+      "title": "PANGKAT NAIK",
+      "body": "Dengan ini, kau diangkat menjadi {{rank}}.",
+      "cta": "Terima kehormatan"
+    },
+    "fall": {
+      "title": "KAU TELAH JATUH",
+      "body": "Tapi setiap raja pernah tersungkur. Bangkit lagi hari ini.",
+      "lostLevel": "Turun ke level {{level}}",
+      "demoted": "Pangkatmu turun menjadi {{rank}}",
+      "lostGold": "Kehilangan {{gold}} emas",
+      "cta": "Bangkit"
+    },
+    "welcomeBack": {
+      "title": "Selamat datang kembali, Paduka",
+      "body": "Kau pergi {{days}} hari. Yang lama sudah dimaafkan — hanya seminggu terakhir yang dihitung.",
+      "cta": "Lanjutkan"
+    },
+    "companion": {
+      "title": "PENDAMPING BARU",
+      "body": "{{name}} bergabung karena rentetan {{days}} harimu."
+    }
+  },
+  "toast": {
+    "reward": "+{{xp}} XP, +{{gold}} emas",
+    "rewardWithBonus": "+{{xp}} XP, +{{gold}} emas (bonus {{bonus}}%)",
+    "undone": "Quest dibatalkan.",
+    "undoTooLate": "Hanya quest hari ini yang bisa dibatalkan.",
+    "badLogged": "Tercatat. -{{damage}} HP.",
+    "questSaved": "Quest disimpan.",
+    "questDeleted": "Quest dihapus.",
+    "questArchived": "Quest diarsipkan.",
+    "purchased": "Dibeli. -{{gold}} emas.",
+    "equipped": "Terpakai.",
+    "built": "{{building}} berdiri!",
+    "shieldUsed": "Perisai Kerajaan terpakai untuk melindungimu.",
+    "saveFailed": "Gagal menyimpan. Coba lagi.",
+    "loadFailed": "Gagal memuat data kerajaan."
+  },
+  "notifications": {
+    "reminder": {
+      "title": "Paduka",
+      "body": "Quest {{title}} belum selesai. Rakyatmu menunggu."
+    },
+    "evening": {
+      "title": "Paduka",
+      "bodyOne": "1 quest tersisa sebelum tengah malam.",
+      "bodyMany": "{{count}} quest tersisa sebelum tengah malam."
+    }
+  },
+  "pwa": {
+    "installTitle": "Pasang Ascendom di layar utama",
+    "installBody": "Biar bisa dibuka seperti aplikasi biasa, bahkan tanpa internet.",
+    "install": "Pasang",
+    "dismiss": "Nanti"
+  },
+  "dev": {
+    "spritesTitle": "Lab Sprite",
+    "spritesSubtitle": "Semua kombinasi gender, pangkat, kulit, dan rambut.",
+    "gender": "Gender",
+    "rank": "Pangkat",
+    "skinTone": "Kulit",
+    "hairStyle": "Rambut",
+    "hairColor": "Warna rambut",
+    "showAll": "Tampilkan semua kombinasi",
+    "combinations": "{{count}} kombinasi"
+  },
+  "a11y": {
+    "heroSprite": "Sprite pahlawan {{name}}, pangkat {{rank}}, level {{level}}",
+    "hpBar": "Nyawa {{current}} dari {{max}}",
+    "xpBar": "Pengalaman {{current}} dari {{needed}}",
+    "bossHpBar": "Nyawa bos {{current}} dari {{max}}",
+    "completeQuest": "Selesaikan quest {{title}}",
+    "undoQuest": "Batalkan quest {{title}}",
+    "editQuest": "Ubah quest {{title}}",
+    "addQuest": "Tambah quest baru",
+    "closeDialog": "Tutup",
+    "goldAmount": "{{gold}} emas",
+    "selectWeekday": "Pilih {{day}}",
+    "chronicleDay": "{{date}}: {{completed}} selesai, {{missed}} terlewat"
+  }
+}

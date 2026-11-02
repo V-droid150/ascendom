@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Ascendom",
+    "slug": "ascendom",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "ascendom",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#1a1c2c",
+    "primaryColor": "#ffcd75",
+    "android": {
+      "package": "com.vdroid.ascendom",
+      "adaptiveIcon": {
+        "backgroundColor": "#1a1c2c",
+        "foregroundImage": "./assets/images/icon.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "edgeToEdgeEnabled": true
+    },
+    "ios": {
+      "bundleIdentifier": "com.vdroid.ascendom",
+      "supportsTablet": false
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-notifications",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#1a1c2c",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 120
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}

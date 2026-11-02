@@ -1,0 +1,377 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "done": "Done",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close",
+    "confirm": "Yes, continue",
+    "ok": "Very well",
+    "gold": "Gold",
+    "level": "Level",
+    "levelShort": "Lv",
+    "xp": "XP",
+    "hp": "HP",
+    "loading": "Loading your kingdom..."
+  },
+  "app": {
+    "name": "ASCENDOM",
+    "tagline": "Rise every day, rule your kingdom."
+  },
+  "tabs": {
+    "quests": "Quests",
+    "hero": "Hero",
+    "kingdom": "Kingdom",
+    "shop": "Shop",
+    "settings": "Settings"
+  },
+  "onboarding": {
+    "welcome": {
+      "cta": "Begin the Ascent"
+    },
+    "gender": {
+      "title": "Choose your hero",
+      "subtitle": "You can change this any time.",
+      "male": "Male",
+      "female": "Female",
+      "cta": "Next"
+    },
+    "customize": {
+      "title": "Your hero's look",
+      "skinTone": "Skin tone",
+      "hairStyle": "Hair style",
+      "hairColor": "Hair colour",
+      "nameLabel": "Hero name",
+      "namePlaceholder": "Up to 16 characters",
+      "nameRequired": "A hero needs a name, Majesty.",
+      "cta": "Next"
+    },
+    "firstQuest": {
+      "title": "Your first quests",
+      "subtitle": "Pick at least one. Add more whenever you like.",
+      "graceNote": "Your first three days are penalty-free — ease in.",
+      "needOne": "Pick at least one quest first.",
+      "cta": "Next",
+      "suggestions": {
+        "water": "Drink 8 glasses of water",
+        "exercise": "Exercise 15 minutes",
+        "read": "Read 10 pages",
+        "sleep": "Sleep before 11pm",
+        "walk": "Walk 5000 steps",
+        "journal": "Journaling"
+      }
+    },
+    "penalty": {
+      "title": "One last thing",
+      "body": "Every daily quest you miss drains HP. When HP runs out you fall: down a level, and possibly out of your rank and its outfit.",
+      "reassure": "Don't panic. There are Royal Shields, a rest day, and three penalty-free days to start.",
+      "cta": "I'm ready"
+    }
+  },
+  "quests": {
+    "title": "Today's Quests",
+    "dailies": "Dailies",
+    "oneTime": "One-time",
+    "badHabits": "Bad Habits",
+    "completedSection": "Completed",
+    "empty": "No quests yet. Kingdoms aren't built lying down.",
+    "emptyToday": "No dailies scheduled today. Enjoy the quiet.",
+    "newQuest": "New Quest",
+    "allDone": "Every quest done. Your people are cheering.",
+    "undo": "Undo",
+    "logBad": "Log it",
+    "editHint": "Long-press to edit"
+  },
+  "hero": {
+    "title": "Hero",
+    "xpToNext": "{{current}} / {{needed}} XP",
+    "toNextRank": "{{count}} levels to {{rank}}",
+    "atMaxRank": "Highest rank reached. This kingdom is yours.",
+    "stats": "Stats",
+    "bestStreaks": "Best Streaks",
+    "noStreaks": "No streaks yet. Start today.",
+    "fallCount": "Times fallen",
+    "chronicle": "Royal Chronicle",
+    "chronicleEmpty": "The chronicle is empty. Your history starts now.",
+    "chronicleLegend": "Last 30 days",
+    "shields": "Shields",
+    "days": "days"
+  },
+  "stat": {
+    "strength": "Strength",
+    "intelligence": "Intelligence",
+    "wisdom": "Wisdom",
+    "charisma": "Charisma"
+  },
+  "difficulty": {
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard"
+  },
+  "habitType": {
+    "daily": "Daily",
+    "quest": "One-time"
+  },
+  "rank": {
+    "peasant": { "male": "Peasant", "female": "Peasant" },
+    "squire": { "male": "Squire", "female": "Squire" },
+    "knight": { "male": "Knight", "female": "Dame" },
+    "captain": { "male": "Captain", "female": "Captain" },
+    "noble": { "male": "Lord", "female": "Lady" },
+    "monarch": { "male": "King", "female": "Queen" }
+  },
+  "weekday": {
+    "short": {
+      "0": "Sun",
+      "1": "Mon",
+      "2": "Tue",
+      "3": "Wed",
+      "4": "Thu",
+      "5": "Fri",
+      "6": "Sat"
+    },
+    "long": {
+      "0": "Sunday",
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thursday",
+      "5": "Friday",
+      "6": "Saturday"
+    }
+  },
+  "editor": {
+    "createTitle": "New Quest",
+    "editTitle": "Edit Quest",
+    "titleLabel": "Quest name",
+    "titlePlaceholder": "e.g. Exercise 15 minutes",
+    "titleRequired": "A quest needs a name.",
+    "iconLabel": "Icon",
+    "typeLabel": "Type",
+    "difficultyLabel": "Difficulty",
+    "statLabel": "Trains",
+    "scheduleLabel": "Days",
+    "scheduleEveryDay": "Every day",
+    "scheduleRequired": "Pick at least one day.",
+    "reminderLabel": "Reminder",
+    "reminderOff": "None",
+    "badHabitLabel": "Mark as a bad habit",
+    "badHabitNote": "Logged manually, and each log drains {{damage}} HP.",
+    "archive": "Archive",
+    "unarchive": "Restore",
+    "deleteConfirmTitle": "Delete this quest?",
+    "deleteConfirmBody": "Its history goes with it. This cannot be undone.",
+    "rewardPreview": "+{{xp}} XP, +{{gold}} gold"
+  },
+  "shop": {
+    "title": "Royal Shop",
+    "balance": "Your gold: {{gold}}",
+    "buy": "Buy",
+    "owned": "Owned",
+    "equip": "Equip",
+    "equipped": "Equipped",
+    "unequip": "Remove",
+    "sectionConsumables": "Supplies",
+    "sectionCosmetics": "Finery",
+    "cosmeticNote": "Finery is purely decorative. Rank outfits are never for sale.",
+    "items": {
+      "shield": {
+        "name": "Royal Shield",
+        "description": "Absorbs a full day of damage. Used automatically. Hold up to {{max}}."
+      },
+      "potion": {
+        "name": "Potion of Healing",
+        "description": "Restores {{heal}} HP at once. Once per day."
+      },
+      "cape_crimson": { "name": "Crimson Cape" },
+      "cape_emerald": { "name": "Emerald Cape" },
+      "cape_azure": { "name": "Azure Cape" },
+      "cape_violet": { "name": "Royal Violet Cape" },
+      "tint_gold": { "name": "Golden Sheen" },
+      "tint_frost": { "name": "Frost Sheen" }
+    },
+    "errors": {
+      "insufficient_gold": "Not enough gold, Majesty.",
+      "shield_limit": "Your armoury is full.",
+      "potion_already_used_today": "Today's potion is already drunk.",
+      "already_owned": "You own this already.",
+      "unknown_item": "No such item in the shop.",
+      "hp_already_full": "Your HP is already full."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "sectionGeneral": "General",
+    "sectionHero": "Hero",
+    "sectionData": "Data",
+    "sectionDev": "Developer Tools",
+    "language": "Language",
+    "dayStartHour": "Day starts at",
+    "dayStartHourNote": "For night owls. Quests before this hour still count for the previous day.",
+    "restDay": "Rest day",
+    "restDayNone": "None",
+    "restDayNote": "One day a week with no penalties.",
+    "notifications": "Reminders",
+    "notificationsDenied": "Reminder permission denied. Enable it in your device settings.",
+    "notificationsUnsupported": "Reminders aren't supported on this device.",
+    "sound": "Sound",
+    "haptics": "Haptics",
+    "reduceMotion": "Reduce motion",
+    "changeAppearance": "Change hero appearance",
+    "exportData": "Export data",
+    "importData": "Import data",
+    "exportCopied": "Data copied to clipboard.",
+    "importPlaceholder": "Paste JSON data here",
+    "importSuccess": "Data restored.",
+    "importFailed": "Couldn't read that data. Check the format.",
+    "reset": "Reset kingdom",
+    "resetConfirm1Title": "Reset the whole kingdom?",
+    "resetConfirm1Body": "Every quest, level and coin will be gone.",
+    "resetConfirm2Title": "Absolutely certain?",
+    "resetConfirm2Body": "There is no way back after this.",
+    "timeTravel": "Skip {{days}} day(s)",
+    "timeTravelNote": "Testing only: moves the in-app calendar forward.",
+    "timeTravelReset": "Back to the real day",
+    "timeTravelActive": "Calendar shifted {{days}} day(s) forward.",
+    "spriteLab": "Sprite lab"
+  },
+  "kingdom": {
+    "title": "Kingdom",
+    "comingSoon": "Coming soon",
+    "lockedNote": "Fog still covers this land.",
+    "build": "Build",
+    "buildCost": "{{cost}} gold",
+    "nextBuilding": "Next building",
+    "allBuilt": "Your kingdom is complete. Magnificent.",
+    "companions": "Companions",
+    "companionsEmpty": "No companions yet. Keep your streaks alive.",
+    "companionLocked": "Unlocks at a {{days}}-day streak",
+    "trophies": "Trophies",
+    "trophiesEmpty": "No trophies yet. This week's boss is waiting.",
+    "buildings": {
+      "hut": "Hut",
+      "house": "House",
+      "blacksmith": "Blacksmith",
+      "tower": "Tower",
+      "castle": "Castle"
+    },
+    "companionNames": {
+      "cat": "Castle Cat",
+      "owl": "Wise Owl",
+      "dragonling": "Dragonling"
+    },
+    "errors": {
+      "insufficient_gold": "Not enough gold to build this.",
+      "missing_prerequisite": "Build the previous one first.",
+      "already_built": "Already standing.",
+      "unknown_building": "Unknown building."
+    }
+  },
+  "boss": {
+    "title": "Weekly Boss",
+    "names": {
+      "goblin_king": "Goblin King",
+      "shadow_dragon": "Shadow Dragon",
+      "lich_of_frost": "Lich of Frost"
+    },
+    "weakTo": "Weak to {{stat}}",
+    "hp": "{{current}} / {{max}} HP",
+    "daysLeft": "{{count}} days left",
+    "lastDay": "Final day!",
+    "defeated": "Defeated!",
+    "escaped": "Last week's boss escaped. A new one has arrived.",
+    "damageDealt": "-{{damage}} boss HP",
+    "rewardTitle": "Boss defeated!",
+    "rewardBody": "Reward: {{gold}} gold and a trophy.",
+    "claim": "Claim reward"
+  },
+  "celebration": {
+    "levelUp": {
+      "title": "LEVEL UP!",
+      "body": "Your power grows.",
+      "level": "Level {{level}}"
+    },
+    "rankUp": {
+      "title": "RANK UP",
+      "body": "You are hereby raised to {{rank}}.",
+      "cta": "Accept the honour"
+    },
+    "fall": {
+      "title": "YOU HAVE FALLEN",
+      "body": "But every king has been knocked down. Rise again today.",
+      "lostLevel": "Down to level {{level}}",
+      "demoted": "Your rank falls to {{rank}}",
+      "lostGold": "Lost {{gold}} gold",
+      "cta": "Rise"
+    },
+    "welcomeBack": {
+      "title": "Welcome back, Majesty",
+      "body": "You were away {{days}} days. The older ones are forgiven — only the last week counted.",
+      "cta": "Continue"
+    },
+    "companion": {
+      "title": "NEW COMPANION",
+      "body": "{{name}} joins you for your {{days}}-day streak."
+    }
+  },
+  "toast": {
+    "reward": "+{{xp}} XP, +{{gold}} gold",
+    "rewardWithBonus": "+{{xp}} XP, +{{gold}} gold ({{bonus}}% bonus)",
+    "undone": "Quest undone.",
+    "undoTooLate": "Only today's quests can be undone.",
+    "badLogged": "Logged. -{{damage}} HP.",
+    "questSaved": "Quest saved.",
+    "questDeleted": "Quest deleted.",
+    "questArchived": "Quest archived.",
+    "purchased": "Bought. -{{gold}} gold.",
+    "equipped": "Equipped.",
+    "built": "{{building}} stands!",
+    "shieldUsed": "A Royal Shield was spent to protect you.",
+    "saveFailed": "Couldn't save. Try again.",
+    "loadFailed": "Couldn't load your kingdom data."
+  },
+  "notifications": {
+    "reminder": {
+      "title": "Majesty",
+      "body": "Quest {{title}} isn't done. Your people are waiting."
+    },
+    "evening": {
+      "title": "Majesty",
+      "bodyOne": "1 quest left before midnight.",
+      "bodyMany": "{{count}} quests left before midnight."
+    }
+  },
+  "pwa": {
+    "installTitle": "Install Ascendom on your home screen",
+    "installBody": "Open it like a normal app, even offline.",
+    "install": "Install",
+    "dismiss": "Later"
+  },
+  "dev": {
+    "spritesTitle": "Sprite Lab",
+    "spritesSubtitle": "Every gender, rank, skin and hair combination.",
+    "gender": "Gender",
+    "rank": "Rank",
+    "skinTone": "Skin",
+    "hairStyle": "Hair",
+    "hairColor": "Hair colour",
+    "showAll": "Show every combination",
+    "combinations": "{{count}} combinations"
+  },
+  "a11y": {
+    "heroSprite": "Hero sprite {{name}}, rank {{rank}}, level {{level}}",
+    "hpBar": "Health {{current}} of {{max}}",
+    "xpBar": "Experience {{current}} of {{needed}}",
+    "bossHpBar": "Boss health {{current}} of {{max}}",
+    "completeQuest": "Complete quest {{title}}",
+    "undoQuest": "Undo quest {{title}}",
+    "editQuest": "Edit quest {{title}}",
+    "addQuest": "Add a new quest",
+    "closeDialog": "Close",
+    "goldAmount": "{{gold}} gold",
+    "selectWeekday": "Select {{day}}",
+    "chronicleDay": "{{date}}: {{completed}} done, {{missed}} missed"
+  }
+}
