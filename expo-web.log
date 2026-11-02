@@ -1,0 +1,1324 @@
+﻿Starting project at C:\Users\Kevin\ascendom
+React Compiler enabled
+Starting Metro Bundler
+
+Waiting on http://localhost:8081
+
+Logs for your project will appear below.
+| (node:3352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:3352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:3352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:3352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:3352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:3352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:3352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:3352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+λ Bundled 15886ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1309 modules)
+Web Bundled 16727ms node_modules\expo-router\entry.js (831 modules)
+λ Bundled 384ms app\dev\sprites.tsx (63 modules)
+node.exe : react-i18next:: useTranslation: 
+You will need to pass in an i18next instance 
+by using initReactI18next or by passing it 
+via props or context. In monorepo setups, 
+make sure there is only one instance of 
+react-i18next. { code: 'NO_I18NEXT_INSTANCE' 
+}
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" 
+"C:\Users\Kevin\AppData\Roaming\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified:  
+   (react-i18next::...EXT_INSTANCE' }:Strin  
+  g) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandE 
+   rror
+ 
+Web Bundled 4628ms node_modules\expo-router\entry.js (831 modules)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web Bundled 1259ms app\_layout.tsx (725 modules)
+λ Bundled 2053ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 2609ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 46ms app\dev\sprites.tsx (1 module)
+react-i18next:: useTranslation: You will 
+need to pass in an i18next instance by using 
+initReactI18next or by passing it via props 
+or context. In monorepo setups, make sure 
+there is only one instance of react-i18next. 
+{ code: 'NO_I18NEXT_INSTANCE' }
+Web Bundled 49ms node_modules\expo-router\entry.js (1 module)
+Web Bundled 5913ms app\dev\sprites.tsx (751 modules)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web Bundled 48ms app\_layout.tsx (1 module)
+Web Bundled 349ms app\dev\sprites.tsx (1 module)
+Web  WARN  react-i18next:: useTranslation: You will need to pass in an i18next instance by using initReactI18next or by passing it via props or context. In monorepo setups, make sure there is only one instance of react-i18next. {"code": "NO_I18NEXT_INSTANCE"}
+Unable to resolve "@/components/CelebrationHost" from "app\_layout.tsx"
+[0m [90m 11 |[39m } [36mfrom[39m [32m'@expo-google-fonts/pixelify-sans'[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mToastProvider[39m[33m,[39m useToast } [36mfrom[39m [32m'@/components/ToastProvider'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m { [33mCelebrationHost[39m } [36mfrom[39m [32m'@/components/CelebrationHost'[39m[33m;[39m
+ [90m    |[39m                                  [31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m { [33mGameWindow[39m } [36mfrom[39m [32m'@/components/GameWindow'[39m[33m;[39m
+ [90m 15 |[39m [36mimport[39m { initI18n } [36mfrom[39m [32m'@/i18n'[39m[33m;[39m
+ [90m 16 |[39m [36mimport[39m { onStorageError } [36mfrom[39m [32m'@/store/persistAdapter'[39m[33m;[39m[0m
+
+Import stack:
+
+ app\_layout.tsx
+ | import "@/components/CelebrationHost"
+
+ app (require.context)
+
+Web  ERROR  [UnableToResolveError: Unable to resolve module @/components/CelebrationHost from C:\Users\Kevin\ascendom\app\_layout.tsx: @/components/CelebrationHost could not be found within the project or in these directories:
+  node_modules
+  11 | } from '@expo-google-fonts/pixelify-sans';
+  12 | import { ToastProvider, useToast } from '@/components/ToastProvider';
+> 13 | import { CelebrationHost } from '@/components/CelebrationHost';
+     |                                  ^
+  14 | import { GameWindow } from '@/components/GameWindow';
+  15 | import { initI18n } from '@/i18n';
+  16 | import { onStorageError } from '@/store/persistAdapter';]
+Unable to resolve "@/components/CelebrationHost" from "app\_layout.tsx"
+[0m [90m 11 |[39m } [36mfrom[39m [32m'@expo-google-fonts/pixelify-sans'[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mToastProvider[39m[33m,[39m useToast } [36mfrom[39m [32m'@/components/ToastProvider'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m { [33mCelebrationHost[39m } [36mfrom[39m [32m'@/components/CelebrationHost'[39m[33m;[39m
+ [90m    |[39m                                  [31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m { [33mGameWindow[39m } [36mfrom[39m [32m'@/components/GameWindow'[39m[33m;[39m
+ [90m 15 |[39m [36mimport[39m { initI18n } [36mfrom[39m [32m'@/i18n'[39m[33m;[39m
+ [90m 16 |[39m [36mimport[39m { onStorageError } [36mfrom[39m [32m'@/store/persistAdapter'[39m[33m;[39m[0m
+
+Import stack:
+
+ app\_layout.tsx
+ | import "@/components/CelebrationHost"
+
+ app (require.context)
+
+Web  ERROR  [UnableToResolveError: Unable to resolve module @/components/CelebrationHost from C:\Users\Kevin\ascendom\app\_layout.tsx: @/components/CelebrationHost could not be found within the project or in these directories:
+  node_modules
+  11 | } from '@expo-google-fonts/pixelify-sans';
+  12 | import { ToastProvider, useToast } from '@/components/ToastProvider';
+> 13 | import { CelebrationHost } from '@/components/CelebrationHost';
+     |                                  ^
+  14 | import { GameWindow } from '@/components/GameWindow';
+  15 | import { initI18n } from '@/i18n';
+  16 | import { onStorageError } from '@/store/persistAdapter';]
+Unable to resolve "@/components/CelebrationHost" from "app\_layout.tsx"
+[0m [90m 11 |[39m } [36mfrom[39m [32m'@expo-google-fonts/pixelify-sans'[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mToastProvider[39m[33m,[39m useToast } [36mfrom[39m [32m'@/components/ToastProvider'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m { [33mCelebrationHost[39m } [36mfrom[39m [32m'@/components/CelebrationHost'[39m[33m;[39m
+ [90m    |[39m                                  [31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m { [33mGameWindow[39m } [36mfrom[39m [32m'@/components/GameWindow'[39m[33m;[39m
+ [90m 15 |[39m [36mimport[39m { initI18n } [36mfrom[39m [32m'@/i18n'[39m[33m;[39m
+ [90m 16 |[39m [36mimport[39m { onStorageError } [36mfrom[39m [32m'@/store/persistAdapter'[39m[33m;[39m[0m
+
+Import stack:
+
+ app\_layout.tsx
+ | import "@/components/CelebrationHost"
+
+ app (require.context)
+
+Web  ERROR  [UnableToResolveError: Unable to resolve module @/components/CelebrationHost from C:\Users\Kevin\ascendom\app\_layout.tsx: @/components/CelebrationHost could not be found within the project or in these directories:
+  node_modules
+  11 | } from '@expo-google-fonts/pixelify-sans';
+  12 | import { ToastProvider, useToast } from '@/components/ToastProvider';
+> 13 | import { CelebrationHost } from '@/components/CelebrationHost';
+     |                                  ^
+  14 | import { GameWindow } from '@/components/GameWindow';
+  15 | import { initI18n } from '@/i18n';
+  16 | import { onStorageError } from '@/store/persistAdapter';]
+Unable to resolve "./RisingParticles" from "src\components\CelebrationHost.tsx"
+[0m [90m 10 |[39m [36mimport[39m { [33mPixelButton[39m } [36mfrom[39m [32m'./PixelButton'[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { [33mPixelPanel[39m } [36mfrom[39m [32m'./PixelPanel'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 12 |[39m [36mimport[39m { [33mRisingParticles[39m } [36mfrom[39m [32m'./RisingParticles'[39m[33m;[39m
+ [90m    |[39m                                  [31m[1m^[22m[39m
+ [90m 13 |[39m [36mimport[39m { colors[33m,[39m fonts[33m,[39m fontSize[33m,[39m spacing[33m,[39m zIndex } [36mfrom[39m [32m'@/theme'[39m[33m;[39m
+ [90m 14 |[39m [36mimport[39m type { [33mCelebration[39m } [36mfrom[39m [32m'@/store/types'[39m[33m;[39m
+ [90m 15 |[39m[0m
+
+Import stack:
+
+ src\components\CelebrationHost.tsx
+ | import "./RisingParticles"
+
+ app\_layout.tsx
+ | import "@/components/CelebrationHost"
+
+ app (require.context)
+
+Web  ERROR  [UnableToResolveError: Unable to resolve module ./RisingParticles from C:\Users\Kevin\ascendom\src\components\CelebrationHost.tsx: 
+
+None of these files exist:
+  * src\components\RisingParticles(.web.ts|.ts|.web.tsx|.tsx|.web.mjs|.mjs|.web.js|.js|.web.jsx|.jsx|.web.json|.json|.web.cjs|.cjs|.web.scss|.scss|.web.sass|.sass|.web.css|.css)
+  * src\components\RisingParticles
+  10 | import { PixelButton } from './PixelButton';
+  11 | import { PixelPanel } from './PixelPanel';
+> 12 | import { RisingParticles } from './RisingParticles';
+     |                                  ^
+  13 | import { colors, fonts, fontSize, spacing, zIndex } from '@/theme';
+  14 | import type { Celebration } from '@/store/types';
+  15 |]
+Unable to resolve "./RisingParticles" from "src\components\CelebrationHost.tsx"
+[0m [90m 10 |[39m [36mimport[39m { [33mPixelButton[39m } [36mfrom[39m [32m'./PixelButton'[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { [33mPixelPanel[39m } [36mfrom[39m [32m'./PixelPanel'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 12 |[39m [36mimport[39m { [33mRisingParticles[39m } [36mfrom[39m [32m'./RisingParticles'[39m[33m;[39m
+ [90m    |[39m                                  [31m[1m^[22m[39m
+ [90m 13 |[39m [36mimport[39m { colors[33m,[39m fonts[33m,[39m fontSize[33m,[39m spacing[33m,[39m zIndex } [36mfrom[39m [32m'@/theme'[39m[33m;[39m
+ [90m 14 |[39m [36mimport[39m type { [33mCelebration[39m } [36mfrom[39m [32m'@/store/types'[39m[33m;[39m
+ [90m 15 |[39m[0m
+
+Import stack:
+
+ src\components\CelebrationHost.tsx
+ | import "./RisingParticles"
+
+ app\_layout.tsx
+ | import "@/components/CelebrationHost"
+
+ app (require.context)
+
+Web  ERROR  [UnableToResolveError: Unable to resolve module ./RisingParticles from C:\Users\Kevin\ascendom\src\components\CelebrationHost.tsx: 
+
+None of these files exist:
+  * src\components\RisingParticles(.web.ts|.ts|.web.tsx|.tsx|.web.mjs|.mjs|.web.js|.js|.web.jsx|.jsx|.web.json|.json|.web.cjs|.cjs|.web.scss|.scss|.web.sass|.sass|.web.css|.css)
+  * src\components\RisingParticles
+  10 | import { PixelButton } from './PixelButton';
+  11 | import { PixelPanel } from './PixelPanel';
+> 12 | import { RisingParticles } from './RisingParticles';
+     |                                  ^
+  13 | import { colors, fonts, fontSize, spacing, zIndex } from '@/theme';
+  14 | import type { Celebration } from '@/store/types';
+  15 |]
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+Could not open editor.
+You can set an editor for Expo to open by 
+defining the $EXPO_EDITOR or $VISUAL 
+environment variable (e.g. "vscode" or 
+"atom")
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+Web Bundled 1785ms node_modules\expo-router\entry.js (1 module)
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+No apps connected. Sending "sendDevCommand" 
+to all React Native apps failed. Make sure 
+your app is running in the simulator or on a 
+phone connected via USB.
+λ Bundled 5295ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+λ Bundled 46ms app\dev\sprites.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+react-i18next:: useTranslation: You will 
+need to pass in an i18next instance by using 
+initReactI18next or by passing it via props 
+or context. In monorepo setups, make sure 
+there is only one instance of react-i18next. 
+{ code: 'NO_I18NEXT_INSTANCE' }
+Web Bundled 705ms node_modules\expo-router\entry.js (1 module)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web Bundled 834ms app\_layout.tsx (1 module)
+Web  WARN  react-i18next:: useTranslation: You will need to pass in an i18next instance by using initReactI18next or by passing it via props or context. In monorepo setups, make sure there is only one instance of react-i18next. {"code": "NO_I18NEXT_INSTANCE"}
+Web Bundled 322ms app\dev\sprites.tsx (1 module)
+λ Bundled 197ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 1179ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 6ms app\dev\sprites.tsx (1 module)
+[expo-notifications] Listening to push token 
+changes is not yet fully supported on web. 
+Adding a listener will have no effect.
+[expo-notifications] Notifications handling 
+is not yet fully supported on web. Handling 
+notifications will have no effect.
+react-i18next:: useTranslation: You will 
+need to pass in an i18next instance by using 
+initReactI18next or by passing it via props 
+or context. In monorepo setups, make sure 
+there is only one instance of react-i18next. 
+{ code: 'NO_I18NEXT_INSTANCE' }
+Web Bundled 43ms node_modules\expo-router\entry.js (1 module)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web Bundled 74ms app\_layout.tsx (1 module)
+Web Bundled 36ms app\dev\sprites.tsx (1 module)
+Web  WARN  react-i18next:: useTranslation: You will need to pass in an i18next instance by using initReactI18next or by passing it via props or context. In monorepo setups, make sure there is only one instance of react-i18next. {"code": "NO_I18NEXT_INSTANCE"}

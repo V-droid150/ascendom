@@ -1,31 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { colors, fontSize, spacing } from '@/theme';
+import { Redirect } from 'expo-router';
+import { useGameStore } from '@/store/gameStore';
 
-/** Placeholder route. Replaced by the real entry point in Phase 3. */
+/** Sends first-time users through onboarding and everyone else to the quests tab. */
 export default function Index() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>ASCENDOM</Text>
-      <Text style={styles.subtitle}>Engine online.</Text>
-    </View>
-  );
+  const onboarded = useGameStore((state) => state.onboarded);
+  return <Redirect href={onboarded ? '/(tabs)/quests' : '/(onboarding)/welcome'} />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.night,
-    gap: spacing.md,
-  },
-  title: {
-    color: colors.gold,
-    fontSize: fontSize.display,
-    letterSpacing: 2,
-  },
-  subtitle: {
-    color: colors.textDim,
-    fontSize: fontSize.body,
-  },
-});
