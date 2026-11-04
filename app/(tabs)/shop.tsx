@@ -4,14 +4,14 @@ import { COSMETICS, MAX_SHIELDS, POTION_COST, POTION_HEAL, SHIELD_COST } from '@
 import { HeroStatusBar } from '@/components/HeroStatusBar';
 import { PixelButton } from '@/components/PixelButton';
 import { PixelPanel } from '@/components/PixelPanel';
+import { ShopItemIcon } from '@/components/ShopItemIcon';
 import { useToast } from '@/components/ToastProvider';
 import { useHaptics } from '@/hooks/useHaptics';
 import { useSound } from '@/hooks/useSound';
 import { MIN_CAPE_RANK } from '@/sprites';
 import { RANKS } from '@/engine/ranks';
 import { useGameStore } from '@/store/gameStore';
-import { PALETTE } from '@/theme/colors';
-import { border, fonts, fontSize, makeStyles, spacing } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing } from '@/theme';
 import type { PurchaseResult } from '@/engine';
 
 /** The rank at which capes start rendering, resolved to its i18n key. */
@@ -55,6 +55,7 @@ export default function ShopScreen() {
         <Text style={styles.sectionTitle}>{t('shop.sectionConsumables')}</Text>
 
         <PixelPanel style={styles.item}>
+          <ShopItemIcon id="shield" />
           <View style={styles.itemText}>
             <Text style={styles.itemName}>{t('shop.items.shield.name')}</Text>
             <Text style={styles.itemDesc}>
@@ -76,6 +77,7 @@ export default function ShopScreen() {
         </PixelPanel>
 
         <PixelPanel style={styles.item}>
+          <ShopItemIcon id="potion" />
           <View style={styles.itemText}>
             <Text style={styles.itemName}>{t('shop.items.potion.name')}</Text>
             <Text style={styles.itemDesc}>
@@ -102,10 +104,7 @@ export default function ShopScreen() {
 
           return (
             <PixelPanel key={cosmetic.id} style={styles.item}>
-              <View
-                style={[styles.swatch, { backgroundColor: PALETTE[cosmetic.color] }]}
-                accessibilityElementsHidden
-              />
+              <ShopItemIcon id={cosmetic.id} />
 
               <View style={styles.itemText}>
                 <Text style={styles.itemName}>{t(`shop.items.${cosmetic.id}.name`)}</Text>
@@ -155,17 +154,11 @@ const useStyles = makeStyles((colors) => ({
     marginTop: spacing.sm,
   },
   note: { fontFamily: fonts.body, fontSize: fontSize.caption, color: colors.textDim },
-  item: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+  item: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
   itemText: { flex: 1, gap: 2 },
   itemName: { fontFamily: fonts.bodyBold, fontSize: fontSize.body, color: colors.ink },
   itemDesc: { fontFamily: fonts.body, fontSize: fontSize.caption, color: colors.inkSoft },
   owned: { fontFamily: fonts.body, fontSize: fontSize.caption, color: colors.xpDark },
   buyColumn: { alignItems: 'center', gap: spacing.xs },
   price: { fontFamily: fonts.display, fontSize: fontSize.displayXs, color: colors.ink },
-  swatch: {
-    width: 28,
-    height: 28,
-    borderWidth: border.width,
-    borderColor: colors.night,
-  },
 }));

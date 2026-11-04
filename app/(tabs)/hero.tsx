@@ -1,11 +1,11 @@
 import { ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { ChronicleHeatmap } from '@/components/ChronicleHeatmap';
+import { HeroScene } from '@/components/HeroScene';
 import { PixelBar } from '@/components/PixelBar';
 import { PixelPanel } from '@/components/PixelPanel';
 import { StatsDiamond } from '@/components/StatsDiamond';
 import { useHero } from '@/hooks/useHero';
-import { HeroSprite } from '@/sprites';
 import { useGameStore } from '@/store/gameStore';
 import { useSettingsStore } from '@/store/settingsStore';
 import { border, fonts, fontSize, makeStyles, spacing, useColors } from '@/theme';
@@ -31,14 +31,13 @@ export default function HeroScreen() {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <View style={styles.portrait}>
-        <HeroSprite
+        <HeroScene
           gender={hero.gender}
           rank={view.rankNumber}
           skinTone={hero.appearance.skinTone}
           hairStyle={hero.appearance.hairStyle}
           hairColor={hero.appearance.hairColor}
           cosmetics={hero.equippedCosmetics}
-          scale={7}
           animated={!reduceMotion}
           accessibilityLabel={t('a11y.heroSprite', {
             name: hero.name,
