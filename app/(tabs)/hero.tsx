@@ -128,7 +128,13 @@ export default function HeroScreen() {
 const useStyles = makeStyles((colors) => ({
   screen: { flex: 1, backgroundColor: colors.night },
   content: { padding: spacing.md, gap: spacing.md, paddingBottom: spacing.xxxl },
-  portrait: { alignItems: 'center', gap: spacing.sm, paddingTop: spacing.md },
+  // Negative margins cancel the screen padding so the scene runs edge to edge.
+  portrait: {
+    alignItems: 'center',
+    gap: spacing.sm,
+    marginTop: -spacing.md,
+    marginHorizontal: -spacing.md,
+  },
   banner: {
     backgroundColor: colors.gold,
     borderWidth: border.width,

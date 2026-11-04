@@ -29,7 +29,9 @@
   },
   "onboarding": {
     "welcome": {
-      "cta": "Mulai Petualangan"
+      "cta": "Mulai Petualangan",
+      "continue": "Lanjutkan Petualangan",
+      "welcomeBack": "Selamat datang kembali, {{name}}."
     },
     "gender": {
       "title": "Pilih pahlawanmu",

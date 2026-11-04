@@ -1,13 +1,15 @@
 import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
+import { CastleTabIcon, HeroHeadIcon } from '@/components/TabIcons';
 import { border, fonts, fontSize, MIN_TOUCH_SIZE, useColors } from '@/theme';
 
-/** Tab glyphs drawn as text, so no icon-font dependency is needed. */
+/**
+ * Tab glyphs drawn as text, so no icon-font dependency is needed. Hero and
+ * Kingdom use pixel art instead: the player's own head and a castle.
+ */
 const GLYPHS: Record<string, string> = {
   quests: '✦',
-  hero: '☗',
-  kingdom: '⌂',
   shop: '◈',
   settings: '⚙',
 };
@@ -25,7 +27,8 @@ export default function TabsLayout() {
           backgroundColor: colors.nightDeep,
           borderTopWidth: border.width,
           borderTopColor: colors.charcoal,
-          height: MIN_TOUCH_SIZE + 24,
+          // Room for the 32px pixel-art icons above the label.
+          height: MIN_TOUCH_SIZE + 32,
           paddingTop: 6,
         },
         tabBarActiveTintColor: colors.gold,
@@ -44,9 +47,14 @@ export default function TabsLayout() {
           options={{
             title: t(`tabs.${name}`),
             tabBarAccessibilityLabel: t(`tabs.${name}`),
-            tabBarIcon: ({ color }) => (
-              <Text style={{ color, fontSize: fontSize.title }}>{GLYPHS[name]}</Text>
-            ),
+            tabBarIcon: ({ color, focused }) =>
+              name === 'hero' ? (
+                <HeroHeadIcon focused={focused} />
+              ) : name === 'kingdom' ? (
+                <CastleTabIcon focused={focused} />
+              ) : (
+                <Text style={{ color, fontSize: fontSize.title }}>{GLYPHS[name]}</Text>
+              ),
           }}
         />
       ))}

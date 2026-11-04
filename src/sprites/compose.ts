@@ -175,7 +175,7 @@ export function composeSprite(request: SpriteRequest): ComposedSprite {
   paint(character, outfitLayer(request.gender, request.rank), ctx);
   paint(character, hairLayer(request.gender, request.hairStyle), ctx);
   paint(character, headgearLayer(request.rank), ctx);
-  paint(character, weaponLayer(request.rank), ctx);
+  if (request.withWeapon !== false) paint(character, weaponLayer(request.rank), ctx);
 
   addOutline(character, SPRITE_OUTLINE);
   if (cosmetics.tint) addOutline(character, cosmetics.tint);
@@ -205,6 +205,7 @@ function cacheKey(request: SpriteRequest): string {
     request.hairStyle,
     request.hairColor,
     request.frame ?? 0,
+    request.withWeapon === false ? 'unarmed' : 'armed',
     (request.cosmetics ?? []).join(','),
   ].join('|');
 }

@@ -23,6 +23,8 @@ export interface SpriteRequest {
   hairColor: number;
   /** Equipped cosmetic ids, used for cape and tint overrides. */
   cosmetics?: readonly string[];
+  /** Off for portraits, such as the tab icon, where a blade beside the head is clutter. */
+  withWeapon?: boolean;
   /** Idle bob frame. Frame 1 shifts the character down one pixel. */
   frame?: 0 | 1;
 }

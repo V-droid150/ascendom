@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { PixelArt } from '@/sprites/PixelArt';
 import { CROWN_ART, CROWN_COLORS } from '@/sprites/scenes';
 import { PixelButton } from '@/components/PixelButton';
+import { useGameHydrated } from '@/hooks/useGameHydrated';
+import { useGameStore } from '@/store/gameStore';
 import { fonts, fontSize, makeStyles, spacing, useColors } from '@/theme';
 
 /** 12px per art pixel: the 12x12 crown renders at 144px. */
@@ -15,6 +17,15 @@ export default function WelcomeScreen() {
   const colors = useColors();
   const { t } = useTranslation();
   const router = useRouter();
+  const hydrated = useGameHydrated();
+  const hero = useGameStore((state) => (state.onboarded ? state.hero : null));
+
+  // A returning player skips character creation and goes back to their quests.
+  // `replace` so the back gesture doesn't return them to this screen.
+  const onStart = (): void => {
+    if (hero) router.replace('/(tabs)/quests');
+    else router.push('/(onboarding)/pick-gender');
+  };
 
   const crownColors = useMemo(() => ({ ...CROWN_COLORS, k: colors.outline }), [colors.outline]);
 
@@ -32,11 +43,19 @@ export default function WelcomeScreen() {
       <View style={styles.copy}>
         <Text style={styles.title}>{t('app.name')}</Text>
         <Text style={styles.tagline}>{t('app.tagline')}</Text>
+        {hero && (
+          <Text style={styles.welcomeBack}>
+            {t('onboarding.welcome.welcomeBack', { name: hero.name })}
+          </Text>
+        )}
       </View>
 
       <PixelButton
-        label={t('onboarding.welcome.cta')}
-        onPress={() => router.push('/(onboarding)/pick-gender')}
+        label={hero ? t('onboarding.welcome.continue') : t('onboarding.welcome.cta')}
+        onPress={onStart}
+        // Disabled for the moment it takes to load the save, so a returning
+        // player can't be sent into character creation by an early tap.
+        disabled={!hydrated}
         style={styles.cta}
       />
     </View>
@@ -66,6 +85,13 @@ const useStyles = makeStyles((colors) => ({
     fontSize: fontSize.body,
     color: colors.textDim,
     textAlign: 'center',
+  },
+  welcomeBack: {
+    fontFamily: fonts.bodyBold,
+    fontSize: fontSize.body,
+    color: colors.gold,
+    textAlign: 'center',
+    marginTop: spacing.sm,
   },
   cta: { minWidth: 220 },
 }));

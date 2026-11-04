@@ -115,3 +115,28 @@ export const CROWN_COLORS: Readonly<Record<string, string>> = {
   r: PALETTE[2],
   w: PALETTE[12],
 };
+
+/** The Kingdom tab icon: a keep between two flagged towers. */
+const TAB_CASTLE_CORE: readonly string[] = [
+  '.y.........y.',
+  '.C....y....C.',
+  'rrr...C...rrr',
+  'rrr..rrr..rrr',
+  'cCc.rrrrr.cCc',
+  'cCcccccccccCc',
+  'cCckccccckcCc',
+  'cCcccccccccCc',
+  'cCcccckccccCc',
+  'cCccckkkcccCc',
+  'cCccckkkcccCc',
+];
+
+export const TAB_CASTLE_ART: readonly string[] = withOutline(TAB_CASTLE_CORE, 'k');
+
+export const TAB_CASTLE_COLORS: Readonly<Record<string, string>> = {
+  y: PALETTE[4],
+  C: PALETTE[14],
+  r: PALETTE[2],
+  c: PALETTE[13],
+  k: PALETTE[0],
+};

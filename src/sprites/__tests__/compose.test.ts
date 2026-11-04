@@ -253,6 +253,19 @@ describe('composeSprite', () => {
     expect(tinted.rects.length).toBeGreaterThan(plain.rects.length);
   });
 
+  it('can leave the weapon out, for portraits', () => {
+    const armed = composeSprite({ ...base, rank: 2 });
+    const unarmed = composeSprite({ ...base, rank: 2, withWeapon: false });
+    // The short sword's blade is on column 23; nothing else reaches it.
+    const onBladeColumn = (sprite: typeof armed): boolean =>
+      sprite.rects.some(
+        (r) => r.y === 15 && r.x <= 23 && r.x + r.width > 23 && r.color !== SPRITE_OUTLINE,
+      );
+    expect(onBladeColumn(armed)).toBe(true);
+    expect(onBladeColumn(unarmed)).toBe(false);
+    expect(composeSpriteCached({ ...base, withWeapon: false })).not.toBe(composeSpriteCached(base));
+  });
+
   it('ignores an unknown cosmetic id', () => {
     const plain = composeSprite(base);
     const bogus = composeSprite({ ...base, cosmetics: ['not_a_real_item'] });

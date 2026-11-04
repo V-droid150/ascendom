@@ -29,7 +29,9 @@
   },
   "onboarding": {
     "welcome": {
-      "cta": "Begin the Ascent"
+      "cta": "Begin the Ascent",
+      "continue": "Continue the Ascent",
+      "welcomeBack": "Welcome back, {{name}}."
     },
     "gender": {
       "title": "Choose your hero",
