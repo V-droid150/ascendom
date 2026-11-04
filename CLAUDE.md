@@ -3,10 +3,12 @@
 Pixel-art, kingdom-themed habit tracker. Real habits power a hero that rises
 and falls through the ranks of a medieval kingdom.
 
-**Pitch:** "Naik setiap hari, kuasai kerajaanmu."
+**Pitch:** "Small deeds at every dawn. That is how legends are forged." /
+"Langkah kecil di setiap fajar. Begitulah legenda ditempa."
 **Brand idea:** Ascend + Kingdom. Upward motion in every celebratory moment.
 **Audience:** Gen Z (16–25). Tone: playful, dramatic-royal, never preachy.
-**Default language:** Indonesian (`id`), secondary English (`en`).
+**Default language:** English (`en`) on first launch, Indonesian (`id`) selectable
+in Settings. English is also the i18n fallback.
 
 ## Current status
 
@@ -14,8 +16,11 @@ and falls through the ranks of a medieval kingdom.
 skipped: the brief asked not to over-engineer the backend and nothing in the
 product needs one. `StorageAdapter` is the seam if it is ever added.
 
-332 tests across 15 suites. Engine coverage: 98.78% statements, 95.91% branches,
-100% functions, 99.64% lines.
+Since then: light/dark theme (Settings, dark default on true black), crown
+welcome screen, daily rotating side quests, and chibi NES-style sprites.
+
+349 tests across 16 suites. Engine coverage: 98.89% statements, 96.07% branches,
+100% functions, 99.67% lines.
 
 Verified end to end in a browser: onboarding, completion with level-up and
 carry-over, boss damage with stat weakness, and a Fall reached via dev time
@@ -101,6 +106,17 @@ Additions beyond the original spec, and why:
   nominal 3 HP, and undo has to return exactly what was granted.
 - `Settings.reduceMotion` — needed to honour the accessibility requirement.
 - `Habit.isBad` — Phase 4 bad habits.
+- `Settings.theme` — `dark` | `light`.
+- `SideQuestProgress` (game snapshot `sideQuests`) — which of today's rotating
+  side quests are done; reads as empty once the dayKey moves on.
+
+### Side quests (`engine/sideQuests.ts`)
+
+`SIDE_QUESTS_PER_DAY` (2) bonus activities from a 24-entry pool, picked purely
+from the dayKey: the pool is shuffled once with a fixed seed, then each day
+takes the next two. Consecutive days never share a quest and the whole pool is
+visited before any repeat. They never replace the user's habits: flat
+`SIDE_QUEST_REWARD` (15 XP / 8 gold) + 1 stat, no streak, no HP, no damage.
 
 ## Game constants (`src/engine/constants.ts`)
 
@@ -178,7 +194,9 @@ it twice with identical input.
 ## Design system
 
 Palette: Sweetie 16, indexed in `src/theme/colors.ts` (order is load-bearing —
-sprites index into it). Base `#1a1c2c`, gold `#ffcd75`, HP red `#b13e53`,
+sprites index into it). UI colours come from `THEMES.dark` / `THEMES.light`
+(same keys); components get them through `makeStyles((colors) => ...)` and
+`useColors()`, never a static import. Dark base `#000000`, gold `#ffcd75`, HP red `#b13e53`,
 XP green `#38b764`, accent blue `#41a6f6`, parchment panels for content.
 Press Start 2P for titles/numbers only; Pixelify Sans for body (min 14px).
 4px spacing grid, `border.radius` is 0 everywhere, 2px hard drop shadows,
@@ -189,7 +207,10 @@ the `a11y.*` i18n keys, never colour-only signalling.
 ## Sprites (Phase 2)
 
 32×32 char grids (`string[]`, `.` = transparent), integer scale only.
-Layer order: shadow → body → outfit → hair → headgear → weapon → cape → effects.
+Chibi NES proportions: 12px-wide head on rows 3–14, body on 15–26, shadow on 28.
+Layer order: cape (behind) → body → outfit → hair → headgear → weapon, then a
+traced 1px `SPRITE_OUTLINE`, then the tint aura, then the shadow.
+`W` is white in art: `C` cannot be Sweetie 16 #12 because it is the cosmetic shade.
 Skin tones (5+) and hair colours (6+) are **palette swaps**, not separate art.
 `compose.ts` must run-length-merge horizontal runs into wide rects — 1024
 one-pixel rects per sprite will not perform, and `/dev/sprites` renders many
