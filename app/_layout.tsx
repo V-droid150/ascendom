@@ -8,12 +8,14 @@ import { PressStart2P_400Regular } from '@expo-google-fonts/press-start-2p';
 import { PixelifySans_400Regular, PixelifySans_700Bold } from '@expo-google-fonts/pixelify-sans';
 import { ToastProvider, useToast } from '@/components/ToastProvider';
 import { CelebrationHost } from '@/components/CelebrationHost';
+import { SyncConflictModal } from '@/components/SyncConflictModal';
 import { GameWindow } from '@/components/GameWindow';
 import { InstallPrompt } from '@/components/InstallPrompt';
 import { setLanguage } from '@/i18n';
 import { onStorageError } from '@/store/persistAdapter';
 import { useSettingsStore } from '@/store/settingsStore';
 import { useDayRollover } from '@/hooks/useDayRollover';
+import { useCloudSync } from '@/hooks/useCloudSync';
 import { useNotificationSync } from '@/hooks/useNotificationSync';
 import { APP_MAX_WIDTH, makeStyles, useColors, useThemeMode } from '@/theme';
 
@@ -45,6 +47,7 @@ function AppShell() {
 
   useDayRollover();
   useNotificationSync();
+  useCloudSync();
 
   return (
     <GameWindow>
@@ -58,8 +61,10 @@ function AppShell() {
         <Stack.Screen name="(onboarding)" />
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="quest/[id]" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="auth/callback" />
       </Stack>
       <CelebrationHost />
+      <SyncConflictModal />
       <InstallPrompt />
     </GameWindow>
   );

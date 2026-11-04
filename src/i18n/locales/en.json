@@ -243,6 +243,48 @@
       "hp_already_full": "Your HP is already full."
     }
   },
+  "account": {
+    "title": "ACCOUNT & SYNC",
+    "pitch": "Sign in to keep your kingdom safe in the cloud and play on any device.",
+    "emailPlaceholder": "Email",
+    "sendCode": "Email me a login link",
+    "codeSent": "We sent a login link to {{email}}. Open it in this browser to sign in.",
+    "codeOptional": "Got a code in the email instead? Enter it here.",
+    "codePlaceholder": "Login code",
+    "verify": "Sign in",
+    "changeEmail": "Use another email",
+    "signedInAs": "Signed in as {{email}}",
+    "syncNow": "Sync now",
+    "signOut": "Sign out",
+    "signedOut": "Signed out. Your progress stays on this device.",
+    "status": {
+      "syncing": "Syncing…",
+      "synced": "Synced at {{time}}",
+      "ready": "Ready to sync",
+      "pending": "Changes waiting to sync",
+      "error": "Couldn't reach the cloud. Your progress is safe here and will sync later."
+    },
+    "errors": {
+      "invalidEmail": "That email address does not look right.",
+      "sendFailed": "Couldn't send the code. Try again in a minute.",
+      "verifyFailed": "That code didn't work. Check it and try again."
+    },
+    "conflict": {
+      "title": "Two kingdoms found",
+      "body": "This device and your cloud save hold different progress. Keep one; the other will be replaced.",
+      "cloud": "Cloud: {{summary}}",
+      "device": "This device: {{summary}}",
+      "summary": "{{name}}, level {{level}}",
+      "noHero": "no hero",
+      "useCloud": "Use cloud save",
+      "keepDevice": "Keep this device"
+    },
+    "callback": {
+      "signingIn": "Opening the gates…",
+      "failed": "This login link has expired or was opened in a different browser. Request a new code in Settings.",
+      "back": "Back to Settings"
+    }
+  },
   "settings": {
     "title": "Settings",
     "sectionGeneral": "General",

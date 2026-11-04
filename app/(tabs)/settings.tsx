@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import { AccountPanel } from '@/components/AccountPanel';
 import { ConfirmModal } from '@/components/ConfirmModal';
 import { PixelButton } from '@/components/PixelButton';
 import { PixelPanel } from '@/components/PixelPanel';
@@ -81,6 +82,8 @@ export default function SettingsScreen() {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <Text style={styles.title}>{t('settings.title')}</Text>
+
+      <AccountPanel />
 
       <PixelPanel tone="dark" style={styles.panel}>
         <Text style={styles.sectionTitle}>{t('settings.sectionGeneral')}</Text>

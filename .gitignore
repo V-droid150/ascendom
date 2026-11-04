@@ -52,3 +52,6 @@ example
 
 .vercel
 .env*
+
+# Supabase CLI link state
+supabase/.temp

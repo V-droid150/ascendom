@@ -1,18 +1,35 @@
 import { useSyncExternalStore } from 'react';
 import { useGameStore } from '@/store/gameStore';
+import { useSyncStore } from '@/store/syncStore';
+
+/** The slice of Zustand's persist API this hook needs. */
+interface Persisted {
+  persist: {
+    hasHydrated: () => boolean;
+    onFinishHydration: (listener: () => void) => () => void;
+  };
+}
 
 /**
- * Whether the persisted game has finished loading from storage.
+ * Whether a persisted store has finished loading from storage.
  *
- * Storage is async, so on a cold start the store briefly holds the empty
- * initial state. Anything that branches on "does this player have a hero yet"
- * must wait for this, or a returning player gets sent to character creation.
- * During the static web export nothing has loaded, hence the `false` snapshot.
+ * Storage is async, so on a cold start a store briefly holds its empty initial
+ * state. Anything that branches on saved data — "does this player have a hero",
+ * "which account did this device last sync with" — must wait for this. During
+ * the static web export nothing has loaded, hence the `false` server snapshot.
  */
-export function useGameHydrated(): boolean {
+export function useHydrated(store: Persisted): boolean {
   return useSyncExternalStore(
-    (onChange) => useGameStore.persist.onFinishHydration(onChange),
-    () => useGameStore.persist.hasHydrated(),
+    (onChange) => store.persist.onFinishHydration(onChange),
+    () => store.persist.hasHydrated(),
     () => false,
   );
+}
+
+export function useGameHydrated(): boolean {
+  return useHydrated(useGameStore);
+}
+
+export function useSyncHydrated(): boolean {
+  return useHydrated(useSyncStore);
 }

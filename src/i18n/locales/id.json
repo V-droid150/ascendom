@@ -243,6 +243,48 @@
       "hp_already_full": "HP-mu masih penuh."
     }
   },
+  "account": {
+    "title": "AKUN & SINKRON",
+    "pitch": "Masuk untuk menyimpan kerajaanmu di cloud dan bermain di perangkat mana pun.",
+    "emailPlaceholder": "Email",
+    "sendCode": "Kirim link masuk",
+    "codeSent": "Link masuk sudah dikirim ke {{email}}. Buka di browser ini untuk masuk.",
+    "codeOptional": "Email-mu berisi kode? Masukkan di sini.",
+    "codePlaceholder": "Kode masuk",
+    "verify": "Masuk",
+    "changeEmail": "Pakai email lain",
+    "signedInAs": "Masuk sebagai {{email}}",
+    "syncNow": "Sinkron sekarang",
+    "signOut": "Keluar",
+    "signedOut": "Kamu sudah keluar. Progres tetap tersimpan di perangkat ini.",
+    "status": {
+      "syncing": "Menyinkronkan…",
+      "synced": "Tersinkron pukul {{time}}",
+      "ready": "Siap disinkronkan",
+      "pending": "Ada perubahan menunggu sinkron",
+      "error": "Gagal terhubung ke cloud. Progres aman di sini dan akan disinkronkan nanti."
+    },
+    "errors": {
+      "invalidEmail": "Alamat email sepertinya tidak benar.",
+      "sendFailed": "Gagal mengirim kode. Coba lagi sebentar lagi.",
+      "verifyFailed": "Kode tidak cocok. Periksa lalu coba lagi."
+    },
+    "conflict": {
+      "title": "Ada dua kerajaan",
+      "body": "Perangkat ini dan cloud punya progres berbeda. Pilih satu; yang lain akan diganti.",
+      "cloud": "Cloud: {{summary}}",
+      "device": "Perangkat ini: {{summary}}",
+      "summary": "{{name}}, level {{level}}",
+      "noHero": "belum ada hero",
+      "useCloud": "Pakai data cloud",
+      "keepDevice": "Pakai perangkat ini"
+    },
+    "callback": {
+      "signingIn": "Membuka gerbang…",
+      "failed": "Link masuk ini sudah kedaluwarsa atau dibuka di browser lain. Minta kode baru di Pengaturan.",
+      "back": "Kembali ke Pengaturan"
+    }
+  },
   "settings": {
     "title": "Pengaturan",
     "sectionGeneral": "Umum",
