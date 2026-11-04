@@ -49,11 +49,15 @@ export default function HeroScreen() {
           }}
         />
 
-        <View style={styles.banner}>
-          <Text style={styles.rankTitle}>{view.rankTitle}</Text>
+        {/* Rank and name read as one nameplate, so they sit close together. */}
+        <View style={styles.identity}>
+          <View style={styles.banner}>
+            <Text style={styles.rankTitle}>{view.rankTitle}</Text>
+          </View>
+          <View style={styles.nameRow}>
+            <HeroNameEditor name={hero.name} />
+          </View>
         </View>
-
-        <HeroNameEditor name={hero.name} />
       </View>
 
       <PixelPanel tone="dark" style={styles.panel}>
@@ -139,8 +143,10 @@ const useStyles = makeStyles((colors) => ({
     marginHorizontal: -spacing.md,
   },
   // Pushed clear of the scene so the rank plate doesn't sit on the grass.
+  identity: { alignItems: 'center', marginTop: spacing.md },
+  // The name keeps its full 44px touch target; this only pulls the text up.
+  nameRow: { marginTop: -spacing.xs },
   banner: {
-    marginTop: spacing.md,
     backgroundColor: colors.gold,
     borderWidth: border.width,
     borderColor: colors.goldDark,

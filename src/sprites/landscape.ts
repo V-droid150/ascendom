@@ -52,28 +52,6 @@ function paintSky(canvas: Canvas): void {
   }
 }
 
-/**
- * Stars in the upper sky. Drawn as their own character so the day palette can
- * hide them (same colour as the sky band) and the night palette can light them.
- */
-const STARS: readonly (readonly [number, number])[] = [
-  [3, 2],
-  [11, 6],
-  [17, 1],
-  [22, 5],
-  [30, 3],
-  [35, 7],
-  [44, 1],
-  [47, 6],
-  [61, 3],
-  [63, 7],
-  [58, 0],
-];
-
-function paintStars(canvas: Canvas): void {
-  for (const [x, y] of STARS) set(canvas, x, y, 'x');
-}
-
 function paintSun(canvas: Canvas, cx: number, cy: number): void {
   for (let dy = -3; dy <= 3; dy += 1) {
     for (let dx = -3; dx <= 3; dx += 1) {
@@ -156,7 +134,6 @@ function paintLandscape(): string[] {
   );
 
   paintSky(canvas);
-  paintStars(canvas);
   paintSun(canvas, 54, 6);
   stamp(canvas, CLOUD, 6, 4);
   stamp(canvas, CLOUD, 41, 2);
@@ -182,7 +159,6 @@ export const LANDSCAPE_COLORS: Readonly<Record<string, string>> = {
   '1': PALETTE[9], // sky, top
   '2': PALETTE[10], // sky, middle
   '3': PALETTE[11], // sky, horizon
-  x: PALETTE[9], // stars, hidden by day
   y: PALETTE[4], // sun
   o: PALETTE[3], // sun rim
   w: PALETTE[12], // cloud, flower
@@ -202,40 +178,3 @@ export const LANDSCAPE_COLORS: Readonly<Record<string, string>> = {
   d: '#1d6b3c', // grass shade
 };
 
-/**
- * Night: the sky fades from true black at the top, so the scene melts into the
- * dark theme's background. The sun becomes a moon, the stars come out, and the
- * castle windows are lit.
- */
-export const LANDSCAPE_NIGHT_COLORS: Readonly<Record<string, string>> = {
-  ...LANDSCAPE_COLORS,
-  '1': '#000000',
-  '2': PALETTE[0],
-  '3': PALETTE[8],
-  x: PALETTE[12],
-  y: PALETTE[12],
-  o: PALETTE[13],
-  w: PALETTE[14],
-  v: PALETTE[15],
-  m: PALETTE[15],
-  n: '#20243a',
-  s: PALETTE[13],
-  H: PALETTE[7],
-  h: '#1b4d52',
-  c: PALETTE[14],
-  C: PALETTE[15],
-  k: PALETTE[4],
-  r: '#7a2638',
-  g: '#1d6b3c',
-  l: PALETTE[6],
-  d: '#0f3d23',
-};
-
-/** Bright day: the sky fades up to white so it melts into the light theme. */
-export const LANDSCAPE_BRIGHT_COLORS: Readonly<Record<string, string>> = {
-  ...LANDSCAPE_COLORS,
-  '1': '#ffffff',
-  '2': '#c9f7fb',
-  '3': PALETTE[11],
-  x: '#ffffff',
-};
