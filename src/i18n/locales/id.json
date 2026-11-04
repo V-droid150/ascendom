@@ -243,7 +243,7 @@
     "themeDark": "Gelap",
     "themeLight": "Terang",
     "dayStartHour": "Hari mulai jam",
-    "dayStartHourNote": "Buat yang suka tidur subuh. Quest sebelum jam ini masih dihitung hari sebelumnya.",
+    "dayStartHourNote": "Sebelum jam ini masih dihitung kemarin.",
     "restDay": "Hari istirahat",
     "restDayNone": "Tidak ada",
     "restDayNote": "Satu hari per minggu tanpa hukuman.",

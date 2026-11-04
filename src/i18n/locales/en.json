@@ -243,7 +243,7 @@
     "themeDark": "Dark",
     "themeLight": "Light",
     "dayStartHour": "Day starts at",
-    "dayStartHourNote": "For night owls. Quests before this hour still count for the previous day.",
+    "dayStartHourNote": "Before this hour still counts as yesterday.",
     "restDay": "Rest day",
     "restDayNone": "None",
     "restDayNote": "One day a week with no penalties.",

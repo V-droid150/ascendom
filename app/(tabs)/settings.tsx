@@ -111,22 +111,21 @@ export default function SettingsScreen() {
           </View>
         </SettingRow>
 
-        <SettingRow label={t('settings.dayStartHour')} note={t('settings.dayStartHourNote')}>
-          <View style={styles.chips}>
-            {DAY_START_HOURS.map((hour) => (
-              <Chip
-                key={hour}
-                label={`${hour}`}
-                selected={settings.dayStartHour === hour}
-                onPress={() => settings.setDayStartHour(hour)}
-              />
-            ))}
-          </View>
-        </SettingRow>
+        {/* Options with many chips sit under their label, not beside it, so the
+            label and note keep the full width instead of being squeezed. */}
+        <SettingRow label={t('settings.dayStartHour')} note={t('settings.dayStartHourNote')} />
+        <View style={styles.chips}>
+          {DAY_START_HOURS.map((hour) => (
+            <Chip
+              key={hour}
+              label={`${hour}:00`}
+              selected={settings.dayStartHour === hour}
+              onPress={() => settings.setDayStartHour(hour)}
+            />
+          ))}
+        </View>
 
-        <SettingRow label={t('settings.restDay')} note={t('settings.restDayNote')}>
-          <View />
-        </SettingRow>
+        <SettingRow label={t('settings.restDay')} note={t('settings.restDayNote')} />
         <View style={styles.chips}>
           <Chip
             label={t('settings.restDayNone')}
