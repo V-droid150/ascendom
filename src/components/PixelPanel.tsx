@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
-import { border, colors, spacing } from '@/theme';
+import { View, type StyleProp, type ViewStyle } from 'react-native';
+import { border, makeStyles, spacing } from '@/theme';
 
 interface PixelPanelProps {
   children: ReactNode;
@@ -39,6 +39,7 @@ export function PixelPanel({
   tone = 'parchment',
   padded = true,
 }: PixelPanelProps) {
+  const styles = useStyles();
   const isParchment = tone === 'parchment';
 
   return (
@@ -59,7 +60,7 @@ export function PixelPanel({
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   outer: {
     borderWidth: border.width,
     borderRadius: border.radius,
@@ -87,4 +88,4 @@ const styles = StyleSheet.create({
   padded: {
     padding: spacing.md,
   },
-});
+}));

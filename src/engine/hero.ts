@@ -5,20 +5,18 @@ import { DEFAULT_DAY_START_HOUR, GRACE_DAYS, HP_MAX, STAT_KEYS } from './constan
 import { addDaysToKey, type DayKey } from './dayKey';
 
 export function emptyStats(): Record<StatKey, number> {
-  return STAT_KEYS.reduce(
-    (acc, key) => ({ ...acc, [key]: 0 }),
-    {} as Record<StatKey, number>,
-  );
+  return STAT_KEYS.reduce((acc, key) => ({ ...acc, [key]: 0 }), {} as Record<StatKey, number>);
 }
 
 export function defaultSettings(): Settings {
   return {
-    language: 'id',
+    language: 'en',
     dayStartHour: DEFAULT_DAY_START_HOUR,
     soundOn: true,
     hapticsOn: true,
     notificationsOn: false,
     reduceMotion: false,
+    theme: 'dark',
     restDays: [],
   };
 }

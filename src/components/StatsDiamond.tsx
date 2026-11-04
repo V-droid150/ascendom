@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Svg, { Circle, Line, Polygon } from 'react-native-svg';
 import { STAT_KEYS } from '@/engine/constants';
-import { colors, fonts, fontSize, spacing } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing, useColors } from '@/theme';
 import type { StatKey } from '@/types';
 
 interface StatsDiamondProps {
@@ -27,6 +27,8 @@ const AXES: { key: StatKey; angle: number }[] = [
  * is readable without interpreting the shape.
  */
 export function StatsDiamond({ stats, size = 160 }: StatsDiamondProps) {
+  const colors = useColors();
+  const styles = useStyles();
   const { t } = useTranslation();
 
   const center = size / 2;
@@ -36,7 +38,10 @@ export function StatsDiamond({ stats, size = 160 }: StatsDiamondProps) {
   const pointFor = (value: number, angle: number): [number, number] => {
     const ratio = Math.min(1, value / peak);
     const radians = (angle * Math.PI) / 180;
-    return [center + Math.cos(radians) * radius * ratio, center + Math.sin(radians) * radius * ratio];
+    return [
+      center + Math.cos(radians) * radius * ratio,
+      center + Math.sin(radians) * radius * ratio,
+    ];
   };
 
   const polygon = AXES.map(({ key, angle }) => pointFor(stats[key], angle).join(',')).join(' ');
@@ -45,7 +50,12 @@ export function StatsDiamond({ stats, size = 160 }: StatsDiamondProps) {
   return (
     <View style={styles.row}>
       <Svg width={size} height={size} accessibilityLabel={t('hero.stats')}>
-        <Polygon points={outline} fill={colors.nightDeep} stroke={colors.charcoal} strokeWidth={2} />
+        <Polygon
+          points={outline}
+          fill={colors.nightDeep}
+          stroke={colors.charcoal}
+          strokeWidth={2}
+        />
         {AXES.map(({ angle }) => {
           const [x, y] = pointFor(peak, angle);
           return (
@@ -60,7 +70,13 @@ export function StatsDiamond({ stats, size = 160 }: StatsDiamondProps) {
             />
           );
         })}
-        <Polygon points={polygon} fill={colors.mana} fillOpacity={0.55} stroke={colors.mana} strokeWidth={2} />
+        <Polygon
+          points={polygon}
+          fill={colors.mana}
+          fillOpacity={0.55}
+          stroke={colors.mana}
+          strokeWidth={2}
+        />
         {AXES.map(({ key, angle }) => {
           const [x, y] = pointFor(stats[key], angle);
           return <Circle key={key} cx={x} cy={y} r={2.5} fill={colors.gold} />;
@@ -79,10 +95,10 @@ export function StatsDiamond({ stats, size = 160 }: StatsDiamondProps) {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   row: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   legend: { flex: 1, gap: spacing.xs },
   legendRow: { flexDirection: 'row', justifyContent: 'space-between', gap: spacing.sm },
   legendLabel: { fontFamily: fonts.body, fontSize: fontSize.bodySm, color: colors.text },
   legendValue: { fontFamily: fonts.display, fontSize: fontSize.displayXs, color: colors.gold },
-});
+}));

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { ConfirmModal } from '@/components/ConfirmModal';
@@ -12,7 +12,7 @@ import { BAD_HABIT_DAMAGE, STAT_KEYS } from '@/engine/constants';
 import { baseReward } from '@/engine/rewards';
 import { DEFAULT_QUEST_ICON, QUEST_ICON_IDS } from '@/sprites/icons';
 import { useGameStore, type HabitDraft } from '@/store/gameStore';
-import { border, colors, fonts, fontSize, MIN_TOUCH_SIZE, spacing } from '@/theme';
+import { border, fonts, fontSize, makeStyles, MIN_TOUCH_SIZE, spacing, useColors } from '@/theme';
 import type { Difficulty, HabitType, StatKey } from '@/types';
 
 const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard'];
@@ -27,6 +27,8 @@ const EVERY_DAY = WEEKDAYS;
  * together means the field set, validation and reward preview can't drift apart.
  */
 export default function QuestEditorScreen() {
+  const colors = useColors();
+  const styles = useStyles();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { t } = useTranslation();
   const router = useRouter();
@@ -254,6 +256,7 @@ export default function QuestEditorScreen() {
 }
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  const styles = useStyles();
   return (
     <View style={styles.field}>
       <Text style={styles.fieldLabel}>{label}</Text>
@@ -273,6 +276,7 @@ function Chip({
   onPress: () => void;
   accessibilityLabel?: string;
 }) {
+  const styles = useStyles();
   return (
     <Pressable
       accessibilityRole="radio"
@@ -286,7 +290,7 @@ function Chip({
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: { flex: 1, backgroundColor: colors.night },
   content: { padding: spacing.md, gap: spacing.sm, paddingBottom: spacing.xxxl },
   title: { fontFamily: fonts.display, fontSize: fontSize.displaySm, color: colors.gold },
@@ -337,4 +341,4 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     paddingVertical: spacing.xs,
   },
-});
+}));

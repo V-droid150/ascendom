@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { PixelSprite } from '@/sprites';
@@ -9,9 +9,11 @@ import { PixelPanel } from '@/components/PixelPanel';
 import { SwatchPicker } from '@/components/SwatchPicker';
 import { HERO_NAME_MAX_LENGTH, useOnboardingStore } from '@/store/onboardingStore';
 import { useToast } from '@/components/ToastProvider';
-import { border, colors, fonts, fontSize, MIN_TOUCH_SIZE, spacing } from '@/theme';
+import { border, fonts, fontSize, makeStyles, MIN_TOUCH_SIZE, spacing, useColors } from '@/theme';
 
 export default function CustomizeScreen() {
+  const colors = useColors();
+  const styles = useStyles();
   const { t } = useTranslation();
   const router = useRouter();
   const toast = useToast();
@@ -108,7 +110,7 @@ export default function CustomizeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: { flex: 1, backgroundColor: colors.night },
   content: { padding: spacing.lg, gap: spacing.lg, paddingBottom: spacing.xxxl },
   title: {
@@ -145,4 +147,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     minHeight: MIN_TOUCH_SIZE,
   },
-});
+}));

@@ -1,12 +1,6 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import {
-  COSMETICS,
-  MAX_SHIELDS,
-  POTION_COST,
-  POTION_HEAL,
-  SHIELD_COST,
-} from '@/engine/constants';
+import { COSMETICS, MAX_SHIELDS, POTION_COST, POTION_HEAL, SHIELD_COST } from '@/engine/constants';
 import { HeroStatusBar } from '@/components/HeroStatusBar';
 import { PixelButton } from '@/components/PixelButton';
 import { PixelPanel } from '@/components/PixelPanel';
@@ -17,13 +11,14 @@ import { MIN_CAPE_RANK } from '@/sprites';
 import { RANKS } from '@/engine/ranks';
 import { useGameStore } from '@/store/gameStore';
 import { PALETTE } from '@/theme/colors';
-import { border, colors, fonts, fontSize, spacing } from '@/theme';
+import { border, fonts, fontSize, makeStyles, spacing } from '@/theme';
 import type { PurchaseResult } from '@/engine';
 
 /** The rank at which capes start rendering, resolved to its i18n key. */
 const CAPE_RANK_ID = RANKS.find((rank) => rank.rank === MIN_CAPE_RANK)?.id ?? 'captain';
 
 export default function ShopScreen() {
+  const styles = useStyles();
   const { t } = useTranslation();
   const toast = useToast();
   const haptics = useHaptics();
@@ -150,7 +145,7 @@ export default function ShopScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: { flex: 1, backgroundColor: colors.night },
   content: { padding: spacing.md, gap: spacing.sm, paddingBottom: spacing.xxxl },
   sectionTitle: {
@@ -173,4 +168,4 @@ const styles = StyleSheet.create({
     borderWidth: border.width,
     borderColor: colors.night,
   },
-});
+}));

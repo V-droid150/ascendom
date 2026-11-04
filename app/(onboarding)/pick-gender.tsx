@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Animated, {
@@ -13,12 +13,13 @@ import { PixelButton } from '@/components/PixelButton';
 import { PixelPanel } from '@/components/PixelPanel';
 import { useOnboardingStore } from '@/store/onboardingStore';
 import { useSettingsStore } from '@/store/settingsStore';
-import { border, colors, duration, fonts, fontSize, spacing } from '@/theme';
+import { border, duration, fonts, fontSize, makeStyles, spacing } from '@/theme';
 import type { Gender } from '@/types';
 
 const GENDERS: Gender[] = ['male', 'female'];
 
 export default function PickGenderScreen() {
+  const styles = useStyles();
   const { t } = useTranslation();
   const router = useRouter();
   const gender = useOnboardingStore((state) => state.gender);
@@ -59,6 +60,7 @@ interface HeroChoiceProps {
 
 /** Tapping a hero makes them hop, which confirms the choice without a checkmark. */
 function HeroChoice({ option, selected, label, onSelect }: HeroChoiceProps) {
+  const styles = useStyles();
   const reduceMotion = useSettingsStore((state) => state.reduceMotion);
   const hop = useSharedValue(0);
 
@@ -98,7 +100,7 @@ function HeroChoice({ option, selected, label, onSelect }: HeroChoiceProps) {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: {
     flex: 1,
     backgroundColor: colors.night,
@@ -130,4 +132,4 @@ const styles = StyleSheet.create({
   },
   choiceLabelSelected: { color: colors.gold },
   cta: { minWidth: 200 },
-});
+}));

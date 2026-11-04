@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import { Platform, StyleSheet, useWindowDimensions, View } from 'react-native';
-import { APP_MAX_WIDTH, border, colors } from '@/theme';
+import { Platform, useWindowDimensions, View } from 'react-native';
+import { APP_MAX_WIDTH, border, makeStyles } from '@/theme';
 
 /**
  * Centres the app in a fixed-width "game window" on wide screens.
@@ -11,6 +11,7 @@ import { APP_MAX_WIDTH, border, colors } from '@/theme';
  * a deliberate arcade frame rather than an unstyled gap.
  */
 export function GameWindow({ children }: { children: ReactNode }) {
+  const styles = useStyles();
   const { width } = useWindowDimensions();
   const isWide = Platform.OS === 'web' && width > APP_MAX_WIDTH;
 
@@ -25,7 +26,7 @@ export function GameWindow({ children }: { children: ReactNode }) {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   full: { flex: 1, backgroundColor: colors.night },
   surround: {
     flex: 1,
@@ -41,4 +42,4 @@ const styles = StyleSheet.create({
     borderRightWidth: border.width,
     borderColor: colors.charcoal,
   },
-});
+}));

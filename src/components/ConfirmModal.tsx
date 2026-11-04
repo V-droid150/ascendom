@@ -1,8 +1,8 @@
-import { Modal, StyleSheet, Text, View } from 'react-native';
+import { Modal, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { PixelButton } from './PixelButton';
 import { PixelPanel } from './PixelPanel';
-import { colors, fonts, fontSize, spacing } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing } from '@/theme';
 
 interface ConfirmModalProps {
   visible: boolean;
@@ -24,6 +24,7 @@ export function ConfirmModal({
   onConfirm,
   onCancel,
 }: ConfirmModalProps) {
+  const styles = useStyles();
   const { t } = useTranslation();
 
   return (
@@ -53,10 +54,10 @@ export function ConfirmModal({
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   backdrop: {
     flex: 1,
-    backgroundColor: 'rgba(18, 19, 34, 0.9)',
+    backgroundColor: colors.scrim,
     alignItems: 'center',
     justifyContent: 'center',
     padding: spacing.lg,
@@ -67,4 +68,4 @@ const styles = StyleSheet.create({
   body: { fontFamily: fonts.body, fontSize: fontSize.bodySm, color: colors.text },
   actions: { flexDirection: 'row', gap: spacing.sm },
   action: { flex: 1 },
-});
+}));

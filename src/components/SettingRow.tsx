@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import { StyleSheet, Switch, Text, View } from 'react-native';
-import { colors, fonts, fontSize, MIN_TOUCH_SIZE, spacing } from '@/theme';
+import { Switch, Text, View } from 'react-native';
+import { fonts, fontSize, makeStyles, MIN_TOUCH_SIZE, spacing, useColors } from '@/theme';
 
 interface SettingRowProps {
   label: string;
@@ -9,6 +9,7 @@ interface SettingRowProps {
 }
 
 export function SettingRow({ label, note, children }: SettingRowProps) {
+  const styles = useStyles();
   return (
     <View style={styles.row}>
       <View style={styles.text}>
@@ -29,6 +30,7 @@ interface ToggleRowProps {
 }
 
 export function ToggleRow({ label, note, value, onChange, disabled = false }: ToggleRowProps) {
+  const colors = useColors();
   return (
     <SettingRow label={label} {...(note === undefined ? {} : { note })}>
       <Switch
@@ -43,7 +45,7 @@ export function ToggleRow({ label, note, value, onChange, disabled = false }: To
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -53,4 +55,4 @@ const styles = StyleSheet.create({
   text: { flex: 1, gap: 2 },
   label: { fontFamily: fonts.body, fontSize: fontSize.bodySm, color: colors.text },
   note: { fontFamily: fonts.body, fontSize: fontSize.caption, color: colors.textDim },
-});
+}));

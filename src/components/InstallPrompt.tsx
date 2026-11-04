@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { PixelButton } from './PixelButton';
 import { PixelPanel } from './PixelPanel';
 import { storage } from '@/services/storage';
-import { colors, fonts, fontSize, spacing, zIndex } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing, zIndex } from '@/theme';
 
 const DISMISSED_KEY = 'ascendom:install-prompt-dismissed';
 
@@ -22,6 +22,7 @@ interface InstallPromptEvent extends Event {
  * browser chrome intrusion. A dismissal is remembered so it is asked once.
  */
 export function InstallPrompt() {
+  const styles = useStyles();
   const { t } = useTranslation();
   const [deferred, setDeferred] = useState<InstallPromptEvent | null>(null);
   const [visible, setVisible] = useState(false);
@@ -92,7 +93,7 @@ export function InstallPrompt() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   host: {
     position: 'absolute',
     left: spacing.md,
@@ -105,4 +106,4 @@ const styles = StyleSheet.create({
   body: { fontFamily: fonts.body, fontSize: fontSize.bodySm, color: colors.text },
   actions: { flexDirection: 'row', gap: spacing.sm },
   action: { flex: 1 },
-});
+}));

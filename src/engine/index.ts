@@ -21,3 +21,4 @@ export * from './badHabits';
 export * from './boss';
 export * from './kingdom';
 export * from './hero';
+export * from './sideQuests';

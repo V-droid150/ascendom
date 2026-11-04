@@ -1,20 +1,22 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { HeroStatusBar } from '@/components/HeroStatusBar';
 import { PixelButton } from '@/components/PixelButton';
 import { PixelPanel } from '@/components/PixelPanel';
 import { QuestCard } from '@/components/QuestCard';
+import { SideQuestPanel } from '@/components/SideQuestPanel';
 import { useToast } from '@/components/ToastProvider';
 import { WeeklyBossPanel } from '@/components/WeeklyBossPanel';
 import { useHaptics } from '@/hooks/useHaptics';
 import { useSound } from '@/hooks/useSound';
 import { useTodayQuests } from '@/hooks/useTodayQuests';
 import { useGameStore } from '@/store/gameStore';
-import { colors, fonts, fontSize, spacing } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing } from '@/theme';
 import type { Habit } from '@/types';
 
 export default function QuestsScreen() {
+  const styles = useStyles();
   const { t } = useTranslation();
   const router = useRouter();
   const toast = useToast();
@@ -91,6 +93,7 @@ export default function QuestsScreen() {
 
       <ScrollView contentContainerStyle={styles.content}>
         <WeeklyBossPanel />
+        <SideQuestPanel />
 
         {quests.isEmpty ? (
           <PixelPanel style={styles.empty}>
@@ -125,7 +128,7 @@ export default function QuestsScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: { flex: 1, backgroundColor: colors.night },
   content: { padding: spacing.md, gap: spacing.md, paddingBottom: 96 },
   section: { gap: spacing.sm },
@@ -155,4 +158,4 @@ const styles = StyleSheet.create({
     right: spacing.lg,
     bottom: spacing.lg,
   },
-});
+}));

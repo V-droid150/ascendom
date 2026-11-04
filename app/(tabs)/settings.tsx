@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { ConfirmModal } from '@/components/ConfirmModal';
@@ -12,15 +12,18 @@ import { SOUND_SUPPORTED } from '@/services/sound';
 import { HAPTICS_SUPPORTED } from '@/services/haptics';
 import { useGameStore } from '@/store/gameStore';
 import { useSettingsStore } from '@/store/settingsStore';
-import { border, colors, fonts, fontSize, MIN_TOUCH_SIZE, spacing } from '@/theme';
-import type { Language } from '@/types';
+import { border, fonts, fontSize, makeStyles, MIN_TOUCH_SIZE, spacing, useColors } from '@/theme';
+import type { Language, ThemeMode } from '@/types';
 
-const LANGUAGES: Language[] = ['id', 'en'];
+const LANGUAGES: Language[] = ['en', 'id'];
+const THEME_MODES: ThemeMode[] = ['dark', 'light'];
 const DAY_START_HOURS = [0, 2, 3, 4, 5, 6];
 const WEEKDAYS = [0, 1, 2, 3, 4, 5, 6];
 const TIME_TRAVEL_STEP = 1;
 
 export default function SettingsScreen() {
+  const colors = useColors();
+  const styles = useStyles();
   const { t } = useTranslation();
   const router = useRouter();
   const toast = useToast();
@@ -90,6 +93,19 @@ export default function SettingsScreen() {
                 label={language.toUpperCase()}
                 selected={settings.language === language}
                 onPress={() => settings.setLanguage(language)}
+              />
+            ))}
+          </View>
+        </SettingRow>
+
+        <SettingRow label={t('settings.theme')}>
+          <View style={styles.chips}>
+            {THEME_MODES.map((mode) => (
+              <Chip
+                key={mode}
+                label={t(mode === 'dark' ? 'settings.themeDark' : 'settings.themeLight')}
+                selected={settings.theme === mode}
+                onPress={() => settings.setTheme(mode)}
               />
             ))}
           </View>
@@ -252,6 +268,7 @@ function Chip({
   selected: boolean;
   onPress: () => void;
 }) {
+  const styles = useStyles();
   return (
     <Pressable
       accessibilityRole="radio"
@@ -265,7 +282,7 @@ function Chip({
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: { flex: 1, backgroundColor: colors.night },
   content: { padding: spacing.md, gap: spacing.md, paddingBottom: spacing.xxxl },
   title: { fontFamily: fonts.display, fontSize: fontSize.displaySm, color: colors.gold },
@@ -299,4 +316,4 @@ const styles = StyleSheet.create({
     minHeight: 96,
     textAlignVertical: 'top',
   },
-});
+}));

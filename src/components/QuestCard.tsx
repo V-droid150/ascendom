@@ -1,8 +1,8 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { BAD_HABIT_DAMAGE } from '@/engine/constants';
 import { baseReward, streakMultiplier } from '@/engine/rewards';
-import { border, colors, fonts, fontSize, MIN_TOUCH_SIZE, spacing } from '@/theme';
+import { border, fonts, fontSize, makeStyles, MIN_TOUCH_SIZE, spacing } from '@/theme';
 import type { Habit } from '@/types';
 import { PixelPanel } from './PixelPanel';
 import { QuestIcon } from './QuestIcon';
@@ -22,6 +22,7 @@ interface QuestCardProps {
  * secondary action out of the way.
  */
 export function QuestCard({ habit, completed, onToggle, onEdit }: QuestCardProps) {
+  const styles = useStyles();
   const { t } = useTranslation();
 
   const reward = baseReward(habit.difficulty);
@@ -83,7 +84,7 @@ export function QuestCard({ habit, completed, onToggle, onEdit }: QuestCardProps
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   card: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, minHeight: MIN_TOUCH_SIZE },
   cardDone: { opacity: 0.62 },
   text: { flex: 1, gap: 2 },
@@ -110,4 +111,4 @@ const styles = StyleSheet.create({
     color: colors.hpDark,
   },
   stampMarkOn: { color: colors.night },
-});
+}));

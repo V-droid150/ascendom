@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
-import { border, colors, fonts, fontSize, MIN_TOUCH_SIZE } from '@/theme';
+import { border, fonts, fontSize, MIN_TOUCH_SIZE, useColors } from '@/theme';
 
 /** Tab glyphs drawn as text, so no icon-font dependency is needed. */
 const GLYPHS: Record<string, string> = {
@@ -13,6 +13,7 @@ const GLYPHS: Record<string, string> = {
 };
 
 export default function TabsLayout() {
+  const colors = useColors();
   const { t } = useTranslation();
 
   return (

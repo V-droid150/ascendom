@@ -1,14 +1,11 @@
 import { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { PressStart2P_400Regular } from '@expo-google-fonts/press-start-2p';
-import {
-  PixelifySans_400Regular,
-  PixelifySans_700Bold,
-} from '@expo-google-fonts/pixelify-sans';
+import { PixelifySans_400Regular, PixelifySans_700Bold } from '@expo-google-fonts/pixelify-sans';
 import { ToastProvider, useToast } from '@/components/ToastProvider';
 import { CelebrationHost } from '@/components/CelebrationHost';
 import { GameWindow } from '@/components/GameWindow';
@@ -18,7 +15,7 @@ import { onStorageError } from '@/store/persistAdapter';
 import { useSettingsStore } from '@/store/settingsStore';
 import { useDayRollover } from '@/hooks/useDayRollover';
 import { useNotificationSync } from '@/hooks/useNotificationSync';
-import { APP_MAX_WIDTH, colors } from '@/theme';
+import { APP_MAX_WIDTH, makeStyles, useColors, useThemeMode } from '@/theme';
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -27,10 +24,11 @@ void SplashScreen.preventAutoHideAsync();
  * run the day rollover once the persisted state has rehydrated.
  */
 function AppShell() {
+  const colors = useColors();
   const toast = useToast();
   const language = useSettingsStore((state) => state.language);
 
-  // i18n is already initialised to Indonesian at import time; this applies the
+  // i18n is already initialised to English at import time; this applies the
   // user's persisted choice once the settings store rehydrates.
   useEffect(() => {
     setLanguage(language);
@@ -68,6 +66,8 @@ function AppShell() {
 }
 
 export default function RootLayout() {
+  const themeMode = useThemeMode();
+  const styles = useStyles();
   const [fontsLoaded, fontError] = useFonts({
     PressStart2P_400Regular,
     PixelifySans_400Regular,
@@ -86,7 +86,7 @@ export default function RootLayout() {
 
   return (
     <>
-      <StatusBar style="light" />
+      <StatusBar style={themeMode === 'dark' ? 'light' : 'dark'} />
       <ToastProvider>
         <AppShell />
       </ToastProvider>
@@ -94,6 +94,6 @@ export default function RootLayout() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   booting: { flex: 1, backgroundColor: colors.night, maxWidth: APP_MAX_WIDTH },
-});
+}));

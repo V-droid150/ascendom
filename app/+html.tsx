@@ -33,7 +33,7 @@ export default function Root({ children }: PropsWithChildren) {
         />
 
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#1a1c2c" />
+        <meta name="theme-color" content="#000000" />
         <link rel="apple-touch-icon" href="/logo192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -57,7 +57,7 @@ export default function Root({ children }: PropsWithChildren) {
 
 const BASE_STYLE = `
 body {
-  background-color: #1a1c2c;
+  background-color: #000000;
   overscroll-behavior-y: none;
 }
 /* Pixel art must never be smoothed by the browser's image scaler. */

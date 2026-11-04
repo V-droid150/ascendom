@@ -1,6 +1,16 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { border, colors, duration, fonts, fontSize, spacing, zIndex } from '@/theme';
+import { Text, View } from 'react-native';
+import {
+  border,
+  duration,
+  fonts,
+  fontSize,
+  makeStyles,
+  spacing,
+  useColors,
+  zIndex,
+  type ThemeColors,
+} from '@/theme';
 
 export type ToastTone = 'info' | 'success' | 'danger';
 
@@ -23,6 +33,8 @@ const VISIBLE_MS = 2600;
  * screen. Nothing in the app is allowed to fail silently.
  */
 export function ToastProvider({ children }: { children: ReactNode }) {
+  const styles = useStyles();
+  const colors = useColors();
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const show = useCallback((message: string, tone: ToastTone = 'info') => {
@@ -41,7 +53,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       {children}
       <View style={styles.host} pointerEvents="none">
         {toasts.map((toast) => (
-          <View key={toast.id} style={[styles.toast, TONE_STYLE[toast.tone]]}>
+          <View key={toast.id} style={[styles.toast, toneStyle(toast.tone, colors)]}>
             <Text style={styles.message} accessibilityLiveRegion="polite">
               {toast.message}
             </Text>
@@ -56,13 +68,19 @@ export function useToast(): ToastApi {
   return useContext(ToastContext);
 }
 
-const TONE_STYLE: Record<ToastTone, { backgroundColor: string; borderColor: string }> = {
-  info: { backgroundColor: colors.charcoal, borderColor: colors.mana },
-  success: { backgroundColor: colors.charcoal, borderColor: colors.xp },
-  danger: { backgroundColor: colors.charcoal, borderColor: colors.hp },
-};
+function toneStyle(
+  tone: ToastTone,
+  colors: ThemeColors,
+): { backgroundColor: string; borderColor: string } {
+  const border: Record<ToastTone, string> = {
+    info: colors.mana,
+    success: colors.xp,
+    danger: colors.hp,
+  };
+  return { backgroundColor: colors.charcoal, borderColor: border[tone] };
+}
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   host: {
     position: 'absolute',
     left: spacing.lg,
@@ -89,7 +107,7 @@ const styles = StyleSheet.create({
     color: colors.text,
     textAlign: 'center',
   },
-});
+}));
 
 export const TOAST_VISIBLE_MS = VISIBLE_MS;
 export const TOAST_FADE_MS = duration.fast;

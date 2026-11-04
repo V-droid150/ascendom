@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { RANKS } from '@/engine/ranks';
 import { PixelSprite } from '@/sprites';
@@ -7,7 +7,7 @@ import { HAIR_COLOR_COUNT, HAIR_COLORS, SKIN_TONES, SKIN_TONE_COUNT } from '@/sp
 import { HAIR_STYLE_COUNT, HAIR_STYLE_IDS } from '@/sprites/layers/hair';
 import { PixelButton } from '@/components/PixelButton';
 import { PixelPanel } from '@/components/PixelPanel';
-import { colors, fonts, fontSize, spacing } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing } from '@/theme';
 import type { Gender } from '@/types';
 
 const GENDERS: Gender[] = ['male', 'female'];
@@ -21,6 +21,7 @@ const GENDERS: Gender[] = ['male', 'female'];
  * and styles for both genders.
  */
 export default function SpriteLabScreen() {
+  const styles = useStyles();
   const { t } = useTranslation();
   const [skinTone, setSkinTone] = useState(0);
   const [hairColor, setHairColor] = useState(0);
@@ -112,7 +113,7 @@ export default function SpriteLabScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: { flex: 1, backgroundColor: colors.night },
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xxxl },
   title: {
@@ -136,4 +137,4 @@ const styles = StyleSheet.create({
   spriteRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
   spriteCell: { alignItems: 'center' },
   rankLabel: { fontFamily: fonts.body, fontSize: fontSize.caption, color: colors.steel },
-});
+}));

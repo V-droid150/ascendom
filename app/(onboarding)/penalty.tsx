@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { PixelBar } from '@/components/PixelBar';
@@ -8,7 +8,7 @@ import { STARTER_QUESTS } from '@/data/starterQuests';
 import { HP_MAX } from '@/engine/constants';
 import { useGameStore } from '@/store/gameStore';
 import { useOnboardingStore } from '@/store/onboardingStore';
-import { colors, fonts, fontSize, spacing } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing, useColors } from '@/theme';
 
 /**
  * The expectations screen.
@@ -19,6 +19,8 @@ import { colors, fonts, fontSize, spacing } from '@/theme';
  * accepted rule of the game.
  */
 export default function PenaltyScreen() {
+  const colors = useColors();
+  const styles = useStyles();
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -68,7 +70,7 @@ export default function PenaltyScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: {
     flex: 1,
     backgroundColor: colors.night,
@@ -86,4 +88,4 @@ const styles = StyleSheet.create({
   body: { fontFamily: fonts.body, fontSize: fontSize.body, color: colors.text },
   reassure: { fontFamily: fonts.body, fontSize: fontSize.bodySm, color: colors.textDim },
   cta: { alignSelf: 'center', minWidth: 200 },
-});
+}));

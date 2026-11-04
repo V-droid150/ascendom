@@ -1,19 +1,32 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useMemo } from 'react';
+import { Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { PixelArt } from '@/sprites/PixelArt';
-import { CASTLE_ART, CASTLE_COLORS } from '@/sprites/scenes';
+import { CROWN_ART, CROWN_COLORS } from '@/sprites/scenes';
 import { PixelButton } from '@/components/PixelButton';
-import { colors, fonts, fontSize, spacing } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing, useColors } from '@/theme';
+
+/** 12px per art pixel: the 12x12 crown renders at 144px. */
+const CROWN_SCALE = 12;
 
 export default function WelcomeScreen() {
+  const styles = useStyles();
+  const colors = useColors();
   const { t } = useTranslation();
   const router = useRouter();
+
+  const crownColors = useMemo(() => ({ ...CROWN_COLORS, k: colors.outline }), [colors.outline]);
 
   return (
     <View style={styles.screen}>
       <View style={styles.art}>
-        <PixelArt art={CASTLE_ART} colors={CASTLE_COLORS} scale={7} />
+        <PixelArt
+          art={CROWN_ART}
+          colors={crownColors}
+          scale={CROWN_SCALE}
+          accessibilityLabel={t('app.name')}
+        />
       </View>
 
       <View style={styles.copy}>
@@ -30,7 +43,7 @@ export default function WelcomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: {
     flex: 1,
     backgroundColor: colors.night,
@@ -55,4 +68,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   cta: { minWidth: 220 },
-});
+}));

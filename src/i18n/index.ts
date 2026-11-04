@@ -1,7 +1,7 @@
 /**
- * i18n setup. Indonesian is the default and the source of truth for copy;
- * English is the fallback so a missing Indonesian key degrades to real text
- * rather than showing the key name.
+ * i18n setup. English is what a first-time user sees; Indonesian is the
+ * other supported language. English is also the fallback, so a missing
+ * Indonesian key degrades to real text rather than showing the key name.
  */
 
 // `use` is aliased because the react-hooks lint rule treats any `use*` call as
@@ -19,7 +19,7 @@ export const resources = {
 
 export const SUPPORTED_LANGUAGES: Language[] = ['id', 'en'];
 
-export function initI18n(language: Language = 'id'): typeof i18n {
+export function initI18n(language: Language = 'en'): typeof i18n {
   if (!i18n.isInitialized) {
     void registerPlugin(initReactI18next).init({
       resources,
@@ -47,6 +47,6 @@ export function setLanguage(language: Language): void {
  * at all, so an effect-based init renders raw translation keys into the HTML.
  * The persisted language is applied afterwards by the root layout.
  */
-initI18n('id');
+initI18n('en');
 
 export default i18n;

@@ -1,4 +1,12 @@
-import type { CompanionId, DayResult, Habit, HabitLog, Hero, KingdomState } from '@/types';
+import type {
+  CompanionId,
+  DayResult,
+  Habit,
+  HabitLog,
+  Hero,
+  KingdomState,
+  SideQuestProgress,
+} from '@/types';
 
 /**
  * Something worth interrupting the user for.
@@ -28,6 +36,7 @@ export interface GameSnapshot {
   logs: HabitLog[];
   dayResults: DayResult[];
   kingdom: KingdomState;
+  sideQuests: SideQuestProgress;
   onboarded: boolean;
 }
 

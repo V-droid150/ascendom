@@ -59,7 +59,7 @@ describe('createHero', () => {
 describe('defaultSettings', () => {
   it('defaults to Indonesian with no rest day and notifications off', () => {
     const settings = defaultSettings();
-    expect(settings.language).toBe('id');
+    expect(settings.language).toBe('en');
     expect(settings.dayStartHour).toBe(0);
     expect(settings.restDays).toEqual([]);
     expect(settings.notificationsOn).toBe(false);

@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { addDaysToKey } from '@/engine/dayKey';
-import { border, colors, fonts, fontSize, spacing } from '@/theme';
+import { border, fonts, fontSize, makeStyles, spacing, useColors, type ThemeColors } from '@/theme';
 import type { DayResult } from '@/types';
 
 interface ChronicleHeatmapProps {
@@ -19,6 +19,8 @@ interface ChronicleHeatmapProps {
  * day would look like a gap in the record.
  */
 export function ChronicleHeatmap({ dayResults, todayKey, days = 30 }: ChronicleHeatmapProps) {
+  const colors = useColors();
+  const styles = useStyles();
   const { t } = useTranslation();
 
   const byKey = new Map(dayResults.map((result) => [result.dayKey, result]));
@@ -38,7 +40,7 @@ export function ChronicleHeatmap({ dayResults, todayKey, days = 30 }: ChronicleH
                 completed: result?.completed ?? 0,
                 missed: result?.missed ?? 0,
               })}
-              style={[styles.cell, cellStyle(result)]}
+              style={[styles.cell, cellStyle(result, colors)]}
             >
               {result?.fell && <Text style={styles.fellMark}>×</Text>}
             </View>
@@ -55,7 +57,10 @@ export function ChronicleHeatmap({ dayResults, todayKey, days = 30 }: ChronicleH
   );
 }
 
-function cellStyle(result: DayResult | undefined): { backgroundColor: string; borderColor: string } {
+function cellStyle(
+  result: DayResult | undefined,
+  colors: ThemeColors,
+): { backgroundColor: string; borderColor: string } {
   if (!result) return { backgroundColor: colors.nightDeep, borderColor: colors.charcoal };
   if (result.fell) return { backgroundColor: colors.hpDark, borderColor: colors.hp };
   if (result.restDay || result.graceDay || result.shieldUsed) {
@@ -67,6 +72,7 @@ function cellStyle(result: DayResult | undefined): { backgroundColor: string; bo
 }
 
 function LegendSwatch({ color, label }: { color: string; label: string }) {
+  const styles = useStyles();
   return (
     <View style={styles.legendItem}>
       <View style={[styles.legendSwatch, { backgroundColor: color }]} />
@@ -75,7 +81,7 @@ function LegendSwatch({ color, label }: { color: string; label: string }) {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   block: { gap: spacing.sm },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 3 },
   cell: {
@@ -91,4 +97,4 @@ const styles = StyleSheet.create({
   legendItem: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs },
   legendSwatch: { width: 10, height: 10 },
   legendText: { fontFamily: fonts.body, fontSize: fontSize.caption, color: colors.textDim },
-});
+}));

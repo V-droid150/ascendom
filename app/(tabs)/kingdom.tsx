@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { BUILDINGS, COMPANIONS } from '@/engine/constants';
 import { bestStreakAcross, nextBuilding } from '@/engine/kingdom';
@@ -9,9 +9,10 @@ import { PixelPanel } from '@/components/PixelPanel';
 import { useToast } from '@/components/ToastProvider';
 import { WeeklyBossPanel } from '@/components/WeeklyBossPanel';
 import { useGameStore } from '@/store/gameStore';
-import { colors, fonts, fontSize, spacing } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing } from '@/theme';
 
 export default function KingdomScreen() {
+  const styles = useStyles();
   const { t } = useTranslation();
   const toast = useToast();
 
@@ -126,7 +127,7 @@ export default function KingdomScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: { flex: 1, backgroundColor: colors.night },
   content: { padding: spacing.md, gap: spacing.md, paddingBottom: spacing.xxxl },
   scene: { alignItems: 'center', gap: spacing.sm, paddingVertical: spacing.md },
@@ -147,4 +148,4 @@ const styles = StyleSheet.create({
   chipOn: { borderColor: colors.xp },
   chipText: { fontFamily: fonts.body, fontSize: fontSize.caption, color: colors.textDim },
   chipTextOn: { color: colors.xp },
-});
+}));

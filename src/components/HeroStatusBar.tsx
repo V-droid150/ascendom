@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { HeroSprite } from '@/sprites';
 import { useHero } from '@/hooks/useHero';
 import { useSettingsStore } from '@/store/settingsStore';
 import { PixelBar } from './PixelBar';
-import { colors, fonts, fontSize, spacing } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing, useColors } from '@/theme';
 
 /**
  * The persistent status strip: mini hero, HP, XP and gold.
@@ -13,6 +13,8 @@ import { colors, fonts, fontSize, spacing } from '@/theme';
  * never disagree with the Hero screen.
  */
 export function HeroStatusBar() {
+  const colors = useColors();
+  const styles = useStyles();
   const view = useHero();
   const { t } = useTranslation();
   const reduceMotion = useSettingsStore((state) => state.reduceMotion);
@@ -71,7 +73,7 @@ export function HeroStatusBar() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   bar: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -90,4 +92,4 @@ const styles = StyleSheet.create({
     color: colors.gold,
   },
   goldGlyph: { fontSize: fontSize.caption, color: colors.goldDark },
-});
+}));

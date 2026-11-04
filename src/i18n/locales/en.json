@@ -18,7 +18,7 @@
   },
   "app": {
     "name": "ASCENDOM",
-    "tagline": "Rise every day, rule your kingdom."
+    "tagline": "Small deeds at every dawn. That is how legends are forged."
   },
   "tabs": {
     "quests": "Quests",
@@ -83,6 +83,36 @@
     "undo": "Undo",
     "logBad": "Log it",
     "editHint": "Long-press to edit"
+  },
+  "sideQuests": {
+    "title": "SIDE QUESTS",
+    "subtitle": "Fresh errands arrive with every dawn. Optional, but the crown notices.",
+    "pool": {
+      "stretch": "Stretch for 5 minutes",
+      "pushups": "Do 10 push-ups",
+      "stairs": "Take the stairs once",
+      "sunWalk": "Walk outside for 10 minutes",
+      "extraWater": "Drink one extra glass of water",
+      "fruit": "Eat a piece of fruit",
+      "tidyDesk": "Tidy your desk",
+      "declutter": "Throw out 5 things you never use",
+      "noScroll": "One hour without social media",
+      "breathe": "Breathe slowly for 3 minutes",
+      "cookMeal": "Cook one meal yourself",
+      "earlyBed": "Go to bed 30 minutes earlier",
+      "skipSpend": "Skip one impulse purchase",
+      "readArticle": "Read one long article",
+      "newWords": "Learn 5 new words",
+      "podcast": "Listen to something that teaches you",
+      "newSkill": "Practise a new skill for 15 minutes",
+      "planTomorrow": "Write down tomorrow's top 3",
+      "gratitude": "Write 3 things you are grateful for",
+      "callFamily": "Call or message family",
+      "compliment": "Give someone a sincere compliment",
+      "thankYou": "Send a thank-you message",
+      "helpSomeone": "Help someone with a small task",
+      "playMusic": "Make or play music for 10 minutes"
+    }
   },
   "hero": {
     "title": "Hero",
@@ -209,6 +239,9 @@
     "sectionData": "Data",
     "sectionDev": "Developer Tools",
     "language": "Language",
+    "theme": "Theme",
+    "themeDark": "Dark",
+    "themeLight": "Light",
     "dayStartHour": "Day starts at",
     "dayStartHourNote": "For night owls. Quests before this hour still count for the previous day.",
     "restDay": "Rest day",

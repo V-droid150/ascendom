@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { bossDefById, bossForToday, bossHpRatio, daysLeftInBossWeek } from '@/engine/boss';
 import { useGameStore } from '@/store/gameStore';
 import { PixelBar } from './PixelBar';
 import { PixelPanel } from './PixelPanel';
-import { colors, fonts, fontSize, spacing } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing, useColors } from '@/theme';
 
 /**
  * The weekly boss banner on the quest board.
@@ -14,6 +14,8 @@ import { colors, fonts, fontSize, spacing } from '@/theme';
  * a combat minigame.
  */
 export function WeeklyBossPanel() {
+  const colors = useColors();
+  const styles = useStyles();
   const { t } = useTranslation();
   const storedBoss = useGameStore((state) => state.kingdom.boss);
   const todayKey = useGameStore((state) => state.todayKey);
@@ -44,19 +46,17 @@ export function WeeklyBossPanel() {
       />
 
       {def && (
-        <Text style={styles.weakness}>
-          {t('boss.weakTo', { stat: t(`stat.${def.weakTo}`) })}
-        </Text>
+        <Text style={styles.weakness}>{t('boss.weakTo', { stat: t(`stat.${def.weakTo}`) })}</Text>
       )}
     </PixelPanel>
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   panel: { gap: spacing.sm },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   name: { fontFamily: fonts.display, fontSize: fontSize.displayXs, color: colors.ember },
   deadline: { fontFamily: fonts.body, fontSize: fontSize.caption, color: colors.textDim },
   deadlineUrgent: { color: colors.hp },
   weakness: { fontFamily: fonts.body, fontSize: fontSize.caption, color: colors.mana },
-});
+}));

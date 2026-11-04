@@ -1,13 +1,15 @@
 import { useState } from 'react';
+import { Pressable, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import {
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  type StyleProp,
-  type ViewStyle,
-} from 'react-native';
-import { border, colors, fonts, fontSize, MIN_TOUCH_SIZE, spacing } from '@/theme';
+  border,
+  fonts,
+  fontSize,
+  makeStyles,
+  MIN_TOUCH_SIZE,
+  spacing,
+  useColors,
+  type ThemeColors,
+} from '@/theme';
 import { useHaptics } from '@/hooks/useHaptics';
 
 export type PixelButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost';
@@ -23,26 +25,24 @@ interface PixelButtonProps {
   accessibilityLabel?: string;
 }
 
-const FILL: Record<PixelButtonVariant, string> = {
-  primary: colors.gold,
-  secondary: colors.mana,
-  danger: colors.hp,
-  ghost: colors.charcoal,
-};
+interface VariantColors {
+  fill: string;
+  shadow: string;
+  label: string;
+}
 
-const SHADOW: Record<PixelButtonVariant, string> = {
-  primary: colors.goldDark,
-  secondary: colors.xpDark,
-  danger: colors.hpDark,
-  ghost: colors.nightDeep,
-};
-
-const LABEL: Record<PixelButtonVariant, string> = {
-  primary: colors.ink,
-  secondary: colors.ink,
-  danger: colors.text,
-  ghost: colors.text,
-};
+function variantColors(variant: PixelButtonVariant, colors: ThemeColors): VariantColors {
+  switch (variant) {
+    case 'primary':
+      return { fill: colors.gold, shadow: colors.goldDark, label: colors.onAccent };
+    case 'secondary':
+      return { fill: colors.mana, shadow: colors.xpDark, label: colors.onAccent };
+    case 'danger':
+      return { fill: colors.hp, shadow: colors.hpDark, label: colors.onDanger };
+    case 'ghost':
+      return { fill: colors.charcoal, shadow: colors.nightDeep, label: colors.text };
+  }
+}
 
 /**
  * A button with a 2px hard drop shadow that presses *into* the shadow on touch,
@@ -57,6 +57,8 @@ export function PixelButton({
   style,
   accessibilityLabel,
 }: PixelButtonProps) {
+  const styles = useStyles();
+  const tone = variantColors(variant, useColors());
   const [pressed, setPressed] = useState(false);
   const haptics = useHaptics();
 
@@ -65,11 +67,7 @@ export function PixelButton({
   return (
     <View style={[styles.wrapper, style]}>
       <View
-        style={[
-          styles.shadow,
-          { backgroundColor: SHADOW[variant] },
-          compact && styles.shadowCompact,
-        ]}
+        style={[styles.shadow, { backgroundColor: tone.shadow }, compact && styles.shadowCompact]}
       />
       <Pressable
         accessibilityRole="button"
@@ -85,11 +83,11 @@ export function PixelButton({
         style={[
           styles.face,
           compact && styles.faceCompact,
-          { backgroundColor: FILL[variant], transform: [{ translateY: offset }] },
+          { backgroundColor: tone.fill, transform: [{ translateY: offset }] },
           disabled && styles.disabled,
         ]}
       >
-        <Text style={[styles.label, compact && styles.labelCompact, { color: LABEL[variant] }]}>
+        <Text style={[styles.label, compact && styles.labelCompact, { color: tone.label }]}>
           {label}
         </Text>
       </Pressable>
@@ -97,7 +95,7 @@ export function PixelButton({
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   wrapper: { position: 'relative' },
   shadow: {
     position: 'absolute',
@@ -128,4 +126,4 @@ const styles = StyleSheet.create({
   },
   labelCompact: { fontSize: fontSize.displayXs },
   disabled: { opacity: 0.45 },
-});
+}));

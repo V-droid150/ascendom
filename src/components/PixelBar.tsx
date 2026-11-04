@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { border, colors, fonts, fontSize, spacing } from '@/theme';
+import { Text, View } from 'react-native';
+import { border, fonts, fontSize, makeStyles, spacing, useColors } from '@/theme';
 
 interface PixelBarProps {
   /** 0..1 */
@@ -29,6 +29,8 @@ export function PixelBar({
   segments = 10,
   height = 16,
 }: PixelBarProps) {
+  const colors = useColors();
+  const styles = useStyles();
   const clamped = Math.min(1, Math.max(0, ratio));
   const filledSegments = Math.round(clamped * segments);
 
@@ -59,7 +61,7 @@ export function PixelBar({
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   track: {
     borderWidth: border.width,
     borderColor: colors.night,
@@ -94,4 +96,4 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 0,
   },
-});
+}));

@@ -62,3 +62,56 @@ export const FOGGY_CASTLE_COLORS: Readonly<Record<string, string>> = {
   m: '#262b43',
   F: PALETTE[0],
 };
+
+/**
+ * The crown from the app icon (`scripts/generate-icons.mjs`), cropped to its
+ * own bounds so the welcome screen and the PWA icon are the same mark.
+ *
+ * `g` gold, `o` gold shade, `r` gem, `w` highlight.
+ */
+const CROWN_CORE: readonly string[] = [
+  'w...ww...w',
+  'g...gg...g',
+  'g..ggggg.g',
+  'gggggggggg',
+  'gggggggggg',
+  'ggrggggrgg',
+  'gggggggggg',
+  'oooooooooo',
+  'gggggggggg',
+  'oooooooooo',
+];
+
+/**
+ * Wraps art in a 1px outline drawn with `char`, growing it by one cell on each
+ * side. The outline is what keeps a gold crown legible on a white background.
+ */
+export function withOutline(art: readonly string[], char: string): string[] {
+  const height = art.length + 2;
+  const width = (art[0]?.length ?? 0) + 2;
+  const at = (x: number, y: number): string => art[y - 1]?.[x - 1] ?? '.';
+
+  return Array.from({ length: height }, (_, y) =>
+    Array.from({ length: width }, (_, x) => {
+      const own = at(x, y);
+      if (own !== '.') return own;
+      const touches = [
+        [x - 1, y],
+        [x + 1, y],
+        [x, y - 1],
+        [x, y + 1],
+      ].some(([nx, ny]) => at(nx as number, ny as number) !== '.');
+      return touches ? char : '.';
+    }).join(''),
+  );
+}
+
+export const CROWN_ART: readonly string[] = withOutline(CROWN_CORE, 'k');
+
+/** `k` is the outline; callers pass the theme's outline colour for it. */
+export const CROWN_COLORS: Readonly<Record<string, string>> = {
+  g: PALETTE[4],
+  o: '#c99b47',
+  r: PALETTE[2],
+  w: PALETTE[12],
+};

@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { ChronicleHeatmap } from '@/components/ChronicleHeatmap';
 import { PixelBar } from '@/components/PixelBar';
@@ -8,9 +8,11 @@ import { useHero } from '@/hooks/useHero';
 import { HeroSprite } from '@/sprites';
 import { useGameStore } from '@/store/gameStore';
 import { useSettingsStore } from '@/store/settingsStore';
-import { border, colors, fonts, fontSize, spacing } from '@/theme';
+import { border, fonts, fontSize, makeStyles, spacing, useColors } from '@/theme';
 
 export default function HeroScreen() {
+  const colors = useColors();
+  const styles = useStyles();
   const { t } = useTranslation();
   const view = useHero();
   const habits = useGameStore((state) => state.habits);
@@ -124,7 +126,7 @@ export default function HeroScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: { flex: 1, backgroundColor: colors.night },
   content: { padding: spacing.md, gap: spacing.md, paddingBottom: spacing.xxxl },
   portrait: { alignItems: 'center', gap: spacing.sm, paddingTop: spacing.md },
@@ -154,4 +156,4 @@ const styles = StyleSheet.create({
   statLabel: { flex: 1, fontFamily: fonts.body, fontSize: fontSize.bodySm, color: colors.text },
   statValue: { fontFamily: fonts.display, fontSize: fontSize.displayXs, color: colors.gold },
   muted: { fontFamily: fonts.body, fontSize: fontSize.caption, color: colors.textDim },
-});
+}));

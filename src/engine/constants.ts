@@ -159,3 +159,16 @@ export const COMPANIONS: readonly CompanionDef[] = [
   { id: 'owl', streakRequired: 30 },
   { id: 'dragonling', streakRequired: 100 },
 ] as const;
+
+// --- Side quests -----------------------------------------------------------
+
+/**
+ * Bonus activities that rotate every game-day. They sit beside the user's own
+ * habits rather than replacing them, so streaks are never put at risk.
+ */
+export const SIDE_QUESTS_PER_DAY = 2;
+export const SIDE_QUEST_REWARD = { xp: 15, gold: 8 } as const;
+/** Fixed seed for the one-time shuffle of the pool. Changing it reorders every day. */
+export const SIDE_QUEST_SHUFFLE_SEED = 0x5eed1e;
+/** Day zero of the rotation. Any fixed date works; this one predates every save. */
+export const SIDE_QUEST_EPOCH_DAY_KEY = '2026-01-01';

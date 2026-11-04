@@ -3,8 +3,9 @@
  * and no component may hardcode a colour, radius, or spacing value.
  */
 
-export { colors, PALETTE, paletteColor } from './colors';
-export type { ColorName, PaletteIndex } from './colors';
+export { PALETTE, paletteColor, THEMES } from './colors';
+export type { ColorName, PaletteIndex, ThemeColors } from './colors';
+export { makeStyles, useColors, useThemeMode } from './useTheme';
 
 /** 4px grid. */
 export const spacing = {

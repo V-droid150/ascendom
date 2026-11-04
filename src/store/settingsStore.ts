@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 import { MAX_REST_DAYS } from '@/engine/constants';
 import { defaultSettings, setRestDays as applyRestDays } from '@/engine/hero';
 import { setLanguage as applyLanguage } from '@/i18n';
-import type { Language, Settings } from '@/types';
+import type { Language, Settings, ThemeMode } from '@/types';
 
 interface SettingsActions {
   setLanguage: (language: Language) => void;
@@ -14,6 +14,7 @@ interface SettingsActions {
   setHapticsOn: (value: boolean) => void;
   setNotificationsOn: (value: boolean) => void;
   setReduceMotion: (value: boolean) => void;
+  setTheme: (theme: ThemeMode) => void;
   replaceAll: (settings: Settings) => void;
   reset: () => void;
 }
@@ -34,8 +35,7 @@ export const useSettingsStore = create<SettingsStore>()(
 
       // Clamped rather than validated-and-rejected: a slider can't produce an
       // invalid hour, and a corrupt persisted value shouldn't break the day.
-      setDayStartHour: (hour) =>
-        set({ dayStartHour: Math.min(23, Math.max(0, Math.floor(hour))) }),
+      setDayStartHour: (hour) => set({ dayStartHour: Math.min(23, Math.max(0, Math.floor(hour))) }),
 
       setRestDay: (weekday) =>
         set((state) => applyRestDays(state, weekday === null ? [] : [weekday], MAX_REST_DAYS)),
@@ -44,6 +44,7 @@ export const useSettingsStore = create<SettingsStore>()(
       setHapticsOn: (hapticsOn) => set({ hapticsOn }),
       setNotificationsOn: (notificationsOn) => set({ notificationsOn }),
       setReduceMotion: (reduceMotion) => set({ reduceMotion }),
+      setTheme: (theme) => set({ theme }),
 
       replaceAll: (settings) => {
         applyLanguage(settings.language);
@@ -57,7 +58,7 @@ export const useSettingsStore = create<SettingsStore>()(
       // Typed to the partialized shape: only the plain Settings fields are
       // written, never the action functions.
       storage: createJSONStorage<Settings>(),
-      version: 1,
+      version: 2,
       partialize: (state): Settings => ({
         language: state.language,
         dayStartHour: state.dayStartHour,
@@ -65,11 +66,13 @@ export const useSettingsStore = create<SettingsStore>()(
         hapticsOn: state.hapticsOn,
         notificationsOn: state.notificationsOn,
         reduceMotion: state.reduceMotion,
+        theme: state.theme,
         restDays: state.restDays,
       }),
       migrate: (persisted, version): Settings => {
-        // v0 had no reduceMotion flag; default it rather than dropping the save.
-        if (version < 1) {
+        // v0 had no reduceMotion flag and v1 had no theme; default the missing
+        // fields rather than dropping the save.
+        if (version < 2) {
           return { ...defaultSettings(), ...(persisted as Partial<Settings>) };
         }
         return persisted as Settings;
@@ -88,6 +91,7 @@ export function settingsSnapshot(): Settings {
     hapticsOn: state.hapticsOn,
     notificationsOn: state.notificationsOn,
     reduceMotion: state.reduceMotion,
+    theme: state.theme,
     restDays: state.restDays,
   };
 }

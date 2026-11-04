@@ -14,6 +14,9 @@ export type HabitType = 'daily' | 'quest';
 
 export type Language = 'id' | 'en';
 
+/** Colour scheme. Dark is the default arcade look; light is high-contrast white. */
+export type ThemeMode = 'dark' | 'light';
+
 export interface Appearance {
   skinTone: number;
   hairStyle: number;
@@ -98,8 +101,15 @@ export interface Settings {
   hapticsOn: boolean;
   notificationsOn: boolean;
   reduceMotion: boolean;
+  theme: ThemeMode;
   /** At most MAX_REST_DAYS entries. Weekdays that never deal miss damage. */
   restDays: number[];
+}
+
+/** Which of today's rotating side quests are done. Reset when the day changes. */
+export interface SideQuestProgress {
+  dayKey: string;
+  completed: string[];
 }
 
 // --- Phase 4: depth systems ----------------------------------------------

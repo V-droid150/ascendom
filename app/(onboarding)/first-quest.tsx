@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { PixelButton } from '@/components/PixelButton';
@@ -7,9 +7,10 @@ import { QuestIcon } from '@/components/QuestIcon';
 import { useToast } from '@/components/ToastProvider';
 import { STARTER_QUESTS } from '@/data/starterQuests';
 import { useOnboardingStore } from '@/store/onboardingStore';
-import { border, colors, fonts, fontSize, spacing } from '@/theme';
+import { border, fonts, fontSize, makeStyles, spacing } from '@/theme';
 
 export default function FirstQuestScreen() {
+  const styles = useStyles();
   const { t } = useTranslation();
   const router = useRouter();
   const toast = useToast();
@@ -67,7 +68,7 @@ export default function FirstQuestScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   screen: { flex: 1, backgroundColor: colors.night },
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xxxl },
   title: {
@@ -102,4 +103,4 @@ const styles = StyleSheet.create({
     color: colors.textDim,
     textAlign: 'center',
   },
-});
+}));

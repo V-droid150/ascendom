@@ -18,7 +18,7 @@
   },
   "app": {
     "name": "ASCENDOM",
-    "tagline": "Naik setiap hari, kuasai kerajaanmu."
+    "tagline": "Langkah kecil di setiap fajar. Begitulah legenda ditempa."
   },
   "tabs": {
     "quests": "Quest",
@@ -83,6 +83,36 @@
     "undo": "Batalkan",
     "logBad": "Catat",
     "editHint": "Tahan untuk ubah"
+  },
+  "sideQuests": {
+    "title": "SIDE QUEST",
+    "subtitle": "Titah baru tiba setiap fajar. Opsional, tapi mahkota memperhatikan.",
+    "pool": {
+      "stretch": "Peregangan 5 menit",
+      "pushups": "Lakukan 10 push-up",
+      "stairs": "Naik tangga sekali saja",
+      "sunWalk": "Jalan di luar 10 menit",
+      "extraWater": "Minum satu gelas air tambahan",
+      "fruit": "Makan satu buah",
+      "tidyDesk": "Rapikan mejamu",
+      "declutter": "Buang 5 barang yang tak terpakai",
+      "noScroll": "Satu jam tanpa media sosial",
+      "breathe": "Bernapas perlahan 3 menit",
+      "cookMeal": "Masak satu menu sendiri",
+      "earlyBed": "Tidur 30 menit lebih awal",
+      "skipSpend": "Tahan satu belanja impulsif",
+      "readArticle": "Baca satu artikel panjang",
+      "newWords": "Pelajari 5 kata baru",
+      "podcast": "Dengarkan sesuatu yang mengajarimu",
+      "newSkill": "Latih keahlian baru 15 menit",
+      "planTomorrow": "Tulis 3 prioritas besok",
+      "gratitude": "Tulis 3 hal yang kamu syukuri",
+      "callFamily": "Telepon atau kabari keluarga",
+      "compliment": "Beri pujian tulus ke seseorang",
+      "thankYou": "Kirim pesan terima kasih",
+      "helpSomeone": "Bantu seseorang dengan hal kecil",
+      "playMusic": "Mainkan atau buat musik 10 menit"
+    }
   },
   "hero": {
     "title": "Pahlawan",
@@ -209,6 +239,9 @@
     "sectionData": "Data",
     "sectionDev": "Alat Pengembang",
     "language": "Bahasa",
+    "theme": "Tema",
+    "themeDark": "Gelap",
+    "themeLight": "Terang",
     "dayStartHour": "Hari mulai jam",
     "dayStartHourNote": "Buat yang suka tidur subuh. Quest sebelum jam ini masih dihitung hari sebelumnya.",
     "restDay": "Hari istirahat",

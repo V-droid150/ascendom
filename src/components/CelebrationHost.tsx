@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Modal, StyleSheet, Text, View } from 'react-native';
+import { Modal, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useGameStore } from '@/store/gameStore';
 import { useSettingsStore } from '@/store/settingsStore';
@@ -10,7 +10,7 @@ import { rankForLevel } from '@/engine/ranks';
 import { PixelButton } from './PixelButton';
 import { PixelPanel } from './PixelPanel';
 import { RisingParticles } from './RisingParticles';
-import { APP_MAX_WIDTH, colors, fonts, fontSize, spacing, zIndex } from '@/theme';
+import { APP_MAX_WIDTH, fonts, fontSize, makeStyles, spacing, useColors, zIndex } from '@/theme';
 import type { Celebration } from '@/store/types';
 
 /**
@@ -21,6 +21,8 @@ import type { Celebration } from '@/store/types';
  * rather than racing each other for the screen.
  */
 export function CelebrationHost() {
+  const colors = useColors();
+  const styles = useStyles();
   const celebration = useGameStore((state) => state.celebrations[0]);
   const dismiss = useGameStore((state) => state.dismissCelebration);
   const hero = useGameStore((state) => state.hero);
@@ -193,14 +195,14 @@ function describe(
   }
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   backdrop: {
     position: 'absolute',
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
-    backgroundColor: 'rgba(18, 19, 34, 0.94)',
+    backgroundColor: colors.scrim,
     alignItems: 'center',
     justifyContent: 'center',
     padding: spacing.lg,
@@ -232,4 +234,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   cta: { marginTop: spacing.sm },
-});
+}));

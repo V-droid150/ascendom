@@ -26,6 +26,7 @@ import {
   buyShield as engineBuyShield,
   claimBossReward,
   completeHabit as engineComplete,
+  completeSideQuest as engineCompleteSide,
   createHero as engineCreateHero,
   emptyKingdom,
   equipCosmetic as engineEquip,
@@ -38,7 +39,10 @@ import {
   rankForLevel,
   removeLog,
   restyleHero,
+  sideQuestById,
+  sideQuestsForDay,
   undoCompletion as engineUndo,
+  undoSideQuest as engineUndoSide,
   unequipCosmetic as engineUnequip,
   type BuildResult,
   type PurchaseResult,
@@ -58,6 +62,7 @@ import type {
   HabitLog,
   Hero,
   KingdomState,
+  SideQuestProgress,
 } from '@/types';
 
 /** Chronicle length shown on the Hero screen; older entries are dropped. */
@@ -76,6 +81,10 @@ export type CompleteOutcome =
   | { ok: false; reason: 'already_completed' | 'no_hero' | 'not_found' };
 
 export type UndoOutcome = { ok: true } | { ok: false; reason: 'not_completed' | 'no_hero' };
+
+export type SideQuestOutcome =
+  | { ok: true; xp: number; gold: number }
+  | { ok: false; reason: 'no_hero' | 'not_offered_today' | 'already_completed' };
 
 interface GameState extends GameSnapshot {
   /** Dev-only calendar offset in days, used by the time-travel button. */
@@ -97,6 +106,9 @@ interface GameActions {
   complete: (habitId: string) => CompleteOutcome;
   undo: (habitId: string) => UndoOutcome;
   logBad: (habitId: string) => { ok: boolean; damage: number; fell: boolean };
+
+  completeSide: (questId: string) => SideQuestOutcome;
+  undoSide: (questId: string) => UndoOutcome;
 
   runRollover: () => void;
 
@@ -135,10 +147,20 @@ const initialState: GameState = {
   logs: [],
   dayResults: [],
   kingdom: emptyKingdom(),
+  sideQuests: emptySideQuests(),
   onboarded: false,
   devDayOffset: 0,
   celebrations: [],
 };
+
+function emptySideQuests(): SideQuestProgress {
+  return { dayKey: '', completed: [] };
+}
+
+/** Side quests done today; yesterday's progress reads as nothing done. */
+export function sideQuestsDoneOn(progress: SideQuestProgress, dayKey: string): string[] {
+  return progress.dayKey === dayKey ? progress.completed : [];
+}
 
 /** Keeps the chronicle bounded and ordered oldest-first. */
 function mergeDayResults(existing: DayResult[], incoming: DayResult[]): DayResult[] {
@@ -147,9 +169,7 @@ function mergeDayResults(existing: DayResult[], incoming: DayResult[]): DayResul
   const byKey = new Map(existing.map((result) => [result.dayKey, result]));
   for (const result of incoming) byKey.set(result.dayKey, result);
 
-  return [...byKey.values()]
-    .sort((a, b) => (a.dayKey < b.dayKey ? -1 : 1))
-    .slice(-CHRONICLE_LIMIT);
+  return [...byKey.values()].sort((a, b) => (a.dayKey < b.dayKey ? -1 : 1)).slice(-CHRONICLE_LIMIT);
 }
 
 export const useGameStore = create<GameStore>()(
@@ -404,6 +424,59 @@ export const useGameStore = create<GameStore>()(
         });
       },
 
+      // --- Side quests --------------------------------------------------
+
+      completeSide: (questId) => {
+        const state = get();
+        const { hero } = state;
+        if (!hero) return { ok: false, reason: 'no_hero' };
+
+        const dayKey = state.todayKey();
+        const offered = sideQuestsForDay(dayKey).some((quest) => quest.id === questId);
+        const quest = sideQuestById(questId);
+        if (!offered || !quest) return { ok: false, reason: 'not_offered_today' };
+
+        const done = sideQuestsDoneOn(state.sideQuests, dayKey);
+        if (done.includes(questId)) return { ok: false, reason: 'already_completed' };
+
+        const result = engineCompleteSide(hero, quest);
+        const celebrations: Celebration[] = [];
+        if (result.leveledUp) celebrations.push({ kind: 'levelUp', level: result.hero.level });
+        if (result.promoted) {
+          celebrations.push({
+            kind: 'rankUp',
+            rankId: rankForLevel(result.hero.level).id,
+            level: result.hero.level,
+          });
+        }
+
+        set({
+          hero: result.hero,
+          sideQuests: { dayKey, completed: [...done, questId] },
+          celebrations: [...state.celebrations, ...celebrations],
+        });
+
+        return { ok: true, xp: result.xp, gold: result.gold };
+      },
+
+      undoSide: (questId) => {
+        const state = get();
+        const { hero } = state;
+        if (!hero) return { ok: false, reason: 'no_hero' };
+
+        const dayKey = state.todayKey();
+        const done = sideQuestsDoneOn(state.sideQuests, dayKey);
+        const quest = sideQuestById(questId);
+        if (!quest || !done.includes(questId)) return { ok: false, reason: 'not_completed' };
+
+        set({
+          hero: engineUndoSide(hero, quest),
+          sideQuests: { dayKey, completed: done.filter((id) => id !== questId) },
+        });
+
+        return { ok: true };
+      },
+
       // --- Shop ---------------------------------------------------------
 
       buyShield: () => {
@@ -501,6 +574,7 @@ export const useGameStore = create<GameStore>()(
             logs: state.logs,
             dayResults: state.dayResults,
             kingdom: state.kingdom,
+            sideQuests: state.sideQuests,
             onboarded: state.onboarded,
           },
           settings: settingsSnapshot(),
@@ -526,6 +600,7 @@ export const useGameStore = create<GameStore>()(
             logs: game.logs as HabitLog[],
             dayResults: (game.dayResults as DayResult[]) ?? [],
             kingdom: (game.kingdom as KingdomState) ?? emptyKingdom(),
+            sideQuests: (game.sideQuests as SideQuestProgress | undefined) ?? emptySideQuests(),
             onboarded: game.onboarded ?? Boolean(game.hero),
             celebrations: [],
           });
@@ -543,23 +618,26 @@ export const useGameStore = create<GameStore>()(
         }
       },
 
-      reset: () => set({ ...initialState, kingdom: emptyKingdom() }),
+      reset: () => set({ ...initialState, kingdom: emptyKingdom(), sideQuests: emptySideQuests() }),
     }),
     {
       name: GAME_STORAGE_KEY,
       storage: createJSONStorage<PersistedGame>(),
-      version: 1,
+      version: 2,
       partialize: (state): PersistedGame => ({
         hero: state.hero,
         habits: state.habits,
         logs: state.logs,
         dayResults: state.dayResults,
         kingdom: state.kingdom,
+        sideQuests: state.sideQuests,
         onboarded: state.onboarded,
         devDayOffset: state.devDayOffset,
       }),
       migrate: (persisted, version): PersistedGame => {
-        if (version < 1) {
+        // v0 predates versioning and v1 had no side quests: fill in whatever
+        // the save is missing from the defaults rather than dropping it.
+        if (version < 2) {
           const { celebrations: _ignored, ...base } = initialState;
           return { ...base, ...(persisted as Partial<PersistedGame>) };
         }

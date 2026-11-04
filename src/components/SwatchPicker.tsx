@@ -1,5 +1,5 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { border, colors, fonts, fontSize, MIN_TOUCH_SIZE, spacing } from '@/theme';
+import { Pressable, Text, View } from 'react-native';
+import { border, fonts, fontSize, makeStyles, MIN_TOUCH_SIZE, spacing } from '@/theme';
 
 interface SwatchPickerProps {
   label: string;
@@ -25,6 +25,7 @@ export function SwatchPicker({
   onChange,
   optionLabels,
 }: SwatchPickerProps) {
+  const styles = useStyles();
   return (
     <View style={styles.group}>
       <Text style={styles.label}>{label}</Text>
@@ -49,7 +50,7 @@ export function SwatchPicker({
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((colors) => ({
   group: { gap: spacing.xs },
   label: {
     fontFamily: fonts.bodyBold,
@@ -79,4 +80,4 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 0,
   },
-});
+}));
