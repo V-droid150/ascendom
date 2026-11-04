@@ -1,70 +1,54 @@
 /**
- * Body and shadow layers.
+ * Body and shadow layers, in the chibi proportions of 8-bit console RPGs: a
+ * head as wide as the shoulders and roughly as tall as the rest of the body.
  *
- * One body per gender, drawn in swap characters only (`s` skin, `S` shade,
- * `l` light), so all six skin tones reuse the same art. The silhouette is
- * shared between genders apart from shoulder and hip width, which keeps every
- * outfit aligned to the same landmarks:
+ * Drawn in swap characters only (`s` skin, `S` shade, `l` light), so every skin
+ * tone reuses the same art. The silhouette is shared between genders; outfits
+ * and hair carry the difference, which is how NES-era sprites did it too.
+ * The dark outline is not drawn here: `compose` traces it around the finished
+ * silhouette so headgear, capes and weapons get one as well.
  *
- *   rows 4-13   head and neck
- *   rows 14-21  torso (arms at the outer columns)
- *   rows 22-27  legs
- *   rows 28-29  feet
- *   row  30     ground shadow
+ *   rows 3-14   head (eyes on rows 9-10)
+ *   rows 15-21  torso, arms at columns 9-10 and 21-22, hands on row 21
+ *   rows 22-25  legs
+ *   row  26     feet
+ *   row  28     ground shadow (row 27 is left for the outline)
  */
 
 import type { Gender } from '@/types';
 import type { SpriteLayer } from '../types';
 import { layer, row, rows } from './builder';
 
-const FACE_EYES = row([11, 'ls0ssss0sS']);
-const FACE_PLAIN = row([11, 'lssssssssS']);
+const EYES = row([10, 'lss0ssss0ssS']);
 
 const HEAD = {
-  4: row([12, 'ssssssss']),
-  5: row([11, 'lssssssssS']),
-  6: FACE_PLAIN,
-  7: FACE_EYES,
-  8: FACE_EYES,
-  9: FACE_PLAIN,
-  10: row([11, 'lsssSSsssS']),
-  11: row([12, 'sssssssS']),
-  12: row([13, 'ssssss']),
-  13: row([14, 'ssss']),
+  3: row([12, 'ssssssss']),
+  4: row([11, 'ssssssssss']),
+  ...rows(5, 8, row([10, 'lssssssssssS'])),
+  9: EYES,
+  10: EYES,
+  11: row([10, 'lsSssssssSsS']),
+  12: row([10, 'lssssssssssS']),
+  13: row([11, 'ssssssssSS']),
+  14: row([12, 'ssSSSSss']),
 } as const;
 
-const LEGS = {
-  ...rows(22, 27, row([12, 'sss'], [17, 'sss'])),
-  28: row([11, 'ssss'], [17, 'ssss']),
-  29: row([11, 'ssSS'], [17, 'SSss']),
+const TORSO_AND_LIMBS = {
+  ...rows(15, 20, row([9, 'ss'], [11, 'ssssssssss'], [21, 'sS'])),
+  21: row([9, 'ss'], [11, 'ssssssssss'], [21, 'sS']),
+  ...rows(22, 25, row([12, 'sss'], [17, 'sss'])),
+  26: row([11, 'ssss'], [17, 'ssss']),
 } as const;
 
-const MALE_BODY: SpriteLayer = layer({
-  ...HEAD,
-  14: row([11, 'ssssssssss']),
-  // Broader shoulders than the female body: arms sit at columns 9 and 22.
-  ...rows(15, 19, row([9, 'lssssssssssssS'])),
-  20: row([10, 'lssssssssssS']),
-  21: row([11, 'lssssssssS']),
-  ...LEGS,
-});
-
-const FEMALE_BODY: SpriteLayer = layer({
-  ...HEAD,
-  14: row([12, 'ssssssss']),
-  ...rows(15, 19, row([10, 'lssssssssssS'])),
-  20: row([11, 'lssssssssS']),
-  21: row([11, 'lssssssssS']),
-  ...LEGS,
-});
+const BODY: SpriteLayer = layer({ ...HEAD, ...TORSO_AND_LIMBS });
 
 /** Grounds the character so it doesn't look like it's floating. */
 export const SHADOW_LAYER: SpriteLayer = layer({
-  30: row([11, 'FFFFFFFFFF']),
+  28: row([10, 'FFFFFFFFFFFF']),
 });
 
-export function bodyLayer(gender: Gender): SpriteLayer {
-  return gender === 'female' ? FEMALE_BODY : MALE_BODY;
+export function bodyLayer(_gender: Gender): SpriteLayer {
+  return BODY;
 }
 
-export const BODY_LAYERS = { male: MALE_BODY, female: FEMALE_BODY } as const;
+export const BODY_LAYERS = { male: BODY, female: BODY } as const;

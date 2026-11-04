@@ -2,53 +2,60 @@
  * Headgear, weapons, and capes — the per-rank accessories.
  *
  * Headgear is composed above hair so a helm covers the crown of the head while
- * the side locks still show. Weapons live in a reserved column band (25-27) and
- * capes in another (21-24) so the two never overwrite each other, which is what
- * lets rank 4 carry a banner shield and wear a cape at the same time.
+ * the side locks still show. Weapons are held in the right hand: the hand is
+ * the body's columns 21-22 on rows 20-21, so every weapon puts its grip on
+ * column 23 with the crossguard touching the hand. A blade drawn any further
+ * out reads as a pole standing beside the hero. Shields sit on the left arm,
+ * columns 4-9, overlapping it so they read as strapped on rather than floating.
+ *
+ * The cape is painted *behind* the body (see `compose`), so only its edges and
+ * the part between the legs show — the classic 8-bit way to draw a cloak.
  */
 
 import type { SpriteLayer } from '../types';
-import { emptyLayer, layer, row, rows, type Segment } from './builder';
+import { emptyLayer, layer, row, rows } from './builder';
 
 // --- Headgear -----------------------------------------------------------
 
-/** Rank 3: closed iron helm with cheek guards. */
+/** Rank 3: a rounded iron helm with a brim and cheek guards. */
 const IRON_HELM: SpriteLayer = layer({
-  3: row([12, 'DDDDDDDD']),
-  4: row([11, 'DDDDDDDDDD']),
-  5: row([11, 'DDDDDDDDDD']),
-  6: row([11, 'DDDDDDDDDD']),
-  7: row([11, 'D'], [20, 'E']),
-  8: row([11, 'D'], [20, 'E']),
-  9: row([11, 'E'], [20, 'E']),
+  1: row([12, 'DDDDDDDD']),
+  2: row([11, 'DWDDDDDDDE']),
+  3: row([10, 'DWDDDDDDDDDE']),
+  4: row([10, 'DDDDDDDDDDEE']),
+  5: row([10, 'DDDDDDDDDDEE']),
+  6: row([10, 'EEEEEEEEEEEE']),
+  7: row([10, 'D'], [21, 'E']),
+  8: row([10, 'D'], [21, 'E']),
+  9: row([10, 'E'], [21, 'E']),
 });
 
-/** Rank 4: bright steel helm with a crimson plume and gold band. */
+/** Rank 4: bright steel with a crimson plume and a gold band. */
 const STEEL_HELM: SpriteLayer = layer({
+  0: row([15, '22']),
   1: row([15, '22']),
-  2: row([15, '22']),
-  3: row([12, 'CCCCCCCC']),
-  4: row([11, 'CCCCCCCCCC']),
-  5: row([11, 'CCCCCCCCCC']),
-  6: row([11, 'C44444444C']),
-  7: row([11, 'C'], [20, 'D']),
-  8: row([11, 'C'], [20, 'D']),
-  9: row([11, 'D'], [20, 'D']),
+  2: row([11, 'DWWDDDDDDE']),
+  3: row([10, 'DWDDDDDDDDDE']),
+  4: row([10, 'DDDDDDDDDDDE']),
+  5: row([10, '444444444444']),
+  6: row([10, 'DD'], [20, 'EE']),
+  7: row([10, 'D'], [21, 'E']),
+  8: row([10, 'D'], [21, 'E']),
 });
 
-/** Rank 5: a thin gold circlet that leaves the hairstyle visible. */
+/** Rank 5: a thin gold circlet with a ruby, leaving the hairstyle visible. */
 const CIRCLET: SpriteLayer = layer({
-  5: row([15, '22']),
-  6: row([11, '4444444444']),
+  5: row([10, '444442244444']),
 });
 
-/** Rank 6: the crown, with points and two red gems. */
+/** Rank 6: the crown — the same five-point mark as the app icon. */
 const CROWN: SpriteLayer = layer({
-  2: row([12, '4.4..4.4']),
-  3: row([12, '44444444']),
-  4: row([11, '4444444444']),
-  5: row([11, '4244444424']),
-  6: row([11, '4444444444']),
+  0: row([11, 'W'], [15, 'WW'], [20, 'W']),
+  1: row([11, '4'], [15, '44'], [20, '4']),
+  2: row([11, '4'], [14, '4444'], [20, '4']),
+  3: row([11, '4444444444']),
+  4: row([11, '4424444244']),
+  5: row([11, '3333333333']),
 });
 
 const HEADGEAR: readonly SpriteLayer[] = [
@@ -62,83 +69,70 @@ const HEADGEAR: readonly SpriteLayer[] = [
 
 // --- Weapons ------------------------------------------------------------
 
-/**
- * Weapon geometry is fixed so every rank reads as *held* rather than floating.
- *
- * - The grip sits at column 24 and the hand at columns 22-23, rows 19-20.
- *   The body's arm ends at column 22 (male) or 21 (female); a blade drawn any
- *   further out looks like a pole standing beside the hero, which is exactly
- *   how the first draft looked.
- * - Shields sit at columns 4-8, flush against the opposite arm at column 9,
- *   for the same reason.
- *
- * Rows 19 and 20 are always written out in full rather than merged in from a
- * shared constant, because a shaft that spans them would otherwise be erased on
- * exactly those two rows and leave a gap in the middle of the weapon.
- */
-const HAND: Segment = [22, 'ss'];
-const HAND_SHADE: Segment = [22, 'sS'];
+/** Crossguard, grip and pommel shared by every sword. */
+const HILT = {
+  19: row([22, '444']),
+  20: row([23, '3']),
+  21: row([23, '3']),
+  22: row([23, '4']),
+} as const;
 
-/** Rank 1: a whittled stick. */
+/** Rank 1: a whittled walking stick. */
 const STICK: SpriteLayer = layer({
-  ...rows(12, 25, row([24, 'E'])),
-  16: row([24, 'F']),
-  19: row(HAND, [24, 'E']),
-  20: row(HAND_SHADE, [24, 'E']),
+  ...rows(11, 24, row([23, '3'])),
+  10: row([23, '2']),
+  15: row([23, '2']),
 });
 
 /** Rank 2: a short sword. */
 const SHORT_SWORD: SpriteLayer = layer({
-  ...rows(14, 17, row([24, 'D'])),
-  18: row([23, '444']),
-  19: row(HAND, [24, '4']),
-  20: row(HAND_SHADE, [24, '4']),
-  21: row([24, '4']),
+  12: row([23, 'W']),
+  ...rows(13, 18, row([23, 'D'])),
+  ...HILT,
 });
 
-/** Rank 3: a longsword and a round iron shield. */
+/** Rank 3: a longsword and a round iron buckler. */
 const SWORD_AND_SHIELD: SpriteLayer = layer({
-  ...rows(10, 14, row([24, 'D'])),
-  15: row([6, 'DDD'], [24, 'D']),
-  16: row([5, 'DDDD'], [24, 'D']),
-  17: row([5, 'DEED'], [24, 'D']),
-  18: row([5, 'DEED'], [23, '444']),
-  19: row([5, 'DDDD'], HAND, [24, '4']),
-  20: row([5, 'DDDD'], HAND_SHADE, [24, '4']),
-  21: row([6, 'DDD'], [24, '4']),
+  7: row([23, 'W']),
+  ...rows(8, 18, row([23, 'D'])),
+  16: row([6, 'DDD'], [23, 'D']),
+  17: row([5, 'DWDDE'], [23, 'D']),
+  18: row([5, 'DD4DE'], [23, 'D']),
+  19: row([5, 'DDDDE'], [22, '444']),
+  20: row([5, 'EDDEE'], [23, '3']),
+  21: row([6, 'EEE'], [23, '3']),
+  22: row([23, '4']),
 });
 
-/** Rank 4: a gold-rimmed kite shield bearing a device, and a steel blade. */
-const BANNER_SHIELD: SpriteLayer = layer({
-  ...rows(9, 13, row([24, 'C'])),
-  14: row([4, '44444'], [24, 'C']),
-  15: row([4, '4CCC4'], [24, 'C']),
-  16: row([4, '4C2C4'], [24, 'C']),
-  17: row([4, '4C2C4'], [24, 'C']),
-  18: row([4, '4CCC4'], [23, '444']),
-  19: row([4, '4CCC4'], HAND, [24, '4']),
-  20: row([4, '44444'], HAND_SHADE, [24, '4']),
-  21: row([5, '444'], [24, '4']),
-  22: row([6, '4']),
+/** Rank 4: a gold-rimmed kite shield with a white device, and a steel blade. */
+const KITE_SHIELD: SpriteLayer = layer({
+  6: row([23, 'W']),
+  ...rows(7, 14, row([23, 'W'])),
+  15: row([4, '444444'], [23, 'W']),
+  16: row([4, '422224'], [23, 'D']),
+  17: row([4, '42WW24'], [23, 'D']),
+  18: row([4, '42WW24'], [23, 'D']),
+  ...HILT,
+  // Rows 19-22 of the shield share their row with the hilt, so both are listed.
+  19: row([4, '422224'], [22, '444']),
+  20: row([5, '4224'], [23, '3']),
+  21: row([6, '44'], [23, '3']),
 });
 
-/** Rank 6: a golden scepter crowned with an orb. */
+/** Rank 6: a golden scepter crowned with a ruby orb. */
 const SCEPTER: SpriteLayer = layer({
-  11: row([23, '444']),
-  12: row([23, '4C4']),
-  13: row([23, '444']),
-  ...rows(14, 18, row([24, '4'])),
-  19: row(HAND, [24, '4']),
-  20: row(HAND_SHADE, [24, '4']),
-  21: row([24, '4']),
-  22: row([24, '4']),
+  9: row([22, '444']),
+  10: row([22, '424']),
+  11: row([22, '444']),
+  ...rows(12, 23, row([23, '4'])),
+  24: row([23, '3']),
 });
 
 const WEAPONS: readonly SpriteLayer[] = [
   STICK,
   SHORT_SWORD,
   SWORD_AND_SHIELD,
-  BANNER_SHIELD,
+  KITE_SHIELD,
   emptyLayer(), // rank 5 nobles carry no weapon
   SCEPTER,
 ];
@@ -146,20 +140,16 @@ const WEAPONS: readonly SpriteLayer[] = [
 // --- Capes --------------------------------------------------------------
 
 /**
- * Swept to one side rather than draped behind, because a 32px sprite has no
- * depth to read a cape *behind* the body. Drawn in cosmetic swap characters so
- * an equipped cape colour from the shop replaces the default crimson.
+ * Drawn in cosmetic swap characters so a cape colour bought in the shop
+ * replaces the default crimson. Most of it is hidden by the body in front.
  */
 const CAPE: SpriteLayer = layer({
-  14: row([21, 'cc']),
-  15: row([21, 'ccc']),
-  16: row([21, 'ccc']),
-  ...rows(17, 22, row([21, 'cccc'])),
-  23: row([21, 'cccC']),
-  24: row([21, 'ccCC']),
-  25: row([21, 'cCCC']),
-  26: row([21, 'CCCC']),
-  27: row([22, 'CCC']),
+  15: row([8, 'cccccccccccccccc']),
+  ...rows(16, 21, row([7, 'cccccccccccccccccC'])),
+  // Below the waist only the two hanging edges show, never the gap between
+  // the legs: filled in, it reads as a skirt rather than a cloak.
+  ...rows(22, 24, row([7, 'cccc'], [21, 'cccC'])),
+  25: row([7, 'CCCC'], [21, 'CCCC']),
 });
 
 export const MIN_CAPE_RANK = 4;

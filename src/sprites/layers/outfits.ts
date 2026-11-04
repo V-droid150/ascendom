@@ -1,211 +1,192 @@
 /**
  * Rank outfits — the visible reward for climbing, and the visible cost of
- * falling. Six per gender, drawn with Sweetie 16 hex digits so they read as
- * fabric and metal rather than tinted skin.
+ * falling. Six per gender, drawn with Sweetie 16 hex digits (plus `W` for
+ * white) so they read as fabric and metal rather than tinted skin.
  *
- * The colour story is a deliberate progression: drab slate rags, then warm
- * leather, then dull iron, then bright steel with gold, then noble purple,
- * then royal blue and gold. Each step should be recognisable at a glance in a
- * 32px sprite, which is why the hue changes rather than just the detail.
+ * The colour story is a deliberate progression, one hue per rank so each step
+ * is recognisable at a glance: drab slate rags, warm leather, dull iron, a
+ * crimson tabard over steel, noble purple with fur, then royal blue and gold.
  *
- * Male outfits use trousers, female outfits use a skirt over leggings, so the
- * two silhouettes stay distinguishable at this size.
+ * Every outfit keeps to two or three tones plus the traced outline, in the
+ * spirit of NES sprites. Male outfits use trousers; female outfits flare into a
+ * skirt or gown, so the silhouettes differ even at 32px.
+ *
+ * Landmarks (shared with `body.ts`): torso columns 11-20 on rows 15-21, arms
+ * 9-10 and 21-22 with the hands left bare on rows 20-21, legs 12-14 and 17-19
+ * on rows 22-25, feet on row 26.
  */
 
 import type { Gender } from '@/types';
 import type { SpriteLayer } from '../types';
 import { layer, row, rows } from './builder';
 
-const MALE_BOOTS = {
-  28: row([11, 'FFFF'], [17, 'FFFF']),
-  29: row([11, 'FFFF'], [17, 'FFFF']),
-} as const;
+const BOOTS = { 26: row([11, 'FFFF'], [17, 'FFFF']) } as const;
 
-const FEMALE_BOOTS = MALE_BOOTS;
+/** A torso row with matching sleeves. */
+function top(sleeve: string, torso: string, sleeveRight: string): string {
+  return row([9, sleeve], [11, torso], [21, sleeveRight]);
+}
 
-// --- Rank 1: Peasant — patched slate tunic, bare feet -------------------
+// --- Rank 1: Peasant — patched slate tunic, rope belt, bare feet --------
 
 const PEASANT_MALE: SpriteLayer = layer({
-  14: row([11, 'EEEEEEEEEE']),
-  15: row([11, 'EEEEEEEEEE']),
-  16: row([11, 'EEEFEEEEEE']),
-  17: row([11, 'EEEFEEEEEE']),
-  18: row([11, 'EEEEEEEFEE']),
-  19: row([11, 'EEEEEEEFEE']),
-  20: row([11, 'EEEEEEEEEE']),
-  21: row([11, 'FFFFFFFFFF']),
-  22: row([12, 'EEE'], [17, 'EEE']),
-  23: row([12, 'EEE'], [17, 'EEE']),
-  24: row([12, 'FFF'], [17, 'FFF']),
+  15: top('EE', 'EEEEEEEEEF', 'EF'),
+  16: top('EE', 'EEEEEEEEEF', 'EF'),
+  17: row([11, 'EEEFFEEEEF']),
+  18: row([11, 'EEEFFEEEEF']),
+  19: row([11, '3333333333']),
+  20: row([11, 'EEEEEEEEEF']),
+  21: row([11, 'EEEEEEEEFF']),
+  22: row([12, 'EEE'], [17, 'EEF']),
+  23: row([12, 'FFF'], [17, 'FFF']),
 });
 
 const PEASANT_FEMALE: SpriteLayer = layer({
-  14: row([12, 'EEEEEEEE']),
-  15: row([12, 'EEEEEEEE']),
-  16: row([12, 'EEEEEFEE']),
-  17: row([12, 'EEEEEFEE']),
-  18: row([12, 'EEFEEEEE']),
-  19: row([12, 'EEFEEEEE']),
-  20: row([11, 'EEEEEEEEEE']),
-  21: row([11, 'FFFFFFFFFF']),
-  22: row([11, 'EEEEEEEEEE']),
-  23: row([11, 'EEEEEEEEEE']),
-  24: row([11, 'FFFFFFFFFF']),
+  15: top('EE', 'EEEEEEEEEF', 'EF'),
+  16: top('EE', 'EEEEEEEEEF', 'EF'),
+  17: row([11, 'EEEEEEFFEF']),
+  18: row([11, 'EEEEEEFFEF']),
+  19: row([11, '3333333333']),
+  20: row([11, 'EEEEEEEEEF']),
+  21: row([10, 'EEEEEEEEEEFF']),
+  22: row([10, 'EEEFEEEEEEFF']),
+  23: row([10, 'FFFFFFFFFFFF']),
 });
 
-// --- Rank 2: Squire — leather vest, dark trousers, boots ----------------
+// --- Rank 2: Squire — leather vest over a white shirt, boots ------------
+
+const SQUIRE_TOP = {
+  ...rows(15, 18, top('WW', '333WWWW332', 'WD')),
+  19: top('WW', 'FFFF44FFFF', 'WD'),
+} as const;
 
 const SQUIRE_MALE: SpriteLayer = layer({
-  14: row([11, '3333333333']),
-  15: row([11, '3333333333']),
-  ...rows(16, 19, row([11, '3333223333'])),
-  20: row([11, '3333333333']),
-  21: row([11, '2222222222']),
-  ...rows(22, 25, row([12, 'EEE'], [17, 'EEE'])),
-  26: row([12, 'FFF'], [17, 'FFF']),
-  27: row([12, 'FFF'], [17, 'FFF']),
-  ...MALE_BOOTS,
+  ...SQUIRE_TOP,
+  20: row([11, '3333333332']),
+  21: row([11, 'EEEEEEEEEF']),
+  ...rows(22, 24, row([12, 'EEE'], [17, 'EEF'])),
+  25: row([12, 'FFF'], [17, 'FFF']),
+  ...BOOTS,
 });
 
 const SQUIRE_FEMALE: SpriteLayer = layer({
-  14: row([12, '33333333']),
-  15: row([12, '33333333']),
-  ...rows(16, 19, row([12, '33322333'])),
-  20: row([11, '2222222222']),
-  21: row([11, '3333333333']),
-  22: row([11, '3333333333']),
-  23: row([11, '2222222222']),
-  24: row([12, 'EEE'], [17, 'EEE']),
-  25: row([12, 'EEE'], [17, 'EEE']),
-  26: row([12, 'FFF'], [17, 'FFF']),
-  27: row([12, 'FFF'], [17, 'FFF']),
-  ...FEMALE_BOOTS,
+  ...SQUIRE_TOP,
+  20: row([10, '333333333322']),
+  21: row([10, '333333333322']),
+  22: row([10, '222222222222']),
+  ...rows(23, 24, row([12, 'EEE'], [17, 'EEF'])),
+  25: row([12, 'FFF'], [17, 'FFF']),
+  ...BOOTS,
 });
 
-// --- Rank 3: Knight — iron armour, first sleeved outfit ------------------
+// --- Rank 3: Knight — iron plate, first fully armoured outfit -----------
+
+const KNIGHT_TOP = {
+  15: top('DD', 'DWDDDDDDDE', 'DE'),
+  16: top('DD', 'DWDDDDDDDE', 'DE'),
+  17: top('DE', 'DDDDEEDDDE', 'DE'),
+  18: top('DE', 'DDDDEEDDEE', 'DE'),
+  19: top('EE', 'FFFFFFFFFF', 'EE'),
+} as const;
 
 const KNIGHT_MALE: SpriteLayer = layer({
-  14: row([11, 'DDDDDDDDDD']),
-  15: row([9, 'DDDDDDDDDDDDDD']),
-  16: row([9, 'DDDDDDDDDDDDDD']),
-  17: row([10, 'DDDDEEEEDDDD']),
-  18: row([10, 'DDDDEEEEDDDD']),
-  19: row([10, 'DDDDDDDDDDDD']),
-  20: row([10, 'EEEEEEEEEEEE']),
-  21: row([11, 'DDDDDDDDDD']),
-  ...rows(22, 24, row([12, 'DDD'], [17, 'DDD'])),
-  25: row([12, 'EEE'], [17, 'EEE']),
-  26: row([12, 'EEE'], [17, 'EEE']),
-  27: row([12, 'FFF'], [17, 'FFF']),
-  ...MALE_BOOTS,
+  ...KNIGHT_TOP,
+  20: row([11, 'DDDDDDDDDE']),
+  21: row([11, 'DDDEEEDDDE']),
+  ...rows(22, 23, row([12, 'DDE'], [17, 'DDE'])),
+  ...rows(24, 25, row([12, 'EEE'], [17, 'EEE'])),
+  ...BOOTS,
 });
 
 const KNIGHT_FEMALE: SpriteLayer = layer({
-  14: row([11, 'DDDDDDDDDD']),
-  15: row([10, 'DDDDDDDDDDDD']),
-  16: row([10, 'DDDDDDDDDDDD']),
-  17: row([11, 'DDDEEEEDDD']),
-  18: row([11, 'DDDEEEEDDD']),
-  19: row([11, 'DDDDDDDDDD']),
-  20: row([11, 'EEEEEEEEEE']),
-  21: row([11, 'DDDDDDDDDD']),
-  ...rows(22, 24, row([12, 'DDD'], [17, 'DDD'])),
-  25: row([12, 'EEE'], [17, 'EEE']),
-  26: row([12, 'EEE'], [17, 'EEE']),
-  27: row([12, 'FFF'], [17, 'FFF']),
-  ...FEMALE_BOOTS,
+  ...KNIGHT_TOP,
+  20: row([10, 'DDDDDDDDDDEE']),
+  21: row([10, 'DEDEDEDEDEEE']),
+  22: row([10, 'EEEEEEEEEEEE']),
+  23: row([12, 'DDE'], [17, 'DDE']),
+  ...rows(24, 25, row([12, 'EEE'], [17, 'EEE'])),
+  ...BOOTS,
 });
 
-// --- Rank 4: Captain — bright steel with gold trim ----------------------
+// --- Rank 4: Captain — crimson tabard over steel, gold trim -------------
+
+const CAPTAIN_TOP = {
+  15: top('WD', 'DD222222DE', 'DE'),
+  16: top('WD', 'D22222222E', 'DE'),
+  17: top('DD', 'D222WW222E', 'DE'),
+  18: top('DD', 'D222WW222E', 'DE'),
+  19: top('DE', '4444444444', 'EE'),
+} as const;
 
 const CAPTAIN_MALE: SpriteLayer = layer({
-  14: row([11, 'CCCCCCCCCC']),
-  15: row([9, 'CCCCCCCCCCCCCC']),
-  16: row([9, 'CCCCCCCCCCCCCC']),
-  17: row([10, 'CCCC4444CCCC']),
-  18: row([10, 'CCCC4444CCCC']),
-  19: row([10, 'CCCCCCCCCCCC']),
-  20: row([10, '444444444444']),
-  21: row([11, 'CCCCCCCCCC']),
-  ...rows(22, 24, row([12, 'CCC'], [17, 'CCC'])),
-  25: row([12, 'DDD'], [17, 'DDD']),
-  26: row([12, 'DDD'], [17, 'DDD']),
-  27: row([12, 'FFF'], [17, 'FFF']),
-  ...MALE_BOOTS,
+  ...CAPTAIN_TOP,
+  20: row([11, 'D22222222E']),
+  21: row([11, 'E44444444E']),
+  ...rows(22, 23, row([12, 'DDE'], [17, 'DDE'])),
+  ...rows(24, 25, row([12, 'EEE'], [17, 'EEE'])),
+  ...BOOTS,
 });
 
 const CAPTAIN_FEMALE: SpriteLayer = layer({
-  14: row([11, 'CCCCCCCCCC']),
-  15: row([10, 'CCCCCCCCCCCC']),
-  16: row([10, 'CCCCCCCCCCCC']),
-  17: row([11, 'CCC4444CCC']),
-  18: row([11, 'CCC4444CCC']),
-  19: row([11, 'CCCCCCCCCC']),
-  20: row([11, '4444444444']),
-  21: row([11, 'CCCCCCCCCC']),
-  ...rows(22, 24, row([12, 'CCC'], [17, 'CCC'])),
-  25: row([12, 'DDD'], [17, 'DDD']),
-  26: row([12, 'DDD'], [17, 'DDD']),
-  27: row([12, 'FFF'], [17, 'FFF']),
-  ...FEMALE_BOOTS,
+  ...CAPTAIN_TOP,
+  20: row([10, 'E2222222222E']),
+  21: row([10, '222222222222']),
+  22: row([10, '444444444444']),
+  23: row([12, 'DDE'], [17, 'DDE']),
+  ...rows(24, 25, row([12, 'EEE'], [17, 'EEE'])),
+  ...BOOTS,
 });
 
-// --- Rank 5: Noble — purple robes with a white fur collar ---------------
+// --- Rank 5: Noble — purple robes, white fur collar, gold sash ----------
+
+const NOBLE_TOP = {
+  15: top('1W', 'WWWWWWWWWW', 'W1'),
+  ...rows(16, 18, top('11', '1111441111', '1F')),
+  19: top('11', '4444444444', '1F'),
+} as const;
 
 const NOBLE_MALE: SpriteLayer = layer({
-  14: row([11, 'CCCCCCCCCC']),
-  15: row([10, 'CC11111111CC']),
-  16: row([10, 'C1111111111C']),
-  ...rows(17, 19, row([10, '111114411111'])),
-  20: row([10, '444444444444']),
-  ...rows(21, 25, row([10, '111111111111'])),
-  26: row([10, '444444444444']),
-  ...MALE_BOOTS,
+  ...NOBLE_TOP,
+  ...rows(20, 21, row([11, '1111441111'])),
+  ...rows(22, 24, row([10, '111111441111'])),
+  25: row([10, 'WWWWWWWWWWWW']),
+  ...BOOTS,
 });
 
 const NOBLE_FEMALE: SpriteLayer = layer({
-  14: row([11, 'CCCCCCCCCC']),
-  15: row([11, 'C11111111C']),
-  16: row([11, '1111111111']),
-  ...rows(17, 19, row([11, '1111441111'])),
-  20: row([11, '4444444444']),
-  21: row([10, '111111111111']),
-  22: row([10, '111111111111']),
-  ...rows(23, 25, row([9, '11111111111111'])),
-  26: row([9, '44444444444444']),
-  ...FEMALE_BOOTS,
+  ...NOBLE_TOP,
+  20: row([10, '111114411111']),
+  21: row([9, '11111144111111']),
+  ...rows(22, 24, row([8, '1111111441111111'])),
+  25: row([8, 'WWWWWWWWWWWWWWWW']),
+  ...BOOTS,
 });
 
-// --- Rank 6: Monarch — royal blue, gold, and an ermine hem --------------
+// --- Rank 6: Monarch — royal blue, gold, and an ermine trim -------------
+
+const MONARCH_TOP = {
+  15: top('9W', 'W0WWWWW0WW', 'W9'),
+  ...rows(16, 18, top('99', '9999449998', '98')),
+  19: top('99', '4444444444', '98'),
+} as const;
+
+const GOLD_SHOES = { 26: row([11, '4444'], [17, '4444']) } as const;
 
 const MONARCH_MALE: SpriteLayer = layer({
-  14: row([11, 'CCCCCCCCCC']),
-  15: row([10, 'CC99999999CC']),
-  16: row([10, 'C9999999999C']),
-  ...rows(17, 19, row([10, '999994499999'])),
-  20: row([10, '444444444444']),
-  21: row([10, '999999999999']),
-  22: row([10, '999999999999']),
-  ...rows(23, 25, row([9, '99999999999999'])),
-  26: row([9, '44444444444444']),
-  27: row([9, 'CCCCCCCCCCCCCC']),
-  28: row([11, '4444'], [17, '4444']),
-  29: row([11, '4444'], [17, '4444']),
+  ...MONARCH_TOP,
+  ...rows(20, 21, row([11, '9999449998'])),
+  ...rows(22, 24, row([10, '999999449998'])),
+  25: row([10, 'W0WWWW0WWW0W']),
+  ...GOLD_SHOES,
 });
 
 const MONARCH_FEMALE: SpriteLayer = layer({
-  14: row([11, 'CCCCCCCCCC']),
-  15: row([11, 'C99999999C']),
-  16: row([11, '9999999999']),
-  ...rows(17, 19, row([11, '9999449999'])),
-  20: row([11, '4444444444']),
-  21: row([10, '999999999999']),
-  22: row([10, '999999999999']),
-  ...rows(23, 25, row([9, '99999999999999'])),
-  26: row([9, '44444444444444']),
-  27: row([9, 'CCCCCCCCCCCCCC']),
-  28: row([11, '4444'], [17, '4444']),
-  29: row([11, '4444'], [17, '4444']),
+  ...MONARCH_TOP,
+  20: row([10, '999994499998']),
+  21: row([9, '99999944999988']),
+  ...rows(22, 24, row([8, '9999999449999988'])),
+  25: row([8, 'W0WWWW0WWWW0WWW0']),
+  ...GOLD_SHOES,
 });
 
 export const OUTFITS = {

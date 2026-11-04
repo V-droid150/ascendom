@@ -64,11 +64,15 @@ export function hairColor(index: number): ColorRamp {
  * - `s` `S` `l`  skin base / shade / light  (swapped per hero)
  * - `r` `R` `L`  hair base / shade / light  (swapped per hero)
  * - `c` `C`      cosmetic colour base / shade (equipped cape or tint)
+ * - `W`          bone white (Sweetie 16 #12)
+ *
+ * Note the clash this works around: `C` would be Sweetie 16 index 12 as a hex
+ * digit, but it is already the cosmetic shade. Art that wants white uses `W`.
  */
 export const TRANSPARENT = '.';
 
 const HEX = '0123456789ABCDEF';
-const SEMANTIC = 'sSlrRLcC';
+const SEMANTIC = 'sSlrRLcCW';
 
 export const VALID_SPRITE_CHARS = `${TRANSPARENT}${HEX}${SEMANTIC}`;
 
@@ -113,6 +117,8 @@ export function resolveChar(char: string, ctx: SwapContext): string | null {
       return ctx.cosmetic?.base ?? PALETTE[2];
     case 'C':
       return ctx.cosmetic?.shade ?? '#7a2638';
+    case 'W':
+      return PALETTE[12];
     default: {
       const index = HEX.indexOf(char.toUpperCase());
       return index >= 0 ? (PALETTE[index] ?? null) : null;

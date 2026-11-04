@@ -1,6 +1,13 @@
 import { COSMETICS } from '@/engine/constants';
-import { composeSprite, composeSpriteCached, toRects } from '../compose';
-import { HAIR_COLOR_COUNT, SKIN_TONE_COUNT, darken, hairColor, resolveChar, skinTone } from '../palette';
+import { composeSprite, composeSpriteCached, SPRITE_OUTLINE, toRects } from '../compose';
+import {
+  HAIR_COLOR_COUNT,
+  SKIN_TONE_COUNT,
+  darken,
+  hairColor,
+  resolveChar,
+  skinTone,
+} from '../palette';
 import { SPRITE_SIZE, type SpriteRequest } from '../types';
 
 const base: SpriteRequest = {
@@ -61,6 +68,10 @@ describe('resolveChar', () => {
     expect(resolveChar('0', ctx)).toBe('#1a1c2c');
     expect(resolveChar('4', ctx)).toBe('#ffcd75');
     expect(resolveChar('F', ctx)).toBe('#333c57');
+  });
+
+  it('maps W to white, since C is taken by the cosmetic shade', () => {
+    expect(resolveChar('W', ctx)).toBe('#f4f4f4');
   });
 
   it('falls back to a default cosmetic colour when none is equipped', () => {
@@ -180,30 +191,58 @@ describe('composeSprite', () => {
     const still = composeSprite({ ...base, frame: 0 });
     const bobbed = composeSprite({ ...base, frame: 1 });
 
-    const topOf = (sprite: typeof still): number =>
-      Math.min(...sprite.rects.map((r) => r.y));
+    const topOf = (sprite: typeof still): number => Math.min(...sprite.rects.map((r) => r.y));
 
     expect(topOf(bobbed)).toBe(topOf(still) + 1);
   });
 
   it('keeps the ground shadow in place while the character bobs', () => {
+    const lowestRow = (sprite: ReturnType<typeof composeSprite>): number =>
+      Math.max(...sprite.rects.map((r) => r.y));
+
+    const still = composeSprite(base);
     const bobbed = composeSprite({ ...base, frame: 1 });
-    const shadowRow = Math.max(...bobbed.rects.map((r) => r.y));
-    expect(shadowRow).toBe(30);
+    expect(lowestRow(bobbed)).toBe(lowestRow(still));
+    expect(lowestRow(still)).toBe(28);
+  });
+
+  it('traces a dark outline around the whole silhouette', () => {
+    const sprite = composeSprite(base);
+    expect(sprite.rects.some((r) => r.color === SPRITE_OUTLINE)).toBe(true);
+
+    // Every row the hero occupies starts with an outline pixel on the left.
+    for (const y of new Set(sprite.rects.map((r) => r.y))) {
+      const first = sprite.rects.filter((r) => r.y === y).sort((a, b) => a.x - b.x)[0];
+      if (y === 28) continue; // the shadow row, which is not outlined
+      expect(first?.color).toBe(SPRITE_OUTLINE);
+    }
   });
 
   it('gives rank 4 and above a cape and lower ranks none', () => {
-    const cape = COSMETICS.find((c) => c.slot === 'cape');
-    const withCape = composeSprite({ ...base, rank: 4, cosmetics: [cape?.id ?? ''] });
-    const withoutCape = composeSprite({ ...base, rank: 3, cosmetics: [cape?.id ?? ''] });
+    // Emerald, because crimson also appears in the captain's tabard.
+    const emerald = COSMETICS.find((c) => c.id === 'cape_emerald');
+    const capeColor = '#38b764';
+    const usesColor = (sprite: ReturnType<typeof composeSprite>): boolean =>
+      sprite.rects.some((r) => r.color.toLowerCase() === capeColor);
 
-    const capeColor = '#b13e53';
-    const usesColor = (sprite: typeof withCape, color: string): boolean =>
-      sprite.rects.some((r) => r.color.toLowerCase() === color);
+    for (const rank of [4, 5, 6]) {
+      expect(usesColor(composeSprite({ ...base, rank, cosmetics: [emerald?.id ?? ''] }))).toBe(
+        true,
+      );
+    }
+    for (const rank of [1, 2, 3]) {
+      expect(usesColor(composeSprite({ ...base, rank, cosmetics: [emerald?.id ?? ''] }))).toBe(
+        false,
+      );
+    }
+  });
 
-    // The crimson cape cosmetic is palette index 2.
-    expect(usesColor(withCape, capeColor)).toBe(true);
-    expect(withCape.rects.length).toBeGreaterThan(withoutCape.rects.length - 40);
+  it('hangs the cape behind the body rather than over it', () => {
+    const emerald = COSMETICS.find((c) => c.id === 'cape_emerald');
+    const sprite = composeSprite({ ...base, rank: 4, cosmetics: [emerald?.id ?? ''] });
+    // Column 15 on row 17 is the middle of the chest; the cape must not cover it.
+    const chest = sprite.rects.find((r) => r.y === 17 && r.x <= 15 && r.x + r.width > 15);
+    expect(chest?.color.toLowerCase()).not.toBe('#38b764');
   });
 
   it('adds an aura outline for a tint cosmetic', () => {
