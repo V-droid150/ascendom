@@ -22,7 +22,7 @@
   },
   "tabs": {
     "quests": "Quests",
-    "hero": "Hero",
+    "hero": "You",
     "kingdom": "Kingdom",
     "shop": "Shop",
     "settings": "Settings"
@@ -31,7 +31,11 @@
     "welcome": {
       "cta": "Begin the Ascent",
       "continue": "Continue the Ascent",
-      "welcomeBack": "Welcome back, {{name}}."
+      "welcomeBack": "Welcome back, {{name}}.",
+      "menuLanguage": "Language",
+      "menuTheme": "Theme",
+      "languageName": { "en": "English", "id": "Indonesia" },
+      "menuHint": "Tap an option to change it"
     },
     "gender": {
       "title": "Choose your hero",
@@ -117,7 +121,12 @@
     }
   },
   "hero": {
-    "title": "Hero",
+    "title": "You",
+    "renameA11y": "Rename {{name}}",
+    "renamePlaceholder": "Hero name",
+    "renameSave": "Save",
+    "renamed": "A new name echoes through the realm.",
+    "renameEmpty": "A hero needs a name, Majesty.",
     "xpToNext": "{{current}} / {{needed}} XP",
     "toNextRank": "{{count}} levels to {{rank}}",
     "atMaxRank": "Highest rank reached. This kingdom is yours.",

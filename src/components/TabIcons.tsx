@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import Svg, { Rect, type RectProps } from 'react-native-svg';
 import { generatedSpriteSource } from '@/sprites/compose';
 import { PixelArt } from '@/sprites/PixelArt';
-import { TAB_CASTLE_ART, TAB_CASTLE_COLORS } from '@/sprites/scenes';
+import { TAB_ICONS } from '@/sprites/tabIcons';
 import { useHero } from '@/hooks/useHero';
 
 const CrispRect = Rect as unknown as ComponentType<RectProps & { shapeRendering?: string }>;
@@ -56,11 +56,18 @@ export function HeroHeadIcon({ focused }: { focused: boolean }) {
   );
 }
 
-/** A pixel castle as the Kingdom tab icon. */
-export function CastleTabIcon({ focused }: { focused: boolean }) {
+/** A pixel-art tab icon: castle for Kingdom, market stall for Shop, cog for Settings. */
+export function PixelTabIcon({
+  name,
+  focused,
+}: {
+  name: keyof typeof TAB_ICONS;
+  focused: boolean;
+}) {
+  const { art, colors } = TAB_ICONS[name];
   return (
     <View style={{ opacity: focused ? 1 : INACTIVE_OPACITY }}>
-      <PixelArt art={TAB_CASTLE_ART} colors={TAB_CASTLE_COLORS} scale={ICON_SCALE} />
+      <PixelArt art={art} colors={colors} scale={ICON_SCALE} />
     </View>
   );
 }

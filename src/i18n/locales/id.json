@@ -22,7 +22,7 @@
   },
   "tabs": {
     "quests": "Quest",
-    "hero": "Pahlawan",
+    "hero": "Anda",
     "kingdom": "Kerajaan",
     "shop": "Toko",
     "settings": "Atur"
@@ -31,7 +31,11 @@
     "welcome": {
       "cta": "Mulai Petualangan",
       "continue": "Lanjutkan Petualangan",
-      "welcomeBack": "Selamat datang kembali, {{name}}."
+      "welcomeBack": "Selamat datang kembali, {{name}}.",
+      "menuLanguage": "Bahasa",
+      "menuTheme": "Tema",
+      "languageName": { "en": "English", "id": "Indonesia" },
+      "menuHint": "Ketuk opsi untuk mengubahnya"
     },
     "gender": {
       "title": "Pilih pahlawanmu",
@@ -117,7 +121,12 @@
     }
   },
   "hero": {
-    "title": "Pahlawan",
+    "title": "Anda",
+    "renameA11y": "Ganti nama {{name}}",
+    "renamePlaceholder": "Nama pahlawan",
+    "renameSave": "Simpan",
+    "renamed": "Nama baru menggema di seluruh negeri.",
+    "renameEmpty": "Pahlawan butuh nama, Paduka.",
     "xpToNext": "{{current}} / {{needed}} XP",
     "toNextRank": "{{count}} level lagi menuju {{rank}}",
     "atMaxRank": "Pangkat tertinggi. Kerajaan ini milikmu.",

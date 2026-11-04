@@ -1,7 +1,13 @@
 /** Hero and settings construction. Kept in the engine so defaults are testable. */
 
 import type { Appearance, Gender, Hero, Settings, StatKey } from '@/types';
-import { DEFAULT_DAY_START_HOUR, GRACE_DAYS, HP_MAX, STAT_KEYS } from './constants';
+import {
+  DEFAULT_DAY_START_HOUR,
+  GRACE_DAYS,
+  HERO_NAME_MAX_LENGTH,
+  HP_MAX,
+  STAT_KEYS,
+} from './constants';
 import { addDaysToKey, type DayKey } from './dayKey';
 
 export function emptyStats(): Record<StatKey, number> {
@@ -66,6 +72,19 @@ export function restyleHero(
     gender: changes.gender ?? hero.gender,
     appearance: { ...hero.appearance, ...changes.appearance },
   };
+}
+
+export type RenameResult = { ok: true; hero: Hero } | { ok: false; reason: 'empty' };
+
+/**
+ * Renames the hero. Whitespace is trimmed and collapsed, and the name is cut
+ * to HERO_NAME_MAX_LENGTH; a name that is empty after trimming is refused
+ * rather than silently kept, so the UI can say why nothing changed.
+ */
+export function renameHero(hero: Hero, raw: string): RenameResult {
+  const name = raw.trim().replace(/\s+/g, ' ').slice(0, HERO_NAME_MAX_LENGTH).trim();
+  if (name.length === 0) return { ok: false, reason: 'empty' };
+  return { ok: true, hero: { ...hero, name } };
 }
 
 /** Enforces the "at most one rest day" rule from the settings screen. */

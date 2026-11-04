@@ -48,4 +48,4 @@ export const useOnboardingStore = create<OnboardingState>()((set) => ({
   reset: () => set(initial),
 }));
 
-export const HERO_NAME_MAX_LENGTH = 16;
+export { HERO_NAME_MAX_LENGTH } from '@/engine/constants';

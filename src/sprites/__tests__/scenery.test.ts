@@ -1,9 +1,12 @@
 import { COSMETICS } from '@/engine/constants';
 import { SPRITE_OUTLINE } from '../compose';
 import { SHOP_ITEM_ART, shopItemArt } from '../items';
+import { TAB_ICONS } from '../tabIcons';
 import {
   LANDSCAPE_ART,
+  LANDSCAPE_BRIGHT_COLORS,
   LANDSCAPE_COLORS,
+  LANDSCAPE_NIGHT_COLORS,
   LANDSCAPE_HEIGHT,
   LANDSCAPE_HERO_ANCHOR,
   LANDSCAPE_WIDTH,
@@ -20,6 +23,24 @@ describe('the hero landscape', () => {
     for (const line of LANDSCAPE_ART) {
       for (const char of line) expect(LANDSCAPE_COLORS[char]).toBeDefined();
     }
+  });
+
+  it.each([
+    ['night', LANDSCAPE_NIGHT_COLORS],
+    ['bright', LANDSCAPE_BRIGHT_COLORS],
+  ])('the %s palette colours every character', (_name, palette) => {
+    for (const char of new Set(LANDSCAPE_ART.join(''))) expect(palette[char]).toBeDefined();
+  });
+
+  it('hides the stars by day and lights them at night', () => {
+    expect(LANDSCAPE_ART.join('')).toContain('x');
+    expect(LANDSCAPE_COLORS.x).toBe(LANDSCAPE_COLORS['1']);
+    expect(LANDSCAPE_NIGHT_COLORS.x).not.toBe(LANDSCAPE_NIGHT_COLORS['1']);
+  });
+
+  it('fades the top of the sky into each theme background', () => {
+    expect(LANDSCAPE_NIGHT_COLORS['1']).toBe('#000000');
+    expect(LANDSCAPE_BRIGHT_COLORS['1']).toBe('#ffffff');
   });
 
   it('contains a sun, snow, castles and grass', () => {
@@ -71,4 +92,18 @@ describe('shop item art', () => {
   it('falls back to the shield for an unknown id', () => {
     expect(shopItemArt('nope').art).toBe(SHOP_ITEM_ART.shield);
   });
+});
+
+describe('tab icon art', () => {
+  it.each(Object.entries(TAB_ICONS))(
+    '%s is rectangular, outlined and fully coloured',
+    (_name, icon) => {
+      const width = icon.art[0]?.length ?? 0;
+      for (const line of icon.art) {
+        expect(line).toHaveLength(width);
+        for (const char of line) if (char !== '.') expect(icon.colors[char]).toBeDefined();
+      }
+      expect(icon.art.join('')).toContain('k');
+    },
+  );
 });

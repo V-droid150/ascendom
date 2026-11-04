@@ -2,14 +2,42 @@ import {
   BAD_HABIT_DAMAGE,
   FALL_HP_RESTORE,
   GRACE_DAYS,
+  HERO_NAME_MAX_LENGTH,
   HP_MAX,
   MAX_REST_DAYS,
   STAT_KEYS,
 } from '../constants';
-import { createHero, defaultSettings, emptyStats, restyleHero, setRestDays } from '../hero';
+import {
+  createHero,
+  defaultSettings,
+  emptyStats,
+  renameHero,
+  restyleHero,
+  setRestDays,
+} from '../hero';
 import { logBadHabit } from '../badHabits';
 import { completedIdsOn, completionCountOn, isCompletedOn, logsForDay, removeLog } from '../logs';
 import { makeHabit, makeHero, makeLog } from './factories';
+
+describe('renameHero', () => {
+  const hero = makeHero({ name: 'Kevin' });
+
+  it('trims and collapses whitespace', () => {
+    const result = renameHero(hero, '  Sir   Lancelot  ');
+    expect(result.ok && result.hero.name).toBe('Sir Lancelot');
+  });
+
+  it('cuts names to the maximum length', () => {
+    const result = renameHero(hero, 'x'.repeat(HERO_NAME_MAX_LENGTH + 5));
+    expect(result.ok && result.hero.name).toHaveLength(HERO_NAME_MAX_LENGTH);
+  });
+
+  it('refuses an empty name and keeps progress untouched', () => {
+    expect(renameHero(hero, '   ')).toEqual({ ok: false, reason: 'empty' });
+    const result = renameHero(hero, 'Ayu');
+    expect(result.ok && result.hero.level).toBe(hero.level);
+  });
+});
 
 describe('createHero', () => {
   const hero = createHero({

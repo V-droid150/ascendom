@@ -78,6 +78,18 @@ const darkColors = {
   scrim: 'rgba(0, 0, 0, 0.82)',
   /** Hard 1px outline around pixel art, NES style. */
   outline: '#000000',
+  /** Hard drop shadow behind the ASCENDOM title. */
+  titleShadow: PALETTE[2],
+  /**
+   * The classic JRPG menu window: navy fill, white frame, white text. The
+   * same in both themes on purpose; it is a game window, not page chrome.
+   */
+  windowFill: PALETTE[8],
+  windowFrame: PALETTE[12],
+  windowInner: PALETTE[9],
+  windowText: PALETTE[12],
+  windowTextDim: PALETTE[13],
+  windowAccent: PALETTE[4],
 
   // Status
   success: PALETTE[6],
@@ -119,6 +131,13 @@ const lightColors: ThemeColors = {
   onDanger: '#ffffff',
   scrim: 'rgba(255, 255, 255, 0.9)',
   outline: '#1a1c2c',
+  titleShadow: '#e8d8a8',
+  windowFill: PALETTE[8],
+  windowFrame: '#1a1c2c',
+  windowInner: PALETTE[9],
+  windowText: PALETTE[12],
+  windowTextDim: PALETTE[13],
+  windowAccent: PALETTE[4],
 
   success: '#1d7a3e',
   danger: '#b13e53',

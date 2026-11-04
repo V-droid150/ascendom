@@ -38,6 +38,7 @@ import {
   newlyUnlockedCompanions,
   rankForLevel,
   removeLog,
+  renameHero,
   restyleHero,
   sideQuestById,
   sideQuestsForDay,
@@ -47,6 +48,7 @@ import {
   type BuildResult,
   type PurchaseResult,
 } from '@/engine';
+import { HERO_NAME_MAX_LENGTH } from '@/engine/constants';
 import { bestStreakAcross, companionDef } from '@/engine/kingdom';
 import { currentDayKey, nowIso } from '@/services/clock';
 import { createId } from '@/utils/id';
@@ -97,6 +99,7 @@ interface GameActions {
 
   createHero: (input: CreateHeroInput) => void;
   restyle: (changes: { gender?: Gender; appearance?: Partial<Appearance> }) => void;
+  rename: (name: string) => { ok: boolean };
 
   addHabit: (draft: HabitDraft) => Habit;
   updateHabit: (id: string, changes: Partial<HabitDraft>) => void;
@@ -186,7 +189,7 @@ export const useGameStore = create<GameStore>()(
         set({
           hero: engineCreateHero({
             id: createId('hero'),
-            name: input.name.slice(0, 16),
+            name: input.name.slice(0, HERO_NAME_MAX_LENGTH),
             gender: input.gender,
             appearance: input.appearance,
             todayKey,
@@ -200,6 +203,14 @@ export const useGameStore = create<GameStore>()(
         const { hero } = get();
         if (!hero) return;
         set({ hero: restyleHero(hero, changes) });
+      },
+
+      rename: (name) => {
+        const { hero } = get();
+        if (!hero) return { ok: false };
+        const result = renameHero(hero, name);
+        if (result.ok) set({ hero: result.hero });
+        return { ok: result.ok };
       },
 
       // --- Habits -------------------------------------------------------

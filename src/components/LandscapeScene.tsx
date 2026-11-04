@@ -16,22 +16,35 @@ import { makeStyles } from '@/theme';
 const MIN_SCALE = 2;
 const MAX_SCALE = 10;
 
-interface HeroSceneProps extends Omit<SpriteRequest, 'frame'> {
+/**
+ * The integer pixel scale that makes the scene cover `width` edge to edge.
+ * Rounded *up*, so the one or two scene pixels that overhang are cropped
+ * evenly off both sides — which only ever trims sky and meadow.
+ */
+export function landscapeScaleFor(width: number): number {
+  return Math.min(MAX_SCALE, Math.max(MIN_SCALE, Math.ceil(width / LANDSCAPE_WIDTH)));
+}
+
+export interface SceneHero extends Omit<SpriteRequest, 'frame'> {
   animated: boolean;
   accessibilityLabel: string;
 }
 
+interface LandscapeSceneProps {
+  /** The hero standing in the meadow, or none for an empty landscape. */
+  hero?: SceneHero | null;
+  /** Day by default; the title screen swaps in night or bright variants. */
+  palette?: Readonly<Record<string, string>>;
+}
+
 /**
- * The hero standing in an 8-bit landscape of meadow, hills, mountains and
- * castles under a small sun, filling the full width of the screen.
+ * The 8-bit landscape of meadow, hills, mountains and castles, filling the
+ * full width of its container, optionally with the hero standing in it.
  *
  * Scene and sprite share one integer scale, so a hero pixel and a grass pixel
- * are the same size and read as a single picture. The scale is rounded *up* so
- * the scene always covers the width edge to edge; the one or two scene pixels
- * that overhang are cropped evenly off both sides, which only trims sky and
- * meadow, never the castles.
+ * are the same size and read as a single picture.
  */
-export function HeroScene({ animated, accessibilityLabel, ...sprite }: HeroSceneProps) {
+export function LandscapeScene({ hero = null, palette = LANDSCAPE_COLORS }: LandscapeSceneProps) {
   const styles = useStyles();
   const [width, setWidth] = useState(0);
 
@@ -45,30 +58,27 @@ export function HeroScene({ animated, accessibilityLabel, ...sprite }: HeroScene
     return <View style={styles.placeholder} onLayout={onLayout} />;
   }
 
-  const scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, Math.ceil(width / LANDSCAPE_WIDTH)));
+  const scale = landscapeScaleFor(width);
   const offsetX = Math.floor((width - LANDSCAPE_WIDTH * scale) / 2);
 
   return (
     <View style={[styles.frame, { height: LANDSCAPE_HEIGHT * scale }]} onLayout={onLayout}>
       <View style={[styles.layer, { left: offsetX }]}>
-        <PixelArt art={LANDSCAPE_ART} colors={LANDSCAPE_COLORS} scale={scale} />
+        <PixelArt art={LANDSCAPE_ART} colors={palette} scale={scale} />
       </View>
-      <View
-        style={[
-          styles.layer,
-          {
-            left: offsetX + LANDSCAPE_HERO_ANCHOR.x * scale,
-            top: LANDSCAPE_HERO_ANCHOR.y * scale,
-          },
-        ]}
-      >
-        <HeroSprite
-          {...sprite}
-          scale={scale}
-          animated={animated}
-          accessibilityLabel={accessibilityLabel}
-        />
-      </View>
+      {hero && (
+        <View
+          style={[
+            styles.layer,
+            {
+              left: offsetX + LANDSCAPE_HERO_ANCHOR.x * scale,
+              top: LANDSCAPE_HERO_ANCHOR.y * scale,
+            },
+          ]}
+        >
+          <HeroSprite {...hero} scale={scale} />
+        </View>
+      )}
     </View>
   );
 }

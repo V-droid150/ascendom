@@ -1,7 +1,8 @@
 import { ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { ChronicleHeatmap } from '@/components/ChronicleHeatmap';
-import { HeroScene } from '@/components/HeroScene';
+import { HeroNameEditor } from '@/components/HeroNameEditor';
+import { LandscapeScene } from '@/components/LandscapeScene';
 import { PixelBar } from '@/components/PixelBar';
 import { PixelPanel } from '@/components/PixelPanel';
 import { StatsDiamond } from '@/components/StatsDiamond';
@@ -31,26 +32,28 @@ export default function HeroScreen() {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <View style={styles.portrait}>
-        <HeroScene
-          gender={hero.gender}
-          rank={view.rankNumber}
-          skinTone={hero.appearance.skinTone}
-          hairStyle={hero.appearance.hairStyle}
-          hairColor={hero.appearance.hairColor}
-          cosmetics={hero.equippedCosmetics}
-          animated={!reduceMotion}
-          accessibilityLabel={t('a11y.heroSprite', {
-            name: hero.name,
-            rank: view.rankTitle,
-            level: hero.level,
-          })}
+        <LandscapeScene
+          hero={{
+            gender: hero.gender,
+            rank: view.rankNumber,
+            skinTone: hero.appearance.skinTone,
+            hairStyle: hero.appearance.hairStyle,
+            hairColor: hero.appearance.hairColor,
+            cosmetics: hero.equippedCosmetics,
+            animated: !reduceMotion,
+            accessibilityLabel: t('a11y.heroSprite', {
+              name: hero.name,
+              rank: view.rankTitle,
+              level: hero.level,
+            }),
+          }}
         />
 
         <View style={styles.banner}>
           <Text style={styles.rankTitle}>{view.rankTitle}</Text>
         </View>
 
-        <Text style={styles.name}>{hero.name}</Text>
+        <HeroNameEditor name={hero.name} />
       </View>
 
       <PixelPanel tone="dark" style={styles.panel}>
@@ -135,7 +138,9 @@ const useStyles = makeStyles((colors) => ({
     marginTop: -spacing.md,
     marginHorizontal: -spacing.md,
   },
+  // Pushed clear of the scene so the rank plate doesn't sit on the grass.
   banner: {
+    marginTop: spacing.md,
     backgroundColor: colors.gold,
     borderWidth: border.width,
     borderColor: colors.goldDark,
@@ -149,7 +154,6 @@ const useStyles = makeStyles((colors) => ({
     color: colors.ink,
     letterSpacing: 1,
   },
-  name: { fontFamily: fonts.bodyBold, fontSize: fontSize.title, color: colors.text },
   panel: { gap: spacing.sm },
   sectionTitle: {
     fontFamily: fonts.display,

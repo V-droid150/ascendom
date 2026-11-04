@@ -160,6 +160,11 @@ export const COMPANIONS: readonly CompanionDef[] = [
   { id: 'dragonling', streakRequired: 100 },
 ] as const;
 
+// --- Hero -----------------------------------------------------------------
+
+/** Long enough for a real name, short enough for the status bar and banner. */
+export const HERO_NAME_MAX_LENGTH = 16;
+
 // --- Side quests -----------------------------------------------------------
 
 /**

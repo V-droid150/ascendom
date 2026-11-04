@@ -35,6 +35,8 @@ export const fonts = {
 
 /** Minimum body size is 14; display sizes stay small because the font is wide. */
 export const fontSize = {
+  /** The ASCENDOM logo on the title screen. */
+  displayLg: 28,
   display: 20,
   displaySm: 14,
   displayXs: 10,
@@ -42,6 +44,8 @@ export const fontSize = {
   body: 16,
   bodySm: 14,
   caption: 12,
+  /** The Quests tab's star, sized to sit level with the 26-32px pixel icons. */
+  tabGlyph: 28,
 } as const;
 
 export const lineHeight = {
