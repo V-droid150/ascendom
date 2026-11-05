@@ -568,5 +568,27 @@
         "body": "If this policy changes, the date at the top will change with it."
       }
     ]
+  },
+  "hairStyles": {
+    "short": "Short",
+    "spiky": "Spiky",
+    "long-tied": "Long, tied back",
+    "mohawk": "Mohawk",
+    "afro": "Afro",
+    "pompadour": "Pompadour",
+    "topknot": "Top knot",
+    "long": "Long",
+    "braid": "Braid",
+    "bun": "Bun",
+    "twin-tails": "Twin tails",
+    "bob": "Bob",
+    "space-buns": "Space buns",
+    "wavy": "Wavy"
+  },
+  "wardrobe": {
+    "save": "Save look",
+    "cancel": "Cancel",
+    "saved": "A fine new look, Majesty.",
+    "keepsProgress": "Only your look changes. Level, gold and quests stay exactly as they are."
   }
 }

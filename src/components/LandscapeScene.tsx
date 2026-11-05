@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { View, type LayoutChangeEvent } from 'react-native';
 import { HeroSprite } from '@/sprites/HeroSprite';
 import { PixelArt } from '@/sprites/PixelArt';
@@ -21,9 +21,27 @@ const MAX_SCALE = 10;
  * Rounded *up*, so the one or two scene pixels that overhang are cropped
  * evenly off both sides — which only ever trims sky and meadow.
  */
-export function landscapeScaleFor(width: number): number {
-  return Math.min(MAX_SCALE, Math.max(MIN_SCALE, Math.ceil(width / LANDSCAPE_WIDTH)));
+export function landscapeScaleFor(width: number, sceneWidth: number = LANDSCAPE_WIDTH): number {
+  return Math.min(MAX_SCALE, Math.max(MIN_SCALE, Math.ceil(width / sceneWidth)));
 }
+
+/** A backdrop the hero can stand in. The meadow landscape is the default. */
+export interface SceneArt {
+  art: readonly string[];
+  colors: Readonly<Record<string, string>>;
+  width: number;
+  height: number;
+  /** Top-left of the hero's 32x32 sprite box, in scene pixels. */
+  heroAnchor: { readonly x: number; readonly y: number };
+}
+
+export const MEADOW_SCENE: SceneArt = {
+  art: LANDSCAPE_ART,
+  colors: LANDSCAPE_COLORS,
+  width: LANDSCAPE_WIDTH,
+  height: LANDSCAPE_HEIGHT,
+  heroAnchor: LANDSCAPE_HERO_ANCHOR,
+};
 
 export interface SceneHero extends Omit<SpriteRequest, 'frame'> {
   animated: boolean;
@@ -35,6 +53,10 @@ interface LandscapeSceneProps {
   hero?: SceneHero | null;
   /** Day by default; the title screen swaps in night or bright variants. */
   palette?: Readonly<Record<string, string>>;
+  /** Swap the meadow for another backdrop, such as the wardrobe. */
+  scene?: SceneArt;
+  /** Laid over the scene at its pixel scale, e.g. a title plaque on the wall. */
+  overlay?: (scale: number) => ReactNode;
 }
 
 /**
@@ -44,7 +66,12 @@ interface LandscapeSceneProps {
  * Scene and sprite share one integer scale, so a hero pixel and a grass pixel
  * are the same size and read as a single picture.
  */
-export function LandscapeScene({ hero = null, palette = LANDSCAPE_COLORS }: LandscapeSceneProps) {
+export function LandscapeScene({
+  hero = null,
+  palette,
+  scene = MEADOW_SCENE,
+  overlay,
+}: LandscapeSceneProps) {
   const styles = useStyles();
   const [width, setWidth] = useState(0);
 
@@ -55,36 +82,42 @@ export function LandscapeScene({ hero = null, palette = LANDSCAPE_COLORS }: Land
 
   // Until the width is known, hold the right shape so nothing jumps.
   if (width === 0) {
-    return <View style={styles.placeholder} onLayout={onLayout} />;
+    return (
+      <View
+        style={[styles.placeholder, { aspectRatio: scene.width / scene.height }]}
+        onLayout={onLayout}
+      />
+    );
   }
 
-  const scale = landscapeScaleFor(width);
-  const offsetX = Math.floor((width - LANDSCAPE_WIDTH * scale) / 2);
+  const scale = landscapeScaleFor(width, scene.width);
+  const offsetX = Math.floor((width - scene.width * scale) / 2);
 
   return (
-    <View style={[styles.frame, { height: LANDSCAPE_HEIGHT * scale }]} onLayout={onLayout}>
+    <View style={[styles.frame, { height: scene.height * scale }]} onLayout={onLayout}>
       <View style={[styles.layer, { left: offsetX }]}>
-        <PixelArt art={LANDSCAPE_ART} colors={palette} scale={scale} />
+        <PixelArt art={scene.art} colors={palette ?? scene.colors} scale={scale} />
       </View>
       {hero && (
         <View
           style={[
             styles.layer,
             {
-              left: offsetX + LANDSCAPE_HERO_ANCHOR.x * scale,
-              top: LANDSCAPE_HERO_ANCHOR.y * scale,
+              left: offsetX + scene.heroAnchor.x * scale,
+              top: scene.heroAnchor.y * scale,
             },
           ]}
         >
           <HeroSprite {...hero} scale={scale} />
         </View>
       )}
+      {overlay?.(scale)}
     </View>
   );
 }
 
 const useStyles = makeStyles(() => ({
-  placeholder: { width: '100%', aspectRatio: LANDSCAPE_WIDTH / LANDSCAPE_HEIGHT },
+  placeholder: { width: '100%' },
   frame: { width: '100%', overflow: 'hidden' },
   layer: { position: 'absolute', top: 0 },
 }));

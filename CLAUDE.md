@@ -18,7 +18,7 @@ skipped. Accounts and cloud sync were added later on Supabase; see **Backend**.
 Since then: light/dark theme (Settings, dark default on true black), crown
 welcome screen, daily rotating side quests, and chibi NES-style sprites.
 
-391 tests across 19 suites. Engine coverage: 98.89% statements, 96.07% branches,
+425 tests across 21 suites. Engine coverage: 98.89% statements, 96.07% branches,
 100% functions, 99.67% lines.
 
 Verified end to end in a browser: onboarding, completion with level-up and
@@ -249,7 +249,7 @@ Chibi NES proportions: 12px-wide head on rows 3–14, body on 15–26, shadow on
 Layer order: cape (behind) → body → outfit → hair → headgear → weapon, then a
 traced 1px `SPRITE_OUTLINE`, then the tint aura, then the shadow.
 `W` is white in art: `C` cannot be Sweetie 16 #12 because it is the cosmetic shade.
-Skin tones (5+) and hair colours (6+) are **palette swaps**, not separate art.
+Seven hair styles per gender (persisted by index: append only). The Settings wardrobe (`app/wardrobe.tsx`) restyles in place via `restyle`, never `createHero`. Skin tones (5+) and hair colours (6+) are **palette swaps**, not separate art.
 `compose.ts` must run-length-merge horizontal runs into wide rects — 1024
 one-pixel rects per sprite will not perform, and `/dev/sprites` renders many
 sprites at once. Keep a `SpriteSource` abstraction so PNG spritesheets can

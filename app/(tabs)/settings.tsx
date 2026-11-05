@@ -183,7 +183,7 @@ export default function SettingsScreen() {
         <PixelButton
           label={t('settings.changeAppearance')}
           variant="secondary"
-          onPress={() => router.push('/(onboarding)/customize')}
+          onPress={() => router.push('/wardrobe')}
         />
       </PixelPanel>
 

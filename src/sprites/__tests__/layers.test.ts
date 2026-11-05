@@ -10,7 +10,9 @@
 import { BODY_LAYERS, SHADOW_LAYER } from '../layers/body';
 import { assertLayer, layer, row, rows } from '../layers/builder';
 import { GEAR_LAYERS } from '../layers/gear';
-import { HAIR_STYLES, HAIR_STYLE_COUNT, hairLayer } from '../layers/hair';
+import { HAIR_STYLES, HAIR_STYLE_COUNT, HAIR_STYLE_IDS, hairLayer } from '../layers/hair';
+import en from '@/i18n/locales/en.json';
+import id from '@/i18n/locales/id.json';
 import { OUTFITS, outfitLayer } from '../layers/outfits';
 import { SPRITE_SIZE, type SpriteLayer } from '../types';
 import { VALID_SPRITE_CHARS } from '../palette';
@@ -85,8 +87,8 @@ describe('every authored layer', () => {
   });
 
   it('covers every layer kind', () => {
-    // 1 shadow + 2 bodies + 6 hair + 12 outfits + 6 headgear + 6 weapons + 1 cape
-    expect(entries).toHaveLength(34);
+    // 1 shadow + 2 bodies + 14 hair + 12 outfits + 6 headgear + 6 weapons + 1 cape
+    expect(entries).toHaveLength(42);
   });
 
   it('only uses characters from the documented alphabet', () => {
@@ -117,9 +119,23 @@ describe('layer lookups are total', () => {
     }
   });
 
-  it('offers three hair styles per gender', () => {
-    expect(HAIR_STYLES.male).toHaveLength(HAIR_STYLE_COUNT);
-    expect(HAIR_STYLES.female).toHaveLength(HAIR_STYLE_COUNT);
+  it('offers seven hair styles per gender', () => {
+    expect(HAIR_STYLE_COUNT).toBe(7);
+    for (const gender of GENDERS) {
+      expect(HAIR_STYLES[gender]).toHaveLength(HAIR_STYLE_COUNT);
+      expect(HAIR_STYLE_IDS[gender]).toHaveLength(HAIR_STYLE_COUNT);
+      expect(new Set(HAIR_STYLES[gender].map((art) => art.join(''))).size).toBe(HAIR_STYLE_COUNT);
+    }
+  });
+
+  it('names every hair style in both languages', () => {
+    for (const locale of [en, id]) {
+      for (const gender of GENDERS) {
+        for (const style of HAIR_STYLE_IDS[gender]) {
+          expect((locale.hairStyles as Record<string, string>)[style]).toBeTruthy();
+        }
+      }
+    }
   });
 
   it('gives each gender six distinct rank outfits', () => {

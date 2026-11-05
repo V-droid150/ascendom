@@ -10,6 +10,13 @@ import {
   LANDSCAPE_WIDTH,
 } from '../landscape';
 import { SPRITE_SIZE } from '../types';
+import {
+  WARDROBE_ART,
+  WARDROBE_COLORS,
+  WARDROBE_HEIGHT,
+  WARDROBE_HERO_ANCHOR,
+  WARDROBE_WIDTH,
+} from '../wardrobe';
 
 describe('the hero landscape', () => {
   it('is a full 64x40 grid', () => {
@@ -86,4 +93,33 @@ describe('tab icon art', () => {
       expect(icon.art.join('')).toContain('k');
     },
   );
+});
+
+describe('the royal wardrobe', () => {
+  it('is a full grid the same size as the landscape', () => {
+    expect(WARDROBE_ART).toHaveLength(WARDROBE_HEIGHT);
+    for (const line of WARDROBE_ART) expect(line).toHaveLength(WARDROBE_WIDTH);
+    expect(WARDROBE_WIDTH).toBe(LANDSCAPE_WIDTH);
+    expect(WARDROBE_HEIGHT).toBe(LANDSCAPE_HEIGHT);
+  });
+
+  it('has no transparent holes and no unmapped characters', () => {
+    for (const line of WARDROBE_ART) {
+      for (const char of line) expect(WARDROBE_COLORS[char]).toBeDefined();
+    }
+  });
+
+  it('stands the hero on the red carpet', () => {
+    const groundRow = WARDROBE_ART[WARDROBE_HERO_ANCHOR.y + 28] ?? '';
+    const underFeet = groundRow[WARDROBE_HERO_ANCHOR.x + SPRITE_SIZE / 2] ?? '';
+    expect(['p', 'q']).toContain(underFeet);
+  });
+
+  it('keeps the wall above the hero bare for the title plaque', () => {
+    const centre = WARDROBE_HERO_ANCHOR.x + SPRITE_SIZE / 2;
+    for (let y = 3; y < WARDROBE_HERO_ANCHOR.y; y += 1) {
+      const wall = (WARDROBE_ART[y] ?? '').slice(centre - 8, centre + 8);
+      expect(wall).toMatch(/^[wvk]+$/);
+    }
+  });
 });

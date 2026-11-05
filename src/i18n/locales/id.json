@@ -568,5 +568,27 @@
         "body": "Kalau kebijakan ini berubah, tanggal di atas ikut diperbarui."
       }
     ]
+  },
+  "hairStyles": {
+    "short": "Pendek",
+    "spiky": "Jabrik",
+    "long-tied": "Panjang diikat",
+    "mohawk": "Mohawk",
+    "afro": "Afro",
+    "pompadour": "Pompadour",
+    "topknot": "Konde atas",
+    "long": "Panjang",
+    "braid": "Kepang",
+    "bun": "Sanggul",
+    "twin-tails": "Kuncir dua",
+    "bob": "Bob",
+    "space-buns": "Cepol dua",
+    "wavy": "Bergelombang"
+  },
+  "wardrobe": {
+    "save": "Simpan rupa",
+    "cancel": "Batal",
+    "saved": "Rupa baru yang menawan, Paduka.",
+    "keepsProgress": "Hanya rupamu yang berubah. Level, emas, dan quest tetap seperti semula."
   }
 }
