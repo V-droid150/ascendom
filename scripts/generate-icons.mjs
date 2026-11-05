@@ -55,6 +55,20 @@ const ICON = [
   'nnnnnnnnnnnnnnnn',
 ];
 
+/**
+ * The maskable icon Android crops to a circle, squircle or teardrop. Only the
+ * centre circle (radius 40% of the icon) is guaranteed to survive, so the crown
+ * is re-centred on a 24px field: its corners then sit at 29% from the centre.
+ */
+const MASKABLE_SIZE = 24;
+const CROWN = ICON.slice(2, 12).map((row) => row.slice(3, 13));
+const MASKABLE_OFFSET = (MASKABLE_SIZE - CROWN.length) / 2;
+const MASKABLE = Array.from({ length: MASKABLE_SIZE }, (_, y) => {
+  const crownRow = CROWN[y - MASKABLE_OFFSET];
+  const pad = 'n'.repeat(MASKABLE_OFFSET);
+  return crownRow ? pad + crownRow + pad : 'n'.repeat(MASKABLE_SIZE);
+});
+
 /** The splash mark: just the crown, transparent around it. */
 const SPLASH = ICON.map((row) => row.replaceAll('n', '.'));
 
@@ -158,6 +172,9 @@ write('assets/images/icon.png', ICON, 64); // 1024, store listing
 write('assets/images/splash-icon.png', SPLASH, 16); // 256
 write('assets/images/favicon.png', ICON, 4); // 64
 write('public/logo192.png', ICON, 12); // 192, PWA
-write('public/logo512.png', ICON, 32); // 512, PWA maskable
+write('public/logo512.png', ICON, 32); // 512, PWA
+write('public/maskable192.png', MASKABLE, 8); // 192, Android maskable
+write('public/maskable504.png', MASKABLE, 21); // 504, Android maskable (integer scale)
+write('assets/images/adaptive-icon.png', MASKABLE, 42); // 1008, Android launcher
 
 console.log('Done.');

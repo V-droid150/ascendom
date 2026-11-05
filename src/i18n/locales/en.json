@@ -505,10 +505,28 @@
     }
   },
   "pwa": {
-    "installTitle": "Install Ascendom on your home screen",
-    "installBody": "Open it like a normal app, even offline.",
+    "sectionTitle": "Install app",
+    "installTitle": "Put Ascendom on your home screen",
+    "installBody": "Open it from your home screen like a normal app, full screen and even offline.",
     "install": "Install",
-    "dismiss": "Later"
+    "dismiss": "Later",
+    "gotIt": "Got it",
+    "installed": "Installed. Find Ascendom on your home screen.",
+    "installFailed": "The browser did not finish installing. Try again from its menu.",
+    "alreadyInstalled": "You are playing the installed app. Open it from your home screen anytime.",
+    "iosBanner": "In Safari, tap Share (the square with an arrow), then Add to Home Screen.",
+    "iosSteps": [
+      "Open ascendom.vercel.app in Safari.",
+      "Tap the Share button (the square with an arrow) in the toolbar.",
+      "Scroll down and tap Add to Home Screen.",
+      "Tap Add. The crown icon appears on your home screen."
+    ],
+    "iosNote": "On iPhone the home-screen app keeps its own save, separate from Safari. Sign in first so your progress comes along. Reminders on iPhone only work in the home-screen app.",
+    "manualSteps": [
+      "Open your browser menu (⋮ or ⋯).",
+      "Tap Install app or Add to Home screen.",
+      "Confirm. Ascendom appears with your other apps."
+    ]
   },
   "dev": {
     "spritesTitle": "Sprite Lab",

@@ -505,10 +505,28 @@
     }
   },
   "pwa": {
+    "sectionTitle": "Pasang aplikasi",
     "installTitle": "Pasang Ascendom di layar utama",
-    "installBody": "Biar bisa dibuka seperti aplikasi biasa, bahkan tanpa internet.",
+    "installBody": "Buka dari layar utama seperti aplikasi biasa, layar penuh dan tetap jalan offline.",
     "install": "Pasang",
-    "dismiss": "Nanti"
+    "dismiss": "Nanti",
+    "gotIt": "Oke",
+    "installed": "Terpasang. Cari Ascendom di layar utamamu.",
+    "installFailed": "Browser belum selesai memasang. Coba lagi lewat menunya.",
+    "alreadyInstalled": "Kamu sedang memakai aplikasi yang terpasang. Buka kapan saja dari layar utama.",
+    "iosBanner": "Di Safari, ketuk Bagikan (kotak dengan panah), lalu Tambah ke Layar Utama.",
+    "iosSteps": [
+      "Buka ascendom.vercel.app di Safari.",
+      "Ketuk tombol Bagikan (kotak dengan panah ke atas) di toolbar.",
+      "Gulir ke bawah dan ketuk Tambah ke Layar Utama.",
+      "Ketuk Tambah. Ikon mahkota muncul di layar utama."
+    ],
+    "iosNote": "Di iPhone, aplikasi layar utama punya save sendiri, terpisah dari Safari. Login dulu agar progresmu ikut. Pengingat di iPhone hanya jalan di aplikasi layar utama.",
+    "manualSteps": [
+      "Buka menu browser (⋮ atau ⋯).",
+      "Ketuk Instal aplikasi atau Tambahkan ke Layar utama.",
+      "Konfirmasi. Ascendom muncul bersama aplikasi lainnya."
+    ]
   },
   "dev": {
     "spritesTitle": "Lab Sprite",

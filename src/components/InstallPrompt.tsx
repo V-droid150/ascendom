@@ -1,92 +1,73 @@
 import { useEffect, useState } from 'react';
-import { Platform, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { PixelButton } from './PixelButton';
-import { PixelPanel } from './PixelPanel';
+import { useInstallMode } from '@/hooks/useInstallMode';
+import { promptInstall } from '@/services/install';
 import { storage } from '@/services/storage';
 import { fonts, fontSize, makeStyles, spacing, zIndex } from '@/theme';
+import { PixelButton } from './PixelButton';
+import { PixelPanel } from './PixelPanel';
 
 const DISMISSED_KEY = 'ascendom:install-prompt-dismissed';
 
-/** The `beforeinstallprompt` event, which isn't in the DOM lib's types. */
-interface InstallPromptEvent extends Event {
-  prompt: () => Promise<void>;
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
-}
-
 /**
- * A custom "add to home screen" banner.
+ * A one-time "add to home screen" banner.
  *
- * Chrome's own mini-infobar is suppressed by calling `preventDefault` on the
- * event, which lets the prompt match the pixel UI instead of looking like a
- * browser chrome intrusion. A dismissal is remembered so it is asked once.
+ * Where the browser can install (Chrome, Edge, Samsung Internet) it opens the
+ * real dialog. On iPhone, which has no install API, it names the Share ->
+ * Add to Home Screen steps instead. Either way a dismissal is remembered, and
+ * Settings keeps a permanent Install section for anyone who changes their mind.
  */
 export function InstallPrompt() {
   const styles = useStyles();
   const { t } = useTranslation();
-  const [deferred, setDeferred] = useState<InstallPromptEvent | null>(null);
-  const [visible, setVisible] = useState(false);
+  const mode = useInstallMode();
+  const [dismissed, setDismissed] = useState(true);
 
   useEffect(() => {
-    if (Platform.OS !== 'web') return;
-
     let cancelled = false;
-
-    const onBeforeInstall = (event: Event): void => {
-      event.preventDefault();
-
-      void storage.getItem(DISMISSED_KEY).then((dismissed) => {
-        if (cancelled || dismissed === 'true') return;
-        setDeferred(event as InstallPromptEvent);
-        setVisible(true);
-      });
-    };
-
-    window.addEventListener('beforeinstallprompt', onBeforeInstall);
+    void storage.getItem(DISMISSED_KEY).then((value) => {
+      if (!cancelled) setDismissed(value === 'true');
+    });
     return () => {
       cancelled = true;
-      window.removeEventListener('beforeinstallprompt', onBeforeInstall);
     };
   }, []);
 
-  if (!visible || !deferred) return null;
-
-  const install = async (): Promise<void> => {
-    setVisible(false);
-    try {
-      await deferred.prompt();
-      await deferred.userChoice;
-    } finally {
-      setDeferred(null);
-    }
-  };
+  if (dismissed || (mode !== 'prompt' && mode !== 'ios')) return null;
 
   const dismiss = (): void => {
-    setVisible(false);
-    setDeferred(null);
+    setDismissed(true);
     void storage.setItem(DISMISSED_KEY, 'true');
+  };
+
+  const install = async (): Promise<void> => {
+    dismiss();
+    await promptInstall().catch(() => false);
   };
 
   return (
     <View style={styles.host}>
       <PixelPanel tone="dark" style={styles.panel}>
         <Text style={styles.title}>{t('pwa.installTitle')}</Text>
-        <Text style={styles.body}>{t('pwa.installBody')}</Text>
+        <Text style={styles.body}>{t(mode === 'ios' ? 'pwa.iosBanner' : 'pwa.installBody')}</Text>
 
         <View style={styles.actions}>
           <PixelButton
-            label={t('pwa.dismiss')}
+            label={t(mode === 'ios' ? 'pwa.gotIt' : 'pwa.dismiss')}
             variant="ghost"
             compact
             onPress={dismiss}
             style={styles.action}
           />
-          <PixelButton
-            label={t('pwa.install')}
-            compact
-            onPress={() => void install()}
-            style={styles.action}
-          />
+          {mode === 'prompt' && (
+            <PixelButton
+              label={t('pwa.install')}
+              compact
+              onPress={() => void install()}
+              style={styles.action}
+            />
+          )}
         </View>
       </PixelPanel>
     </View>
