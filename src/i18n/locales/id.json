@@ -92,7 +92,8 @@
     "allDone": "Semua quest tuntas. Rakyatmu bersorak.",
     "undo": "Batalkan",
     "logBad": "Catat",
-    "editHint": "Tahan untuk ubah"
+    "editHint": "Tahan untuk ubah",
+    "streakUnit": "h"
   },
   "sideQuests": {
     "title": "SIDE QUEST",

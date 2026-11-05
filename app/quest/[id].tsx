@@ -11,6 +11,7 @@ import { useToast } from '@/components/ToastProvider';
 import { BAD_HABIT_DAMAGE, STAT_KEYS } from '@/engine/constants';
 import { baseReward } from '@/engine/rewards';
 import { DEFAULT_QUEST_ICON, QUEST_ICON_IDS } from '@/sprites/icons';
+import { localizedHabitTitle } from '@/i18n/starterTitles';
 import { useGameStore, type HabitDraft } from '@/store/gameStore';
 import { border, fonts, fontSize, makeStyles, MIN_TOUCH_SIZE, spacing, useColors } from '@/theme';
 import type { Difficulty, HabitType, StatKey } from '@/types';
@@ -43,7 +44,7 @@ export default function QuestEditorScreen() {
   const existing = useMemo(() => habits.find((habit) => habit.id === id), [habits, id]);
   const isNew = id === 'new' || !existing;
 
-  const [title, setTitle] = useState(existing?.title ?? '');
+  const [title, setTitle] = useState(existing ? localizedHabitTitle(existing.title, t) : '');
   const [icon, setIcon] = useState<string>(existing?.icon ?? DEFAULT_QUEST_ICON);
   const [type, setType] = useState<HabitType>(existing?.type ?? 'daily');
   const [difficulty, setDifficulty] = useState<Difficulty>(existing?.difficulty ?? 'medium');

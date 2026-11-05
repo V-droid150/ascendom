@@ -1,6 +1,7 @@
 import en from '../../../../src/i18n/locales/en.json';
 import id from '../../../../src/i18n/locales/id.json';
 import { copyFor, TEMPLATES } from '../reminderCopy';
+import { localizeStarterTitle, STARTER_TITLES } from '../starterTitles';
 import { DUE_WINDOW_MINUTES, localGameTime, planReminders, type SaveLike } from '../reminderPlan';
 
 const copy = copyFor('en');
@@ -129,5 +130,21 @@ describe('reminderCopy', () => {
   it('fills in titles and counts, defaulting to English', () => {
     expect(copyFor('id').eveningBody(1)).toBe('1 quest tersisa sebelum tengah malam.');
     expect(copyFor('fr').eveningBody(3)).toBe('3 quests left before midnight.');
+  });
+});
+
+describe('starter quest titles in pushes', () => {
+  it('mirrors the locale files exactly', () => {
+    expect(STARTER_TITLES.en).toEqual(en.onboarding.firstQuest.suggestions);
+    expect(STARTER_TITLES.id).toEqual(id.onboarding.firstQuest.suggestions);
+  });
+
+  it('names an English starter quest in Indonesian for an Indonesian player', () => {
+    const body = copyFor('id').reminderBody(en.onboarding.firstQuest.suggestions.water);
+    expect(body).toContain(id.onboarding.firstQuest.suggestions.water);
+  });
+
+  it('keeps titles the player wrote', () => {
+    expect(localizeStarterTitle('Feed the cat', 'id')).toBe('Feed the cat');
   });
 });

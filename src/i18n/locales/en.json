@@ -92,7 +92,8 @@
     "allDone": "Every quest done. Your people are cheering.",
     "undo": "Undo",
     "logBad": "Log it",
-    "editHint": "Long-press to edit"
+    "editHint": "Long-press to edit",
+    "streakUnit": "d"
   },
   "sideQuests": {
     "title": "SIDE QUESTS",

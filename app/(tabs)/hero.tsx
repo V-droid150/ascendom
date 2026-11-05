@@ -7,6 +7,7 @@ import { PixelBar } from '@/components/PixelBar';
 import { PixelPanel } from '@/components/PixelPanel';
 import { StatsDiamond } from '@/components/StatsDiamond';
 import { useHero } from '@/hooks/useHero';
+import { localizedHabitTitle } from '@/i18n/starterTitles';
 import { useGameStore } from '@/store/gameStore';
 import { useSettingsStore } from '@/store/settingsStore';
 import { border, fonts, fontSize, makeStyles, spacing, useColors } from '@/theme';
@@ -98,7 +99,7 @@ export default function HeroScreen() {
           bestStreaks.map((habit) => (
             <View key={habit.id} style={styles.statRow}>
               <Text style={styles.statLabel} numberOfLines={1}>
-                {habit.title}
+                {localizedHabitTitle(habit.title, t)}
               </Text>
               <Text style={styles.statValue}>
                 {habit.bestStreak} {t('hero.days')}

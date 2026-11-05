@@ -7,6 +7,7 @@
  */
 
 import type { ReminderCopy } from './reminderPlan.ts';
+import { localizeStarterTitle } from './starterTitles.ts';
 
 interface Templates {
   reminderTitle: string;
@@ -34,10 +35,11 @@ export const TEMPLATES: Record<'en' | 'id', Templates> = {
 };
 
 export function copyFor(language: string | undefined): ReminderCopy {
-  const t = language === 'id' ? TEMPLATES.id : TEMPLATES.en;
+  const lang = language === 'id' ? 'id' : 'en';
+  const t = TEMPLATES[lang];
   return {
     reminderTitle: t.reminderTitle,
-    reminderBody: (title) => t.reminderBody.replace('{{title}}', title),
+    reminderBody: (title) => t.reminderBody.replace('{{title}}', localizeStarterTitle(title, lang)),
     eveningTitle: t.eveningTitle,
     eveningBody: (count) =>
       count === 1 ? t.eveningBodyOne : t.eveningBodyMany.replace('{{count}}', String(count)),

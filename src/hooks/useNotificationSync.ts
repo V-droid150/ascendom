@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { localizedHabitTitle } from '@/i18n/starterTitles';
 import { rescheduleAll } from '@/services/notifications';
 import { refreshWebPush } from '@/services/webPush';
 import { useGameStore } from '@/store/gameStore';
@@ -30,7 +31,8 @@ export function useNotificationSync(): void {
   useEffect(() => {
     void rescheduleAll(habits, settingsSnapshot(), {
       reminderTitle: t('notifications.reminder.title'),
-      reminderBody: (habitTitle) => t('notifications.reminder.body', { title: habitTitle }),
+      reminderBody: (habitTitle) =>
+        t('notifications.reminder.body', { title: localizedHabitTitle(habitTitle, t) }),
       eveningTitle: t('notifications.evening.title'),
       eveningBody: (count) =>
         count === 1

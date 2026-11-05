@@ -1,5 +1,6 @@
 import { Pressable, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { localizedHabitTitle } from '@/i18n/starterTitles';
 import { BAD_HABIT_DAMAGE } from '@/engine/constants';
 import { baseReward, streakMultiplier } from '@/engine/rewards';
 import { border, fonts, fontSize, makeStyles, MIN_TOUCH_SIZE, spacing } from '@/theme';
@@ -25,6 +26,7 @@ export function QuestCard({ habit, completed, onToggle, onEdit }: QuestCardProps
   const styles = useStyles();
   const { t } = useTranslation();
 
+  const title = localizedHabitTitle(habit.title, t);
   const reward = baseReward(habit.difficulty);
   const multiplier = habit.type === 'daily' ? streakMultiplier(habit.streak + 1) : 1;
   const bonusPercent = Math.round((multiplier - 1) * 100);
@@ -41,9 +43,7 @@ export function QuestCard({ habit, completed, onToggle, onEdit }: QuestCardProps
       accessibilityRole="button"
       accessibilityState={{ checked: completed }}
       accessibilityLabel={
-        completed
-          ? t('a11y.undoQuest', { title: habit.title })
-          : t('a11y.completeQuest', { title: habit.title })
+        completed ? t('a11y.undoQuest', { title }) : t('a11y.completeQuest', { title })
       }
       accessibilityHint={t('quests.editHint')}
       onPress={onToggle}
@@ -55,7 +55,7 @@ export function QuestCard({ habit, completed, onToggle, onEdit }: QuestCardProps
 
         <View style={styles.text}>
           <Text style={[styles.title, completed && styles.titleDone]} numberOfLines={2}>
-            {habit.title}
+            {title}
           </Text>
           <Text style={styles.meta} numberOfLines={1}>
             {subtitle}
@@ -66,7 +66,7 @@ export function QuestCard({ habit, completed, onToggle, onEdit }: QuestCardProps
           {habit.streak > 0 && !habit.isBad && (
             <Text style={styles.streak}>
               {habit.streak}
-              <Text style={styles.streakUnit}>d</Text>
+              <Text style={styles.streakUnit}>{t('quests.streakUnit')}</Text>
             </Text>
           )}
           {bonusPercent > 0 && !completed && !habit.isBad && (
