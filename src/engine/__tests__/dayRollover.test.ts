@@ -151,9 +151,7 @@ describe('miss damage', () => {
     const result = evaluateMissedDays({
       ...base,
       hero: makeHero({ lastEvaluatedDayKey: '2026-03-08', hp: HP_MAX }),
-      habits: [
-        makeHabit({ schedule: ALL_WEEK, createdAt: '2026-03-10T12:00:00.000Z' }),
-      ],
+      habits: [makeHabit({ schedule: ALL_WEEK, createdAt: '2026-03-10T12:00:00.000Z' })],
       logs: [],
     });
 

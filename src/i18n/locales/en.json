@@ -34,7 +34,10 @@
       "welcomeBack": "Welcome back, {{name}}.",
       "menuLanguage": "Language",
       "menuTheme": "Theme",
-      "languageName": { "en": "English", "id": "Indonesia" },
+      "languageName": {
+        "en": "English",
+        "id": "Indonesia"
+      },
       "menuHint": "Tap an option to change it"
     },
     "gender": {
@@ -156,12 +159,30 @@
     "quest": "One-time"
   },
   "rank": {
-    "peasant": { "male": "Peasant", "female": "Peasant" },
-    "squire": { "male": "Squire", "female": "Squire" },
-    "knight": { "male": "Knight", "female": "Dame" },
-    "captain": { "male": "Captain", "female": "Captain" },
-    "noble": { "male": "Lord", "female": "Lady" },
-    "monarch": { "male": "King", "female": "Queen" }
+    "peasant": {
+      "male": "Peasant",
+      "female": "Peasant"
+    },
+    "squire": {
+      "male": "Squire",
+      "female": "Squire"
+    },
+    "knight": {
+      "male": "Knight",
+      "female": "Dame"
+    },
+    "captain": {
+      "male": "Captain",
+      "female": "Captain"
+    },
+    "noble": {
+      "male": "Lord",
+      "female": "Lady"
+    },
+    "monarch": {
+      "male": "King",
+      "female": "Queen"
+    }
   },
   "weekday": {
     "short": {
@@ -227,12 +248,24 @@
         "name": "Potion of Healing",
         "description": "Restores {{heal}} HP at once. Once per day."
       },
-      "cape_crimson": { "name": "Crimson Cape" },
-      "cape_emerald": { "name": "Emerald Cape" },
-      "cape_azure": { "name": "Azure Cape" },
-      "cape_violet": { "name": "Royal Violet Cape" },
-      "tint_gold": { "name": "Golden Sheen" },
-      "tint_frost": { "name": "Frost Sheen" }
+      "cape_crimson": {
+        "name": "Crimson Cape"
+      },
+      "cape_emerald": {
+        "name": "Emerald Cape"
+      },
+      "cape_azure": {
+        "name": "Azure Cape"
+      },
+      "cape_violet": {
+        "name": "Royal Violet Cape"
+      },
+      "tint_gold": {
+        "name": "Golden Sheen"
+      },
+      "tint_frost": {
+        "name": "Frost Sheen"
+      }
     },
     "errors": {
       "insufficient_gold": "Not enough gold, Majesty.",
@@ -246,13 +279,6 @@
   "account": {
     "title": "ACCOUNT & SYNC",
     "pitch": "Sign in to keep your kingdom safe in the cloud and play on any device.",
-    "emailPlaceholder": "Email",
-    "sendCode": "Email me a login link",
-    "codeSent": "We sent a login link to {{email}}. Open it in this browser to sign in.",
-    "codeOptional": "Got a code in the email instead? Enter it here.",
-    "codePlaceholder": "Login code",
-    "verify": "Sign in",
-    "changeEmail": "Use another email",
     "signedInAs": "Signed in as {{email}}",
     "syncNow": "Sync now",
     "signOut": "Sign out",
@@ -264,12 +290,6 @@
       "pending": "Changes waiting to sync",
       "error": "Couldn't reach the cloud. Your progress is safe here and will sync later."
     },
-    "errors": {
-      "invalidEmail": "That email address does not look right.",
-      "sendFailed": "Couldn't send the code. Try again in a minute.",
-      "rateLimited": "Too many login emails for now. Wait about an hour, then try again.",
-      "verifyFailed": "That code didn't work. Check it and try again."
-    },
     "conflict": {
       "title": "Two kingdoms found",
       "body": "This device and your cloud save hold different progress. Keep one; the other will be replaced.",
@@ -279,11 +299,47 @@
       "noHero": "no hero",
       "useCloud": "Use cloud save",
       "keepDevice": "Keep this device"
-    },
+    }
+  },
+  "auth": {
+    "titleHeader": "Keep your kingdom safe with an account",
+    "withGoogle": "Sign in with Google",
+    "withEmail": "Email & password",
+    "asGuest": "Play without an account",
+    "signInTitle": "Sign in",
+    "signUpTitle": "Create account",
+    "emailPitch": "Your kingdom follows you to any device.",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "createAccount": "Create account",
+    "email": "Email",
+    "password": "Password",
+    "newPassword": "New password",
+    "passwordHint": "At least {{count}} characters.",
+    "forgotPassword": "Forgot password?",
+    "back": "Back",
+    "signedIn": "Welcome back to the kingdom.",
+    "accountCreated": "Account created. Your kingdom is saved.",
+    "confirmEmail": "Check {{email}} to confirm your account, then sign in.",
+    "resetSent": "If {{email}} has an account, a reset link is on its way. Open it in this browser.",
+    "resetTitle": "New password",
+    "savePassword": "Save password",
+    "passwordChanged": "Password changed. You're signed in.",
+    "resetFailed": "This reset link has expired or was opened in a different browser. Ask for a new one from the sign-in screen.",
     "callback": {
       "signingIn": "Opening the gates…",
-      "failed": "This login link has expired or was opened in a different browser. Request a new code in Settings.",
-      "back": "Back to Settings"
+      "failed": "Sign-in didn't finish. It may have been cancelled or opened in a different browser. Try again.",
+      "back": "Back"
+    },
+    "errors": {
+      "invalidEmail": "That email address does not look right.",
+      "weakPassword": "Password needs at least {{count}} characters.",
+      "wrongCredentials": "Wrong email or password.",
+      "alreadyRegistered": "That email already has an account. Sign in instead.",
+      "rateLimited": "Too many emails for now. Wait about an hour, then try again.",
+      "network": "Couldn't reach the server. Check your connection.",
+      "unknown": "Something went wrong. Try again.",
+      "resetNeedsEmail": "Type your email above first, then tap Forgot password."
     }
   },
   "settings": {

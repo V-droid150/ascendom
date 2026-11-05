@@ -1,80 +1,33 @@
-import { useState } from 'react';
-import { Platform, Text, TextInput } from 'react-native';
+import { Text } from 'react-native';
+import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import { GOOGLE_SUPPORTED, PASSWORD_MIN_LENGTH, signInWithGoogle } from '@/services/auth';
 import { supabase } from '@/services/supabase';
 import { disableWebPush } from '@/services/webPush';
 import { useSyncStore } from '@/store/syncStore';
 import { syncNow } from '@/sync/controller';
-import { border, fonts, fontSize, makeStyles, MIN_TOUCH_SIZE, spacing, useColors } from '@/theme';
+import { fonts, fontSize, makeStyles, spacing } from '@/theme';
 import { PixelButton } from './PixelButton';
 import { PixelPanel } from './PixelPanel';
 import { useToast } from './ToastProvider';
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-/** Supabase lets the project choose 6 to 8 digits; accept any of them. */
-const CODE_LENGTH = { min: 6, max: 8 } as const;
-
-/** Where the emailed link lands. Native has no web origin, so it relies on the code. */
-function redirectUrl(): string | undefined {
-  if (Platform.OS !== 'web' || typeof window === 'undefined') return undefined;
-  return `${window.location.origin}/auth/callback`;
-}
-
 /**
- * Login and sync status in Settings.
+ * Account and sync status in Settings.
  *
- * Login is passwordless: an emailed link that lands on `/auth/callback`. A
- * code field is offered too, for when the email template includes one (it
- * needs custom SMTP on Supabase). The code matters for an installed PWA on
- * iOS, which opens links in Safari rather than in the app.
+ * Signed out, it offers the same two ways in as the title screen: Google, or
+ * email + password on `/auth/email`. Signed in, it shows sync status.
  */
 export function AccountPanel() {
   const styles = useStyles();
-  const colors = useColors();
   const { t, i18n } = useTranslation();
+  const router = useRouter();
   const toast = useToast();
   const sync = useSyncStore();
 
-  const [email, setEmail] = useState('');
-  const [code, setCode] = useState('');
-  const [sentTo, setSentTo] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
-
-  const sendCode = async (): Promise<void> => {
-    const address = email.trim().toLowerCase();
-    if (!EMAIL_PATTERN.test(address)) {
-      toast.show(t('account.errors.invalidEmail'), 'danger');
-      return;
-    }
-    setBusy(true);
-    const redirect = redirectUrl();
-    const { error } = await supabase.auth.signInWithOtp({
-      email: address,
-      options: { shouldCreateUser: true, ...(redirect ? { emailRedirectTo: redirect } : {}) },
-    });
-    setBusy(false);
-    // Supabase's built-in mailer allows only a few emails per hour.
-    const limited = error?.status === 429 || error?.code?.startsWith('over_') === true;
-    if (error)
-      toast.show(t(limited ? 'account.errors.rateLimited' : 'account.errors.sendFailed'), 'danger');
-    else setSentTo(address);
-  };
-
-  const verify = async (): Promise<void> => {
-    if (!sentTo) return;
-    setBusy(true);
-    const { error } = await supabase.auth.verifyOtp({
-      email: sentTo,
-      token: code.trim(),
-      type: 'email',
-    });
-    setBusy(false);
-    if (error) {
-      toast.show(t('account.errors.verifyFailed'), 'danger');
-      return;
-    }
-    setSentTo(null);
-    setCode('');
+  const google = async (): Promise<void> => {
+    const result = await signInWithGoogle('settings');
+    if (!result.ok)
+      toast.show(t(`auth.errors.${result.error}`, { count: PASSWORD_MIN_LENGTH }), 'danger');
   };
 
   const signOut = async (): Promise<void> => {
@@ -98,23 +51,6 @@ export function AccountPanel() {
     return t('account.status.ready');
   };
 
-  const input = (props: {
-    value: string;
-    onChangeText: (value: string) => void;
-    placeholder: string;
-    keyboardType: 'email-address' | 'number-pad';
-    maxLength?: number;
-  }) => (
-    <TextInput
-      {...props}
-      autoCapitalize="none"
-      autoCorrect={false}
-      placeholderTextColor={colors.steel}
-      accessibilityLabel={props.placeholder}
-      style={styles.input}
-    />
-  );
-
   return (
     <PixelPanel tone="dark" style={styles.panel}>
       <Text style={styles.title}>{t('account.title')}</Text>
@@ -135,41 +71,16 @@ export function AccountPanel() {
             onPress={() => void signOut()}
           />
         </>
-      ) : sentTo ? (
-        <>
-          <Text style={styles.text}>{t('account.codeSent', { email: sentTo })}</Text>
-          <Text style={styles.note}>{t('account.codeOptional')}</Text>
-          {input({
-            value: code,
-            onChangeText: (value) => setCode(value.replace(/\D/g, '')),
-            placeholder: t('account.codePlaceholder'),
-            keyboardType: 'number-pad',
-            maxLength: CODE_LENGTH.max,
-          })}
-          <PixelButton
-            label={t('account.verify')}
-            onPress={() => void verify()}
-            disabled={busy || code.length < CODE_LENGTH.min}
-          />
-          <PixelButton
-            label={t('account.changeEmail')}
-            variant="ghost"
-            onPress={() => setSentTo(null)}
-          />
-        </>
       ) : (
         <>
           <Text style={styles.note}>{t('account.pitch')}</Text>
-          {input({
-            value: email,
-            onChangeText: setEmail,
-            placeholder: t('account.emailPlaceholder'),
-            keyboardType: 'email-address',
-          })}
+          {GOOGLE_SUPPORTED && (
+            <PixelButton label={t('auth.withGoogle')} onPress={() => void google()} />
+          )}
           <PixelButton
-            label={t('account.sendCode')}
-            onPress={() => void sendCode()}
-            disabled={busy || email.trim().length === 0}
+            label={t('auth.withEmail')}
+            variant={GOOGLE_SUPPORTED ? 'secondary' : 'primary'}
+            onPress={() => router.push('/auth/email?from=settings')}
           />
         </>
       )}
@@ -183,15 +94,4 @@ const useStyles = makeStyles((colors) => ({
   text: { fontFamily: fonts.bodyBold, fontSize: fontSize.bodySm, color: colors.text },
   note: { fontFamily: fonts.body, fontSize: fontSize.caption, color: colors.textDim },
   error: { color: colors.danger },
-  input: {
-    minHeight: MIN_TOUCH_SIZE,
-    paddingHorizontal: spacing.md,
-    fontFamily: fonts.body,
-    fontSize: fontSize.body,
-    color: colors.text,
-    backgroundColor: colors.nightDeep,
-    borderWidth: border.width,
-    borderColor: colors.charcoal,
-    borderRadius: border.radius,
-  },
 }));

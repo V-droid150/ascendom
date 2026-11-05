@@ -3,16 +3,17 @@ import { Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { PixelButton } from '@/components/PixelButton';
+import { takeAuthReturn } from '@/services/auth';
 import { supabase } from '@/services/supabase';
 import { fonts, fontSize, makeStyles, spacing } from '@/theme';
 
 /**
- * Where the emailed login link lands. Exchanges the one-time code for a
- * session, then continues to Settings, where sync status is shown.
+ * Where Google sign-in returns. Exchanges the one-time code for a session,
+ * then goes back to wherever sign-in started (title screen or Settings).
  *
- * The exchange only works in the browser that asked for the code (PKCE keeps
- * the verifier there), so opening the link elsewhere fails with a clear
- * message rather than silently doing nothing.
+ * The exchange only works in the browser that started sign-in (PKCE keeps the
+ * verifier there), and a cancelled Google prompt comes back with no code, so
+ * both end on a clear message rather than silently doing nothing.
  */
 export default function AuthCallback() {
   const styles = useStyles();
@@ -25,21 +26,25 @@ export default function AuthCallback() {
 
   useEffect(() => {
     if (!code) return;
-    void supabase.auth.exchangeCodeForSession(code).then(({ error }) => {
-      if (error) setExchangeFailed(true);
-      else router.replace('/(tabs)/settings');
+    void supabase.auth.exchangeCodeForSession(code).then(async ({ error }) => {
+      if (error) {
+        setExchangeFailed(true);
+        return;
+      }
+      const next = await takeAuthReturn();
+      router.replace(next === 'settings' ? '/(tabs)/settings' : '/(onboarding)/welcome');
     });
   }, [code, router]);
 
   return (
     <View style={styles.screen}>
       <Text style={styles.text}>
-        {failed ? t('account.callback.failed') : t('account.callback.signingIn')}
+        {failed ? t('auth.callback.failed') : t('auth.callback.signingIn')}
       </Text>
       {failed && (
         <PixelButton
-          label={t('account.callback.back')}
-          onPress={() => router.replace('/(tabs)/settings')}
+          label={t('auth.callback.back')}
+          onPress={() => router.replace('/(onboarding)/welcome')}
         />
       )}
     </View>

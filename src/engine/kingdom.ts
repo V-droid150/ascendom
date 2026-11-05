@@ -19,7 +19,8 @@ export function nextBuilding(built: BuildingId[]): BuildingDef | null {
   return BUILDINGS.find((b) => !built.includes(b.id)) ?? null;
 }
 
-export type BuildFailure = 'unknown_building' | 'already_built' | 'missing_prerequisite' | 'insufficient_gold';
+export type BuildFailure =
+  'unknown_building' | 'already_built' | 'missing_prerequisite' | 'insufficient_gold';
 
 export type BuildResult =
   | { ok: true; hero: Hero; kingdom: KingdomState; spent: number }

@@ -33,8 +33,7 @@ export const useOnboardingStore = create<OnboardingState>()((set) => ({
     // not exist for the other. Reset to the first style on a switch.
     set((state) => ({ gender, appearance: { ...state.appearance, hairStyle: 0 } })),
 
-  setAppearance: (changes) =>
-    set((state) => ({ appearance: { ...state.appearance, ...changes } })),
+  setAppearance: (changes) => set((state) => ({ appearance: { ...state.appearance, ...changes } })),
 
   setName: (name) => set({ name: name.slice(0, 16) }),
 

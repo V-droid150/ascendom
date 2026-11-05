@@ -27,8 +27,7 @@ export type PurchaseFailure =
   | 'hp_already_full';
 
 export type PurchaseResult =
-  | { ok: true; hero: Hero; spent: number }
-  | { ok: false; reason: PurchaseFailure };
+  { ok: true; hero: Hero; spent: number } | { ok: false; reason: PurchaseFailure };
 
 export function cosmeticById(id: string): CosmeticDef | undefined {
   return COSMETICS.find((c) => c.id === id);

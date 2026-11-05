@@ -34,7 +34,10 @@
       "welcomeBack": "Selamat datang kembali, {{name}}.",
       "menuLanguage": "Bahasa",
       "menuTheme": "Tema",
-      "languageName": { "en": "English", "id": "Indonesia" },
+      "languageName": {
+        "en": "English",
+        "id": "Indonesia"
+      },
       "menuHint": "Ketuk opsi untuk mengubahnya"
     },
     "gender": {
@@ -156,12 +159,30 @@
     "quest": "Sekali jalan"
   },
   "rank": {
-    "peasant": { "male": "Rakyat Jelata", "female": "Rakyat Jelata" },
-    "squire": { "male": "Pengawal", "female": "Pengawal" },
-    "knight": { "male": "Ksatria", "female": "Ksatria" },
-    "captain": { "male": "Kapten", "female": "Kapten" },
-    "noble": { "male": "Bangsawan", "female": "Bangsawan" },
-    "monarch": { "male": "Raja", "female": "Ratu" }
+    "peasant": {
+      "male": "Rakyat Jelata",
+      "female": "Rakyat Jelata"
+    },
+    "squire": {
+      "male": "Pengawal",
+      "female": "Pengawal"
+    },
+    "knight": {
+      "male": "Ksatria",
+      "female": "Ksatria"
+    },
+    "captain": {
+      "male": "Kapten",
+      "female": "Kapten"
+    },
+    "noble": {
+      "male": "Bangsawan",
+      "female": "Bangsawan"
+    },
+    "monarch": {
+      "male": "Raja",
+      "female": "Ratu"
+    }
   },
   "weekday": {
     "short": {
@@ -227,12 +248,24 @@
         "name": "Ramuan Penyembuh",
         "description": "Memulihkan {{heal}} HP seketika. Satu kali per hari."
       },
-      "cape_crimson": { "name": "Jubah Merah Darah" },
-      "cape_emerald": { "name": "Jubah Zamrud" },
-      "cape_azure": { "name": "Jubah Langit" },
-      "cape_violet": { "name": "Jubah Ungu Raja" },
-      "tint_gold": { "name": "Kilau Emas" },
-      "tint_frost": { "name": "Kilau Es" }
+      "cape_crimson": {
+        "name": "Jubah Merah Darah"
+      },
+      "cape_emerald": {
+        "name": "Jubah Zamrud"
+      },
+      "cape_azure": {
+        "name": "Jubah Langit"
+      },
+      "cape_violet": {
+        "name": "Jubah Ungu Raja"
+      },
+      "tint_gold": {
+        "name": "Kilau Emas"
+      },
+      "tint_frost": {
+        "name": "Kilau Es"
+      }
     },
     "errors": {
       "insufficient_gold": "Emasmu belum cukup, Paduka.",
@@ -246,13 +279,6 @@
   "account": {
     "title": "AKUN & SINKRON",
     "pitch": "Masuk untuk menyimpan kerajaanmu di cloud dan bermain di perangkat mana pun.",
-    "emailPlaceholder": "Email",
-    "sendCode": "Kirim link masuk",
-    "codeSent": "Link masuk sudah dikirim ke {{email}}. Buka di browser ini untuk masuk.",
-    "codeOptional": "Email-mu berisi kode? Masukkan di sini.",
-    "codePlaceholder": "Kode masuk",
-    "verify": "Masuk",
-    "changeEmail": "Pakai email lain",
     "signedInAs": "Masuk sebagai {{email}}",
     "syncNow": "Sinkron sekarang",
     "signOut": "Keluar",
@@ -264,12 +290,6 @@
       "pending": "Ada perubahan menunggu sinkron",
       "error": "Gagal terhubung ke cloud. Progres aman di sini dan akan disinkronkan nanti."
     },
-    "errors": {
-      "invalidEmail": "Alamat email sepertinya tidak benar.",
-      "sendFailed": "Gagal mengirim kode. Coba lagi sebentar lagi.",
-      "rateLimited": "Terlalu banyak email login untuk saat ini. Tunggu sekitar satu jam, lalu coba lagi.",
-      "verifyFailed": "Kode tidak cocok. Periksa lalu coba lagi."
-    },
     "conflict": {
       "title": "Ada dua kerajaan",
       "body": "Perangkat ini dan cloud punya progres berbeda. Pilih satu; yang lain akan diganti.",
@@ -279,11 +299,47 @@
       "noHero": "belum ada hero",
       "useCloud": "Pakai data cloud",
       "keepDevice": "Pakai perangkat ini"
-    },
+    }
+  },
+  "auth": {
+    "titleHeader": "Amankan kerajaanmu dengan akun",
+    "withGoogle": "Masuk dengan Google",
+    "withEmail": "Email & password",
+    "asGuest": "Main tanpa akun",
+    "signInTitle": "Masuk",
+    "signUpTitle": "Buat akun",
+    "emailPitch": "Kerajaanmu ikut ke perangkat mana pun.",
+    "signIn": "Masuk",
+    "signUp": "Daftar",
+    "createAccount": "Buat akun",
+    "email": "Email",
+    "password": "Password",
+    "newPassword": "Password baru",
+    "passwordHint": "Minimal {{count}} karakter.",
+    "forgotPassword": "Lupa password?",
+    "back": "Kembali",
+    "signedIn": "Selamat datang kembali di kerajaan.",
+    "accountCreated": "Akun dibuat. Kerajaanmu tersimpan.",
+    "confirmEmail": "Cek {{email}} untuk konfirmasi akun, lalu masuk.",
+    "resetSent": "Kalau {{email}} punya akun, link reset sedang dikirim. Buka di browser ini.",
+    "resetTitle": "Password baru",
+    "savePassword": "Simpan password",
+    "passwordChanged": "Password diganti. Kamu sudah masuk.",
+    "resetFailed": "Link reset ini sudah kedaluwarsa atau dibuka di browser lain. Minta yang baru dari layar masuk.",
     "callback": {
       "signingIn": "Membuka gerbang…",
-      "failed": "Link masuk ini sudah kedaluwarsa atau dibuka di browser lain. Minta kode baru di Pengaturan.",
-      "back": "Kembali ke Pengaturan"
+      "failed": "Proses masuk tidak selesai. Mungkin dibatalkan atau dibuka di browser lain. Coba lagi.",
+      "back": "Kembali"
+    },
+    "errors": {
+      "invalidEmail": "Alamat email itu sepertinya tidak benar.",
+      "weakPassword": "Password minimal {{count}} karakter.",
+      "wrongCredentials": "Email atau password salah.",
+      "alreadyRegistered": "Email itu sudah punya akun. Masuk saja.",
+      "rateLimited": "Terlalu banyak email untuk saat ini. Tunggu sekitar satu jam, lalu coba lagi.",
+      "network": "Tidak bisa terhubung ke server. Periksa koneksimu.",
+      "unknown": "Ada yang salah. Coba lagi.",
+      "resetNeedsEmail": "Ketik email di atas dulu, lalu tekan Lupa password."
     }
   },
   "settings": {

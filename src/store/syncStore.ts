@@ -18,10 +18,14 @@ interface PersistedSync {
   lastSyncedAt: string | null;
   /** Local changes not yet uploaded. */
   dirty: boolean;
+  /** The player chose to play without an account, so the title skips the sign-in menu. */
+  guest: boolean;
 }
 
 interface SyncState extends PersistedSync {
   userId: string | null;
+  /** False until the stored login session has been read, so screens don't flash a sign-in prompt. */
+  sessionKnown: boolean;
   email: string | null;
   status: SyncStatus;
   /** When this session last finished a sync, for the "Synced at" line. */
@@ -35,6 +39,7 @@ interface SyncActions {
   markDirty: () => void;
   markSynced: (userId: string, cloudUpdatedAt: string) => void;
   setConflict: (conflict: PendingConflict | null) => void;
+  setGuest: (guest: boolean) => void;
 }
 
 export const SYNC_STORAGE_KEY = 'ascendom:sync:v1';
@@ -45,7 +50,9 @@ export const useSyncStore = create<SyncState & SyncActions>()(
       syncedUserId: null,
       lastSyncedAt: null,
       dirty: false,
+      guest: false,
       userId: null,
+      sessionKnown: false,
       email: null,
       status: 'signedOut',
       lastSyncFinishedAt: null,
@@ -54,8 +61,14 @@ export const useSyncStore = create<SyncState & SyncActions>()(
       setSession: (session) =>
         set(
           session
-            ? { userId: session.userId, email: session.email, status: 'idle' }
-            : { userId: null, email: null, status: 'signedOut', conflict: null },
+            ? { userId: session.userId, email: session.email, status: 'idle', sessionKnown: true }
+            : {
+                userId: null,
+                email: null,
+                status: 'signedOut',
+                conflict: null,
+                sessionKnown: true,
+              },
         ),
       setStatus: (status) => set({ status }),
       markDirty: () => set({ dirty: true }),
@@ -69,15 +82,28 @@ export const useSyncStore = create<SyncState & SyncActions>()(
           conflict: null,
         }),
       setConflict: (conflict) => set({ conflict, status: 'idle' }),
+      setGuest: (guest) => set({ guest }),
     }),
     {
       name: SYNC_STORAGE_KEY,
       storage: createJSONStorage<PersistedSync>(),
-      version: 1,
+      // v2 added `guest`. Earlier devices start without it, so returning
+      // players see the new sign-in menu once and can pick "play without an account".
+      version: 2,
+      migrate: (persisted) => {
+        const state = persisted as Partial<PersistedSync>;
+        return {
+          syncedUserId: state.syncedUserId ?? null,
+          lastSyncedAt: state.lastSyncedAt ?? null,
+          dirty: state.dirty ?? false,
+          guest: state.guest ?? false,
+        };
+      },
       partialize: (state): PersistedSync => ({
         syncedUserId: state.syncedUserId,
         lastSyncedAt: state.lastSyncedAt,
         dirty: state.dirty,
+        guest: state.guest,
       }),
     },
   ),

@@ -62,6 +62,8 @@ function AppShell() {
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="quest/[id]" options={{ presentation: 'modal' }} />
         <Stack.Screen name="auth/callback" />
+        <Stack.Screen name="auth/email" />
+        <Stack.Screen name="auth/reset" />
       </Stack>
       <CelebrationHost />
       <SyncConflictModal />

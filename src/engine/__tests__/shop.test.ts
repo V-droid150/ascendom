@@ -65,10 +65,7 @@ describe('buyPotion', () => {
   });
 
   it('refuses a second potion on the same day', () => {
-    const result = buyPotion(
-      makeHero({ gold: 9999, hp: 10, lastPotionDayKey: TODAY }),
-      TODAY,
-    );
+    const result = buyPotion(makeHero({ gold: 9999, hp: 10, lastPotionDayKey: TODAY }), TODAY);
     expect(result).toEqual({ ok: false, reason: 'potion_already_used_today' });
   });
 

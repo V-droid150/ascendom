@@ -112,11 +112,7 @@ describe('companions', () => {
 
   it('unlocks every milestone already passed', () => {
     const habits = [makeHabit({ bestStreak: 100 })];
-    expect(newlyUnlockedCompanions(emptyKingdom(), habits)).toEqual([
-      'cat',
-      'owl',
-      'dragonling',
-    ]);
+    expect(newlyUnlockedCompanions(emptyKingdom(), habits)).toEqual(['cat', 'owl', 'dragonling']);
   });
 
   it('does not re-offer companions already collected', () => {

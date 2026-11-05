@@ -7,12 +7,7 @@
  */
 
 import type { Difficulty, Habit } from '@/types';
-import {
-  REWARDS,
-  STREAK_BONUS_MAX,
-  STREAK_BONUS_PER_TIER,
-  STREAK_TIER_DAYS,
-} from './constants';
+import { REWARDS, STREAK_BONUS_MAX, STREAK_BONUS_PER_TIER, STREAK_TIER_DAYS } from './constants';
 
 export interface Reward {
   xp: number;

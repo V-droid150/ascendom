@@ -27,11 +27,7 @@ interface PixelSpriteProps extends SpriteRequest {
  * ignores it, so crispness comes from the integer scale and integer rect
  * coordinates instead.
  */
-function PixelSpriteComponent({
-  scale = 6,
-  accessibilityLabel,
-  ...request
-}: PixelSpriteProps) {
+function PixelSpriteComponent({ scale = 6, accessibilityLabel, ...request }: PixelSpriteProps) {
   const integerScale = Math.max(1, Math.floor(scale));
   const pixels = SPRITE_SIZE * integerScale;
   const { rects } = generatedSpriteSource.compose(request);

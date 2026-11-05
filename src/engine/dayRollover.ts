@@ -49,10 +49,7 @@ function createdDayKey(habit: Habit, dayStartHour: number): DayKey {
  */
 function dueOn(habits: Habit[], dayKey: DayKey, dayStartHour: number): Habit[] {
   return habits.filter(
-    (h) =>
-      !h.isBad &&
-      isScheduledOn(h, dayKey) &&
-      createdDayKey(h, dayStartHour) <= dayKey,
+    (h) => !h.isBad && isScheduledOn(h, dayKey) && createdDayKey(h, dayStartHour) <= dayKey,
   );
 }
 

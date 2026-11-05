@@ -69,7 +69,10 @@ describe('the row and layer builders', () => {
   it('catches a malformed layer', () => {
     expect(() => assertLayer('short-rows', ['...'])).toThrow(/has 1 rows/);
     expect(() =>
-      assertLayer('bad-char', Array.from({ length: SPRITE_SIZE }, () => 'z'.repeat(SPRITE_SIZE))),
+      assertLayer(
+        'bad-char',
+        Array.from({ length: SPRITE_SIZE }, () => 'z'.repeat(SPRITE_SIZE)),
+      ),
     ).toThrow(/invalid character "z"/);
   });
 });

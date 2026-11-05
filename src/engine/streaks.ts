@@ -31,7 +31,10 @@ export function freezeStreak(streak: number): number {
 }
 
 /** Streaks move up, bests never move down. */
-export function withBest(streak: number, bestStreak: number): { streak: number; bestStreak: number } {
+export function withBest(
+  streak: number,
+  bestStreak: number,
+): { streak: number; bestStreak: number } {
   return { streak, bestStreak: Math.max(streak, bestStreak) };
 }
 

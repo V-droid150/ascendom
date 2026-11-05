@@ -3,11 +3,14 @@ import { Text, View, type LayoutChangeEvent } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { TitleMenu, type TitleMenuItem } from '@/components/TitleMenu';
-import { useGameHydrated } from '@/hooks/useGameHydrated';
+import { useToast } from '@/components/ToastProvider';
+import { useGameHydrated, useSyncHydrated } from '@/hooks/useGameHydrated';
 import { useHero } from '@/hooks/useHero';
+import { GOOGLE_SUPPORTED, PASSWORD_MIN_LENGTH, signInWithGoogle } from '@/services/auth';
 import { PixelArt } from '@/sprites/PixelArt';
 import { CROWN_ART, CROWN_COLORS } from '@/sprites/scenes';
 import { useSettingsStore } from '@/store/settingsStore';
+import { useSyncStore } from '@/store/syncStore';
 import { duration, fonts, fontSize, makeStyles, spacing, useColors, useThemeMode } from '@/theme';
 
 /** Below this window height the crown and title shrink so the menu still fits. */
@@ -29,6 +32,12 @@ export default function WelcomeScreen() {
   const hydrated = useGameHydrated();
   const view = useHero();
   const settings = useSettingsStore();
+  const toast = useToast();
+  const { userId, guest, sessionKnown, setGuest } = useSyncStore();
+  // Wait for the stored session and guest choice, so neither menu flashes.
+  const accountKnown = useSyncHydrated() && sessionKnown;
+  // A first visit (no account, no guest choice yet) offers sign-in before play.
+  const choosingAccount = accountKnown && !userId && !guest;
 
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [bobUp, setBobUp] = useState(false);
@@ -57,15 +66,37 @@ export default function WelcomeScreen() {
     else router.push('/(onboarding)/pick-gender');
   };
 
-  const items: TitleMenuItem[] = [
+  const google = async (): Promise<void> => {
+    const result = await signInWithGoogle('title');
+    if (!result.ok)
+      toast.show(t(`auth.errors.${result.error}`, { count: PASSWORD_MIN_LENGTH }), 'danger');
+  };
+
+  const accountItems: TitleMenuItem[] = [
+    ...(GOOGLE_SUPPORTED
+      ? [{ key: 'google', label: t('auth.withGoogle'), onPress: () => void google() }]
+      : []),
+    {
+      key: 'email',
+      label: t('auth.withEmail'),
+      onPress: () => router.push('/auth/email?from=title'),
+    },
+    { key: 'guest', label: t('auth.asGuest'), onPress: () => setGuest(true) },
+  ];
+
+  const startItems: TitleMenuItem[] = [
     {
       key: 'start',
       label: hero ? t('onboarding.welcome.continue') : t('onboarding.welcome.cta'),
       onPress: start,
       // Disabled while the save loads, so an early tap can't send a returning
       // player into character creation.
-      disabled: !hydrated,
+      disabled: !hydrated || !accountKnown,
     },
+  ];
+
+  const items: TitleMenuItem[] = [
+    ...(choosingAccount ? accountItems : startItems),
     {
       key: 'language',
       label: t('onboarding.welcome.menuLanguage'),
@@ -100,7 +131,11 @@ export default function WelcomeScreen() {
 
         <TitleMenu
           items={items}
-          {...(hero ? { header: t('onboarding.welcome.welcomeBack', { name: hero.name }) } : {})}
+          {...(choosingAccount
+            ? { header: t('auth.titleHeader') }
+            : hero
+              ? { header: t('onboarding.welcome.welcomeBack', { name: hero.name }) }
+              : {})}
         />
       </View>
     </View>

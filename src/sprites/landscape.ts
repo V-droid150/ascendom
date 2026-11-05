@@ -177,4 +177,3 @@ export const LANDSCAPE_COLORS: Readonly<Record<string, string>> = {
   l: PALETTE[5], // grass highlight
   d: '#1d6b3c', // grass shade
 };
-
