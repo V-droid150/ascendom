@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSettingsStore } from '@/store/settingsStore';
@@ -11,8 +11,6 @@ export interface TitleMenuItem {
   value?: string;
   onPress: () => void;
   disabled?: boolean;
-  /** Decorative art between the cursor and the label. */
-  icon?: ReactNode;
 }
 
 interface TitleMenuProps {
@@ -62,7 +60,6 @@ export function TitleMenu({ items, header }: TitleMenuProps) {
               style={[styles.row, item.disabled && styles.disabled]}
             >
               <Text style={styles.cursor}>{active && (blinkOn || reduceMotion) ? '▶' : ' '}</Text>
-              {item.icon}
               <Text style={[styles.label, index === 0 && styles.primary]} numberOfLines={1}>
                 {item.label}
               </Text>

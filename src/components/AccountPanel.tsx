@@ -7,7 +7,6 @@ import { disableWebPush } from '@/services/webPush';
 import { useSyncStore } from '@/store/syncStore';
 import { syncNow } from '@/sync/controller';
 import { fonts, fontSize, makeStyles, spacing } from '@/theme';
-import { GoogleIcon } from './GoogleIcon';
 import { PixelButton } from './PixelButton';
 import { PixelPanel } from './PixelPanel';
 import { useToast } from './ToastProvider';
@@ -76,11 +75,7 @@ export function AccountPanel() {
         <>
           <Text style={styles.note}>{t('account.pitch')}</Text>
           {GOOGLE_SUPPORTED && (
-            <PixelButton
-              label={t('auth.withGoogle')}
-              icon={<GoogleIcon />}
-              onPress={() => void google()}
-            />
+            <PixelButton label={t('auth.withGoogle')} onPress={() => void google()} />
           )}
           <PixelButton
             label={t('auth.withEmail')}

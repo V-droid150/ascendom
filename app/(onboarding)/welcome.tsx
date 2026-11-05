@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { Text, View, type LayoutChangeEvent } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { GoogleIcon } from '@/components/GoogleIcon';
 import { TitleMenu, type TitleMenuItem } from '@/components/TitleMenu';
 import { useToast } from '@/components/ToastProvider';
 import { useGameHydrated, useSyncHydrated } from '@/hooks/useGameHydrated';
@@ -79,7 +78,6 @@ export default function WelcomeScreen() {
           {
             key: 'google',
             label: t('auth.withGoogle'),
-            icon: <GoogleIcon />,
             onPress: () => void google(),
           },
         ]
