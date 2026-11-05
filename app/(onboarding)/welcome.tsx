@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Text, View, type LayoutChangeEvent } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import { GoogleIcon } from '@/components/GoogleIcon';
 import { TitleMenu, type TitleMenuItem } from '@/components/TitleMenu';
 import { useToast } from '@/components/ToastProvider';
 import { useGameHydrated, useSyncHydrated } from '@/hooks/useGameHydrated';
@@ -74,7 +75,14 @@ export default function WelcomeScreen() {
 
   const accountItems: TitleMenuItem[] = [
     ...(GOOGLE_SUPPORTED
-      ? [{ key: 'google', label: t('auth.withGoogle'), onPress: () => void google() }]
+      ? [
+          {
+            key: 'google',
+            label: t('auth.withGoogle'),
+            icon: <GoogleIcon />,
+            onPress: () => void google(),
+          },
+        ]
       : []),
     {
       key: 'email',
@@ -93,6 +101,10 @@ export default function WelcomeScreen() {
       // player into character creation.
       disabled: !hydrated || !accountKnown,
     },
+    // A guest can always go back to the account choice from the title.
+    ...(guest && !userId
+      ? [{ key: 'account', label: t('auth.backToAccount'), onPress: () => setGuest(false) }]
+      : []),
   ];
 
   const items: TitleMenuItem[] = [

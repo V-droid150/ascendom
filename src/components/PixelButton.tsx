@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Pressable, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import {
   border,
@@ -23,6 +23,8 @@ interface PixelButtonProps {
   compact?: boolean;
   style?: StyleProp<ViewStyle>;
   accessibilityLabel?: string;
+  /** Decorative art drawn left of the label, e.g. a provider logo. */
+  icon?: ReactNode;
 }
 
 interface VariantColors {
@@ -56,6 +58,7 @@ export function PixelButton({
   compact = false,
   style,
   accessibilityLabel,
+  icon,
 }: PixelButtonProps) {
   const styles = useStyles();
   const tone = variantColors(variant, useColors());
@@ -87,9 +90,12 @@ export function PixelButton({
           disabled && styles.disabled,
         ]}
       >
-        <Text style={[styles.label, compact && styles.labelCompact, { color: tone.label }]}>
-          {label}
-        </Text>
+        <View style={styles.content}>
+          {icon}
+          <Text style={[styles.label, compact && styles.labelCompact, { color: tone.label }]}>
+            {label}
+          </Text>
+        </View>
       </Pressable>
     </View>
   );
@@ -119,6 +125,7 @@ const useStyles = makeStyles((colors) => ({
     borderColor: colors.night,
   },
   faceCompact: { paddingHorizontal: spacing.sm },
+  content: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
   label: {
     fontFamily: fonts.display,
     fontSize: fontSize.displayXs,
