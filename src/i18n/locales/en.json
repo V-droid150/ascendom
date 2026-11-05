@@ -267,6 +267,7 @@
     "errors": {
       "invalidEmail": "That email address does not look right.",
       "sendFailed": "Couldn't send the code. Try again in a minute.",
+      "rateLimited": "Too many login emails for now. Wait about an hour, then try again.",
       "verifyFailed": "That code didn't work. Check it and try again."
     },
     "conflict": {

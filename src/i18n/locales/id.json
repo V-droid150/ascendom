@@ -267,6 +267,7 @@
     "errors": {
       "invalidEmail": "Alamat email sepertinya tidak benar.",
       "sendFailed": "Gagal mengirim kode. Coba lagi sebentar lagi.",
+      "rateLimited": "Terlalu banyak email login untuk saat ini. Tunggu sekitar satu jam, lalu coba lagi.",
       "verifyFailed": "Kode tidak cocok. Periksa lalu coba lagi."
     },
     "conflict": {

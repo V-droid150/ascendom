@@ -53,7 +53,10 @@ export function AccountPanel() {
       options: { shouldCreateUser: true, ...(redirect ? { emailRedirectTo: redirect } : {}) },
     });
     setBusy(false);
-    if (error) toast.show(t('account.errors.sendFailed'), 'danger');
+    // Supabase's built-in mailer allows only a few emails per hour.
+    const limited = error?.status === 429 || error?.code?.startsWith('over_') === true;
+    if (error)
+      toast.show(t(limited ? 'account.errors.rateLimited' : 'account.errors.sendFailed'), 'danger');
     else setSentTo(address);
   };
 
