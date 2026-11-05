@@ -64,6 +64,7 @@ function AppShell() {
         <Stack.Screen name="auth/callback" />
         <Stack.Screen name="auth/email" />
         <Stack.Screen name="auth/reset" />
+        <Stack.Screen name="privacy" />
       </Stack>
       <CelebrationHost />
       <SyncConflictModal />

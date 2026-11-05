@@ -520,5 +520,41 @@
     "goldAmount": "{{gold}} emas",
     "selectWeekday": "Pilih {{day}}",
     "chronicleDay": "{{date}}: {{completed}} selesai, {{missed}} terlewat"
+  },
+  "privacy": {
+    "link": "Kebijakan privasi",
+    "title": "Kebijakan Privasi",
+    "updated": "Terakhir diperbarui: 5 November 2026",
+    "intro": "Ascendom adalah habit tracker bergaya pixel art buatan pengembang independen. Halaman ini menjelaskan apa yang disimpan aplikasi, untuk apa, dan cara menghapusnya.",
+    "sections": [
+      {
+        "title": "Main tanpa akun",
+        "body": "Pahlawan, quest, dan pengaturanmu hanya disimpan di perangkatmu, di penyimpanan browser atau aplikasi. Tidak ada yang dikirim ke kami."
+      },
+      {
+        "title": "Yang disimpan oleh akun",
+        "body": "Alamat email. Kalau masuk dengan Google, nama dan foto profil yang dibagikan Google kepada kami (kami tidak pernah melihat password Google-mu). Data permainanmu, supaya kerajaanmu ikut ke perangkat lain. Zona waktumu, supaya pengingat datang di jam lokal yang tepat."
+      },
+      {
+        "title": "Pengingat",
+        "body": "Kalau kamu menyalakan pengingat di browser, kami menyimpan push subscription browser itu: alamat dari layanan push browser yang hanya dipakai untuk mengirim pengingat. Mematikan pengingat atau keluar dari akun akan menghapusnya."
+      },
+      {
+        "title": "Lokasi data",
+        "body": "Akun dan data permainan disimpan di Supabase (wilayah Singapura). Aplikasi di-hosting di Vercel. Google hanya dipakai untuk masuk, dan hanya kalau kamu memilihnya."
+      },
+      {
+        "title": "Yang tidak pernah kami lakukan",
+        "body": "Tanpa iklan. Tidak menjual atau membagikan datamu. Tanpa cookie pelacak atau analitik. Datamu hanya dipakai untuk menjalankan Ascendom."
+      },
+      {
+        "title": "Menghapus data",
+        "body": "Keluar dari akun tidak menghapus progres di perangkatmu. Untuk menghapus akun dan data cloud, buka issue di github.com/V-droid150/ascendom/issues berisi permintaan penghapusan (jangan tulis email-mu secara publik; kami akan membalas di sana), lalu datanya akan dihapus."
+      },
+      {
+        "title": "Perubahan",
+        "body": "Kalau kebijakan ini berubah, tanggal di atas ikut diperbarui."
+      }
+    ]
   }
 }

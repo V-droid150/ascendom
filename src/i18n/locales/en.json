@@ -520,5 +520,41 @@
     "goldAmount": "{{gold}} gold",
     "selectWeekday": "Select {{day}}",
     "chronicleDay": "{{date}}: {{completed}} done, {{missed}} missed"
+  },
+  "privacy": {
+    "link": "Privacy policy",
+    "title": "Privacy Policy",
+    "updated": "Last updated: 5 November 2026",
+    "intro": "Ascendom is a pixel-art habit tracker made by an independent developer. This page explains what the app stores, why, and how to have it removed.",
+    "sections": [
+      {
+        "title": "Playing without an account",
+        "body": "Your hero, quests and settings are kept only on your device, in your browser or app storage. Nothing is sent to us."
+      },
+      {
+        "title": "What an account stores",
+        "body": "Your email address. If you sign in with Google, the name and profile picture Google shares with us (we never see your Google password). Your game save, so your kingdom follows you across devices. Your time zone, so reminders arrive at the right local hour."
+      },
+      {
+        "title": "Reminders",
+        "body": "If you turn on reminders in a browser, we store that browser's push subscription: an address from your browser's push service, used only to deliver reminders. Turning reminders off or signing out removes it."
+      },
+      {
+        "title": "Where your data lives",
+        "body": "Accounts and saves are stored with Supabase (Singapore region). The app is hosted on Vercel. Google is used only for sign-in, and only if you choose it."
+      },
+      {
+        "title": "What we never do",
+        "body": "No ads. No selling or sharing of your data. No tracking or analytics cookies. Your data is used only to run Ascendom."
+      },
+      {
+        "title": "Deleting your data",
+        "body": "Signing out leaves your progress on your device. To delete your account and cloud save, open an issue at github.com/V-droid150/ascendom/issues asking for deletion (do not post your email publicly; we will reply there), and it will be erased."
+      },
+      {
+        "title": "Changes",
+        "body": "If this policy changes, the date at the top will change with it."
+      }
+    ]
   }
 }

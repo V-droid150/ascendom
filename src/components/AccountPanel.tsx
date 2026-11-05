@@ -84,6 +84,12 @@ export function AccountPanel() {
           />
         </>
       )}
+      <PixelButton
+        label={t('privacy.link')}
+        variant="ghost"
+        compact
+        onPress={() => router.push('/privacy')}
+      />
     </PixelPanel>
   );
 }
