@@ -422,7 +422,18 @@
     "names": {
       "goblin_king": "Raja Goblin",
       "shadow_dragon": "Naga Bayangan",
-      "lich_of_frost": "Lich Es"
+      "lich_of_frost": "Lich Es",
+      "slime_emperor": "Kaisar Lendir",
+      "grand_mimic": "Mimik Agung",
+      "moat_kraken": "Kraken Parit"
+    },
+    "lore": {
+      "goblin_king": "Mencuri kas kerajaan sekeping demi sekeping. Hanya kekuatan yang bisa mengusirnya.",
+      "shadow_dragon": "Memakan keraguan dari pegunungan gelap. Kesabaran dan kebijaksanaan meredupkan apinya.",
+      "lich_of_frost": "Membekukan setiap rencana yang tak selesai. Pikiran tajam memecahkan esnya.",
+      "slime_emperor": "Tiran lendir bermata satu yang cuma ingin dipuja. Pesona melelehkannya.",
+      "grand_mimic": "Terlihat seperti harta, menggigit seperti masalah. Yang bijak tahu tak semua peti boleh disentuh.",
+      "moat_kraken": "Melilit jembatan istana. Tarik lepas dengan kekuatan murni."
     },
     "weakTo": "Lemah terhadap {{stat}}",
     "hp": "{{current}} / {{max}} HP",

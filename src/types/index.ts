@@ -114,7 +114,13 @@ export interface SideQuestProgress {
 
 // --- Phase 4: depth systems ----------------------------------------------
 
-export type BossId = 'goblin_king' | 'shadow_dragon' | 'lich_of_frost';
+export type BossId =
+  | 'goblin_king'
+  | 'shadow_dragon'
+  | 'lich_of_frost'
+  | 'slime_emperor'
+  | 'grand_mimic'
+  | 'moat_kraken';
 
 export interface Boss {
   id: BossId;

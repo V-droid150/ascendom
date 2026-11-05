@@ -115,6 +115,10 @@ export const BOSSES: readonly BossDef[] = [
   { id: 'goblin_king', maxHp: 300, weakTo: 'strength', rewardGold: 200 },
   { id: 'shadow_dragon', maxHp: 450, weakTo: 'wisdom', rewardGold: 300 },
   { id: 'lich_of_frost', maxHp: 600, weakTo: 'intelligence', rewardGold: 400 },
+  // Added later so every stat has a boss that fears it (charisma had none).
+  { id: 'slime_emperor', maxHp: 350, weakTo: 'charisma', rewardGold: 250 },
+  { id: 'grand_mimic', maxHp: 400, weakTo: 'wisdom', rewardGold: 275 },
+  { id: 'moat_kraken', maxHp: 550, weakTo: 'strength', rewardGold: 350 },
 ] as const;
 
 /** Base boss damage per habit completion, before difficulty and weakness. */

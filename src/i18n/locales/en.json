@@ -422,7 +422,18 @@
     "names": {
       "goblin_king": "Goblin King",
       "shadow_dragon": "Shadow Dragon",
-      "lich_of_frost": "Lich of Frost"
+      "lich_of_frost": "Lich of Frost",
+      "slime_emperor": "Slime Emperor",
+      "grand_mimic": "Grand Mimic",
+      "moat_kraken": "Moat Kraken"
+    },
+    "lore": {
+      "goblin_king": "Steals the royal treasury one coin at a time. Only brute strength sends him running.",
+      "shadow_dragon": "Feeds on doubt from the dark mountains. Patience and wisdom dim its fire.",
+      "lich_of_frost": "Freezes every unfinished plan. Sharp minds crack its ice.",
+      "slime_emperor": "A one-eyed tyrant of goo who only wants to be adored. Charm melts it.",
+      "grand_mimic": "Looks like treasure, bites like trouble. The wise know not to grab every chest.",
+      "moat_kraken": "Coils around the castle bridge. Pull it off with raw strength."
     },
     "weakTo": "Weak to {{stat}}",
     "hp": "{{current}} / {{max}} HP",
