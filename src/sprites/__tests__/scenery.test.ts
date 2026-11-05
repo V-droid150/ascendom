@@ -115,7 +115,7 @@ describe('the royal wardrobe', () => {
     expect(['p', 'q']).toContain(underFeet);
   });
 
-  it('keeps the wall above the hero bare for the title plaque', () => {
+  it('keeps the wall above the hero bare', () => {
     const centre = WARDROBE_HERO_ANCHOR.x + SPRITE_SIZE / 2;
     for (let y = 3; y < WARDROBE_HERO_ANCHOR.y; y += 1) {
       const wall = (WARDROBE_ART[y] ?? '').slice(centre - 8, centre + 8);

@@ -28,10 +28,8 @@ const initial = {
 export const useOnboardingStore = create<OnboardingState>()((set) => ({
   ...initial,
 
-  setGender: (gender) =>
-    // Hair styles are indexed per gender, so a style picked for one gender may
-    // not exist for the other. Reset to the first style on a switch.
-    set((state) => ({ gender, appearance: { ...state.appearance, hairStyle: 0 } })),
+  // Both genders offer HAIR_STYLE_COUNT styles, so the picked index stays valid.
+  setGender: (gender) => set({ gender }),
 
   setAppearance: (changes) => set((state) => ({ appearance: { ...state.appearance, ...changes } })),
 

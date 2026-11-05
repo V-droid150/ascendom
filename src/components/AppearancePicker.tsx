@@ -7,25 +7,66 @@ import { border, fonts, fontSize, makeStyles, MIN_TOUCH_SIZE, spacing } from '@/
 import type { Appearance, Gender } from '@/types';
 import { SwatchPicker } from './SwatchPicker';
 
-/** Hair style thumbnails: 32px art at 2x. */
+/** Hair style and gender thumbnails: 32px art at 2x. */
 const THUMB_SCALE = 2;
+
+const GENDERS: readonly Gender[] = ['male', 'female'];
 
 interface AppearancePickerProps {
   gender: Gender;
   appearance: Appearance;
   onChange: (changes: Partial<Appearance>) => void;
+  /** Lets a player who picked the wrong hero fix it without starting over. */
+  onGenderChange: (gender: Gender) => void;
 }
 
 /**
- * Skin tone, hair colour and hair style. Shared by onboarding and the royal
+ * Gender, skin tone, hair colour and hair style. Shared by onboarding and the royal
  * wardrobe, so a new hero and a veteran pick from exactly the same options.
  */
-export function AppearancePicker({ gender, appearance, onChange }: AppearancePickerProps) {
+export function AppearancePicker({
+  gender,
+  appearance,
+  onChange,
+  onGenderChange,
+}: AppearancePickerProps) {
   const styles = useStyles();
   const { t } = useTranslation();
 
   return (
     <>
+      <View style={styles.group}>
+        <Text style={styles.label}>{t('onboarding.customize.gender')}</Text>
+        <View style={styles.row}>
+          {GENDERS.map((option) => {
+            const selected = option === gender;
+            return (
+              <Pressable
+                key={option}
+                accessibilityRole="radio"
+                accessibilityState={{ selected }}
+                accessibilityLabel={t(`onboarding.gender.${option}`)}
+                onPress={() => onGenderChange(option)}
+                style={[styles.genderOption, selected && styles.styleSelected]}
+              >
+                <PixelSprite
+                  gender={option}
+                  rank={1}
+                  skinTone={appearance.skinTone}
+                  hairStyle={appearance.hairStyle}
+                  hairColor={appearance.hairColor}
+                  withWeapon={false}
+                  scale={THUMB_SCALE}
+                />
+                <Text style={[styles.genderLabel, selected && styles.genderLabelSelected]}>
+                  {t(`onboarding.gender.${option}`)}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      </View>
+
       <SwatchPicker
         label={t('onboarding.customize.skinTone')}
         swatches={SKIN_TONES.map((ramp) => ramp.base)}
@@ -90,4 +131,19 @@ const useStyles = makeStyles((colors) => ({
     justifyContent: 'center',
   },
   styleSelected: { borderColor: colors.gold, borderWidth: border.widthThick },
+  genderOption: {
+    flex: 1,
+    flexDirection: 'row',
+    gap: spacing.sm,
+    padding: spacing.xs,
+    borderWidth: border.width,
+    borderColor: colors.parchmentShadow,
+    borderRadius: border.radius,
+    backgroundColor: colors.parchmentDark,
+    minHeight: MIN_TOUCH_SIZE,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  genderLabel: { fontFamily: fonts.bodyBold, fontSize: fontSize.bodySm, color: colors.inkSoft },
+  genderLabelSelected: { color: colors.ink },
 }));

@@ -5,7 +5,7 @@ import { AppearancePicker } from '@/components/AppearancePicker';
 import { PixelButton } from '@/components/PixelButton';
 import { PixelPanel } from '@/components/PixelPanel';
 import { WardrobeScene } from '@/components/WardrobeScene';
-import { WARDROBE_PLAQUE } from '@/sprites/wardrobe';
+import { WARDROBE_UI } from '@/sprites/wardrobe';
 import { useSettingsStore } from '@/store/settingsStore';
 import { HERO_NAME_MAX_LENGTH, useOnboardingStore } from '@/store/onboardingStore';
 import { useToast } from '@/components/ToastProvider';
@@ -21,7 +21,7 @@ export default function CustomizeScreen() {
   const router = useRouter();
   const toast = useToast();
 
-  const { gender, appearance, name, setAppearance, setName } = useOnboardingStore();
+  const { gender, appearance, name, setGender, setAppearance, setName } = useOnboardingStore();
   const reduceMotion = useSettingsStore((state) => state.reduceMotion);
 
   const next = (): void => {
@@ -36,7 +36,6 @@ export default function CustomizeScreen() {
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <View style={styles.bleed}>
         <WardrobeScene
-          title={t('onboarding.customize.title')}
           hero={{
             gender,
             rank: STARTING_RANK,
@@ -50,7 +49,12 @@ export default function CustomizeScreen() {
       </View>
 
       <PixelPanel style={styles.panel}>
-        <AppearancePicker gender={gender} appearance={appearance} onChange={setAppearance} />
+        <AppearancePicker
+          gender={gender}
+          appearance={appearance}
+          onChange={setAppearance}
+          onGenderChange={setGender}
+        />
 
         <View style={styles.group}>
           <Text style={styles.label}>{t('onboarding.customize.nameLabel')}</Text>
@@ -75,7 +79,7 @@ export default function CustomizeScreen() {
 
 const useStyles = makeStyles((colors) => ({
   // The wardrobe floor continues below the scene, as on the Settings wardrobe.
-  screen: { flex: 1, backgroundColor: WARDROBE_PLAQUE.floor },
+  screen: { flex: 1, backgroundColor: WARDROBE_UI.floor },
   content: { padding: spacing.lg, gap: spacing.lg, paddingBottom: spacing.xxxl },
   // Negative margins cancel the screen padding so the scene runs edge to edge.
   bleed: { marginTop: -spacing.lg, marginHorizontal: -spacing.lg },

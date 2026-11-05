@@ -55,7 +55,8 @@
       "nameLabel": "Nama pahlawan",
       "namePlaceholder": "Maksimal 16 huruf",
       "nameRequired": "Pahlawan butuh nama, Paduka.",
-      "cta": "Lanjut"
+      "cta": "Lanjut",
+      "gender": "Pahlawan"
     },
     "firstQuest": {
       "title": "Quest pertamamu",

@@ -6,8 +6,7 @@
  * into the shared `string[]` art format. Same 64x40 canvas and hero anchor as
  * the landscape, so the wardrobe and Hero screens frame the hero identically.
  *
- * The middle of the room is kept clear of furniture: the hero stands there, and
- * the screen lays the title plaque over the bare wall above their head.
+ * The middle of the room is kept clear of furniture so the hero stands out.
  */
 
 import { PALETTE } from '@/theme/colors';
@@ -209,15 +208,9 @@ export const WARDROBE_COLORS: Readonly<Record<string, string>> = {
   '9': PALETTE[9], // blue tunic
 };
 
-/**
- * Colours for the title plaque laid over the wall. Gold on near-black wood
- * clears 10:1, and the plaque reads as part of the room rather than as a UI box.
- */
-export const WARDROBE_PLAQUE = {
-  fill: WARDROBE_COLORS.B as string,
-  border: PALETTE[4],
-  borderShade: '#c99b47',
-  text: PALETTE[4],
+/** Colours for the screen around the scene. Gold on the dark wood clears 10:1. */
+export const WARDROBE_UI = {
   /** The room's darkest wood, so the screen below the scene continues the floor. */
   floor: '#2b170c',
+  text: PALETTE[4],
 } as const;

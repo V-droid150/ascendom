@@ -55,7 +55,8 @@
       "nameLabel": "Hero name",
       "namePlaceholder": "Up to 16 characters",
       "nameRequired": "A hero needs a name, Majesty.",
-      "cta": "Next"
+      "cta": "Next",
+      "gender": "Hero"
     },
     "firstQuest": {
       "title": "Your first quests",
