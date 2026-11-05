@@ -36,7 +36,14 @@ export default function Root({ children }: PropsWithChildren) {
         <meta name="theme-color" content="#000000" />
         <link rel="apple-touch-icon" href="/logo192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        {/*
+          "black", not "black-translucent": translucent lets the page run under
+          the clock and battery, and on iPhone it also leaves the app one status
+          bar short at the bottom. With "black" iOS lays the app out below the
+          status bar. Note iOS reads this only when the icon is added to the
+          home screen, so an existing install must be re-added to pick it up.
+        */}
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <meta name="apple-mobile-web-app-title" content="Ascendom" />
 
         {/* Stops the body bouncing on iOS so the app feels native. */}
@@ -59,6 +66,15 @@ const BASE_STYLE = `
 body {
   background-color: #000000;
   overscroll-behavior-y: none;
+}
+/*
+ * Keep content out from under a notch or status bar wherever the page does run
+ * edge to edge (viewport-fit=cover). Zero where there is no inset, including
+ * the home-screen app with the "black" status bar above.
+ */
+#root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
 }
 /* Pixel art must never be smoothed by the browser's image scaler. */
 img, svg {
