@@ -18,7 +18,19 @@ import { authErrorKey, type AuthErrorKey } from './authErrors';
 
 export { authErrorKey, type AuthErrorKey };
 
-export const GOOGLE_SUPPORTED = Platform.OS === 'web';
+/**
+ * An app installed to the iPhone home screen opens Google in a separate
+ * browser sheet whose storage it can't see, so the PKCE exchange can never
+ * finish there. Those players get email + password only.
+ */
+function isIosHomeScreenApp(): boolean {
+  if (typeof navigator === 'undefined') return false;
+  return (navigator as Navigator & { standalone?: boolean }).standalone === true;
+}
+
+export const GOOGLE_SUPPORTED = Platform.OS === 'web' && !isIosHomeScreenApp();
+/** True where Google is hidden only because of the iPhone home-screen limit. */
+export const GOOGLE_BLOCKED_BY_IOS_APP = Platform.OS === 'web' && isIosHomeScreenApp();
 export const PASSWORD_MIN_LENGTH = 8;
 export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

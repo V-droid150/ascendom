@@ -304,6 +304,7 @@
   "auth": {
     "titleHeader": "Amankan kerajaanmu dengan akun",
     "withGoogle": "Masuk dengan Google",
+    "googleIosApp": "Masuk dengan Google tidak bisa di app yang dipasang di layar utama iPhone. Pakai email & password di sini, atau buka ascendom.vercel.app di Safari untuk masuk dengan Google.",
     "withEmail": "Email & password",
     "asGuest": "Main tanpa akun",
     "backToAccount": "Masuk / buat akun",

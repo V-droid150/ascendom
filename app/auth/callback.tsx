@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
@@ -14,26 +14,39 @@ import { fonts, fontSize, makeStyles, spacing } from '@/theme';
  * The exchange only works in the browser that started sign-in (PKCE keeps the
  * verifier there), and a cancelled Google prompt comes back with no code, so
  * both end on a clear message rather than silently doing nothing.
+ *
+ * A code can be exchanged once. The effect is guarded so a re-render can't
+ * try it twice, and a failed exchange still counts as success if a session
+ * exists anyway (for example, the first attempt already stored it).
  */
 export default function AuthCallback() {
   const styles = useStyles();
   const { t } = useTranslation();
   const router = useRouter();
-  const { code } = useLocalSearchParams<{ code?: string }>();
+  const { code, error_description: providerError } = useLocalSearchParams<{
+    code?: string;
+    error_description?: string;
+  }>();
   const [exchangeFailed, setExchangeFailed] = useState(false);
+  const [detail, setDetail] = useState<string | null>(null);
+  const started = useRef(false);
   // A link without a code can never succeed, so that is a failure up front.
   const failed = exchangeFailed || !code;
 
   useEffect(() => {
-    if (!code) return;
-    void supabase.auth.exchangeCodeForSession(code).then(async ({ error }) => {
-      if (error) {
+    if (!code || started.current) return;
+    started.current = true;
+    void (async () => {
+      const { error } = await supabase.auth.exchangeCodeForSession(code);
+      const { data } = await supabase.auth.getSession();
+      if (error && !data.session) {
+        setDetail(error.message);
         setExchangeFailed(true);
         return;
       }
       const next = await takeAuthReturn();
       router.replace(next === 'settings' ? '/(tabs)/settings' : '/(onboarding)/welcome');
-    });
+    })();
   }, [code, router]);
 
   return (
@@ -41,6 +54,9 @@ export default function AuthCallback() {
       <Text style={styles.text}>
         {failed ? t('auth.callback.failed') : t('auth.callback.signingIn')}
       </Text>
+      {failed && (providerError ?? detail) && (
+        <Text style={styles.detail}>{providerError ?? detail}</Text>
+      )}
       {failed && (
         <PixelButton
           label={t('auth.callback.back')}
@@ -64,6 +80,12 @@ const useStyles = makeStyles((colors) => ({
     fontFamily: fonts.body,
     fontSize: fontSize.body,
     color: colors.text,
+    textAlign: 'center',
+  },
+  detail: {
+    fontFamily: fonts.body,
+    fontSize: fontSize.caption,
+    color: colors.textDim,
     textAlign: 'center',
   },
 }));

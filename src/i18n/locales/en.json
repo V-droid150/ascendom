@@ -304,6 +304,7 @@
   "auth": {
     "titleHeader": "Keep your kingdom safe with an account",
     "withGoogle": "Sign in with Google",
+    "googleIosApp": "Google sign-in doesn't work inside the app installed on an iPhone home screen. Use email & password here, or open ascendom.vercel.app in Safari to sign in with Google.",
     "withEmail": "Email & password",
     "asGuest": "Play without an account",
     "backToAccount": "Sign in / create account",

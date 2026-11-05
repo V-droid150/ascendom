@@ -1,7 +1,12 @@
 import { Text } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { GOOGLE_SUPPORTED, PASSWORD_MIN_LENGTH, signInWithGoogle } from '@/services/auth';
+import {
+  GOOGLE_BLOCKED_BY_IOS_APP,
+  GOOGLE_SUPPORTED,
+  PASSWORD_MIN_LENGTH,
+  signInWithGoogle,
+} from '@/services/auth';
 import { supabase } from '@/services/supabase';
 import { disableWebPush } from '@/services/webPush';
 import { useSyncStore } from '@/store/syncStore';
@@ -74,6 +79,7 @@ export function AccountPanel() {
       ) : (
         <>
           <Text style={styles.note}>{t('account.pitch')}</Text>
+          {GOOGLE_BLOCKED_BY_IOS_APP && <Text style={styles.note}>{t('auth.googleIosApp')}</Text>}
           {GOOGLE_SUPPORTED && (
             <PixelButton label={t('auth.withGoogle')} onPress={() => void google()} />
           )}
