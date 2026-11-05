@@ -76,6 +76,15 @@ body {
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
 }
+/*
+ * The installed app has no browser chrome above it, so the hero bar would sit
+ * flush against the status bar. A little breathing room (spacing.md) there.
+ */
+@media (display-mode: standalone) {
+  #root {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 12px);
+  }
+}
 /* Pixel art must never be smoothed by the browser's image scaler. */
 img, svg {
   image-rendering: pixelated;
