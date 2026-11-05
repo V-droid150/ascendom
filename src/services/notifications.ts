@@ -1,10 +1,10 @@
 /**
  * Reminders.
  *
- * Native uses expo-notifications with per-habit daily triggers. Web degrades to
- * the Notifications API, which can only fire while a tab is open — so the web
- * build schedules nothing and simply reports that it is unsupported rather than
- * pretending a reminder will arrive.
+ * Native uses expo-notifications with per-habit daily triggers. A browser can't
+ * schedule ahead like that, so on the web the server sends Web Push reminders
+ * instead (`./webPush.ts`); this module schedules nothing there and only
+ * forwards the permission request.
  *
  * Permission is never requested on launch; only when the user turns reminders
  * on in Settings.
@@ -13,8 +13,9 @@
 import { Platform } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import type { Habit, Settings } from '@/types';
+import { disableWebPush, enableWebPush, isWebPushSupported } from './webPush';
 
-export type PermissionOutcome = 'granted' | 'denied' | 'unsupported';
+export type PermissionOutcome = 'granted' | 'denied' | 'unsupported' | 'signedOut';
 
 /** The evening nudge fires at 20:00 local. */
 export const EVENING_CHECK_HOUR = 20;
@@ -31,7 +32,7 @@ Notifications.setNotificationHandler({
 });
 
 export async function requestPermission(): Promise<PermissionOutcome> {
-  if (!isNative) return 'unsupported';
+  if (!isNative) return enableWebPush();
 
   try {
     const current = await Notifications.getPermissionsAsync();
@@ -42,6 +43,11 @@ export async function requestPermission(): Promise<PermissionOutcome> {
   } catch {
     return 'unsupported';
   }
+}
+
+/** Turning reminders off: on the web the server has to stop pushing to this browser. */
+export async function disableReminders(): Promise<void> {
+  if (!isNative) await disableWebPush();
 }
 
 export async function cancelAll(): Promise<void> {
@@ -137,4 +143,4 @@ export async function rescheduleAll(
   }
 }
 
-export const NOTIFICATIONS_SUPPORTED = isNative;
+export const NOTIFICATIONS_SUPPORTED = isNative || isWebPushSupported();

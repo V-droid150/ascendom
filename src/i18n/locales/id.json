@@ -303,6 +303,8 @@
     "notifications": "Pengingat",
     "notificationsDenied": "Izin pengingat ditolak. Aktifkan dari pengaturan perangkat.",
     "notificationsUnsupported": "Pengingat tidak didukung di perangkat ini.",
+    "notificationsSignIn": "Pengingat di browser butuh akun. Masuk dulu di Akun & Sinkron.",
+    "notificationsOffFailed": "Gagal mematikan pengingat di browser ini. Coba lagi.",
     "sound": "Suara",
     "haptics": "Getaran",
     "reduceMotion": "Kurangi animasi",

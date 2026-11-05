@@ -5,7 +5,15 @@ const expoConfig = require('eslint-config-expo/flat');
 module.exports = defineConfig([
   expoConfig,
   {
-    ignores: ['dist/*', 'coverage/*', '.expo/*', 'public/sw.js', 'public/workbox-*.js'],
+    ignores: [
+      'dist/*',
+      'coverage/*',
+      '.expo/*',
+      'public/sw.js',
+      'public/workbox-*.js',
+      // Deno code (npm: specifiers, Deno globals); checked by the Supabase CLI on deploy.
+      'supabase/functions/send-reminders/*',
+    ],
   },
   {
     rules: {

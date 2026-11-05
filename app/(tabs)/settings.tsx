@@ -8,7 +8,11 @@ import { PixelButton } from '@/components/PixelButton';
 import { PixelPanel } from '@/components/PixelPanel';
 import { SettingRow, ToggleRow } from '@/components/SettingRow';
 import { useToast } from '@/components/ToastProvider';
-import { requestPermission, NOTIFICATIONS_SUPPORTED } from '@/services/notifications';
+import {
+  disableReminders,
+  requestPermission,
+  NOTIFICATIONS_SUPPORTED,
+} from '@/services/notifications';
 import { SOUND_SUPPORTED } from '@/services/sound';
 import { HAPTICS_SUPPORTED } from '@/services/haptics';
 import { useGameStore } from '@/store/gameStore';
@@ -38,6 +42,7 @@ export default function SettingsScreen() {
   const onNotificationsChange = async (value: boolean): Promise<void> => {
     if (!value) {
       settings.setNotificationsOn(false);
+      disableReminders().catch(() => toast.show(t('settings.notificationsOffFailed'), 'danger'));
       return;
     }
 
@@ -51,7 +56,9 @@ export default function SettingsScreen() {
     toast.show(
       outcome === 'denied'
         ? t('settings.notificationsDenied')
-        : t('settings.notificationsUnsupported'),
+        : outcome === 'signedOut'
+          ? t('settings.notificationsSignIn')
+          : t('settings.notificationsUnsupported'),
       'danger',
     );
   };

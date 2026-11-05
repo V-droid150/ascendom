@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { rescheduleAll } from '@/services/notifications';
+import { refreshWebPush } from '@/services/webPush';
 import { useGameStore } from '@/store/gameStore';
 import { settingsSnapshot, useSettingsStore } from '@/store/settingsStore';
+import { useSyncStore } from '@/store/syncStore';
 
 /**
  * Keeps scheduled reminders in step with the user's habits and settings.
@@ -16,7 +18,14 @@ export function useNotificationSync(): void {
   const habits = useGameStore((state) => state.habits);
   const notificationsOn = useSettingsStore((state) => state.notificationsOn);
   const language = useSettingsStore((state) => state.language);
+  const userId = useSyncStore((state) => state.userId);
   const { t } = useTranslation();
+
+  // Web: the server pushes, so keep this browser's subscription filed under
+  // whoever is signed in. A no-op on native and without permission.
+  useEffect(() => {
+    if (userId && notificationsOn) refreshWebPush().catch(() => {});
+  }, [userId, notificationsOn]);
 
   useEffect(() => {
     void rescheduleAll(habits, settingsSnapshot(), {

@@ -303,6 +303,8 @@
     "notifications": "Reminders",
     "notificationsDenied": "Reminder permission denied. Enable it in your device settings.",
     "notificationsUnsupported": "Reminders aren't supported on this device.",
+    "notificationsSignIn": "Reminders in the browser need an account. Sign in under Account & Sync first.",
+    "notificationsOffFailed": "Couldn't stop reminders on this browser. Try again.",
     "sound": "Sound",
     "haptics": "Haptics",
     "reduceMotion": "Reduce motion",

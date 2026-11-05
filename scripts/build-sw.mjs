@@ -27,6 +27,9 @@ const { count, size, warnings } = await generateSW({
   globPatterns: ['**/*.{html,js,css,json,png,ico,ttf,woff,woff2}'],
   swDest: resolve(dist, 'sw.js'),
 
+  // Push and notification-click handlers for Web Push reminders (public/push-sw.js).
+  importScripts: ['/push-sw.js'],
+
   // Phases 1-4 are local-first: the app must work fully offline after one load,
   // so unmatched navigations fall back to the cached shell.
   navigateFallback: '/index.html',

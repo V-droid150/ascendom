@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Platform, Text, TextInput } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '@/services/supabase';
+import { disableWebPush } from '@/services/webPush';
 import { useSyncStore } from '@/store/syncStore';
 import { syncNow } from '@/sync/controller';
 import { border, fonts, fontSize, makeStyles, MIN_TOUCH_SIZE, spacing, useColors } from '@/theme';
@@ -74,6 +75,8 @@ export function AccountPanel() {
   };
 
   const signOut = async (): Promise<void> => {
+    // While still signed in, so the server stops pushing this account here.
+    await disableWebPush().catch(() => {});
     await supabase.auth.signOut();
     toast.show(t('account.signedOut'));
   };
