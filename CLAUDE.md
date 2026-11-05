@@ -18,7 +18,7 @@ skipped. Accounts and cloud sync were added later on Supabase; see **Backend**.
 Since then: light/dark theme (Settings, dark default on true black), crown
 welcome screen, daily rotating side quests, and chibi NES-style sprites.
 
-377 tests across 18 suites. Engine coverage: 98.89% statements, 96.07% branches,
+391 tests across 19 suites. Engine coverage: 98.89% statements, 96.07% branches,
 100% functions, 99.67% lines.
 
 Verified end to end in a browser: onboarding, completion with level-up and
@@ -31,7 +31,7 @@ Remaining: EAS Android APK, Lighthouse audit, native SFX.
 
 The game is local-first and works fully offline. Since 2026-11-04 there is an
 optional Supabase backend (see **Backend** below): login and cloud sync are
-built; Web Push reminders and a calendar feed are the next steps.
+built, and Web Push reminders are live (2026-11-05); a calendar feed is next.
 
 ## Stack (latest stable, Nov 2026)
 
@@ -89,6 +89,19 @@ the data). Never put a secret or service-role key in the app.
   overwrite each other; a real conflict opens `SyncConflictModal` and the
   player picks a side. Edits upload after a 3 s debounce; sync also runs on
   login, app start and foreground. Local play never waits on the network.
+- Web Push (web only; native keeps local expo-notifications): the browser
+  subscribes via `src/services/webPush.ts` and files it through the
+  `register_push_subscription` RPC (requires login). pg_cron (*/5) calls the
+  `send-reminders` Edge Function with an `x-cron-secret` header read from Vault
+  (`reminders_cron_secret`); the function is deployed `--no-verify-jwt`. It
+  plans pushes with `supabase/functions/_shared/reminderPlan.ts` (pure, Jest-
+  tested: per-quest reminder time + 20:00 nudge, skips quests already done,
+  15-min window) and dedupes via `push_sent`. Server copy lives in
+  `_shared/reminderCopy.ts`, tested against the locale JSON. Secrets:
+  VAPID_PUBLIC_KEY / VAPID_PRIVATE_KEY / VAPID_SUBJECT / CRON_SECRET; the public
+  key is also in `src/config/push.ts`. `public/push-sw.js` is pulled into the
+  Workbox worker via importScripts. Deploy: `npx supabase functions deploy
+  send-reminders --no-verify-jwt --use-api`.
 
 ## Hard architectural rules
 
