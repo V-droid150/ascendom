@@ -17,6 +17,8 @@ interface TitleMenuProps {
   items: TitleMenuItem[];
   /** Optional line above the options, e.g. "Welcome back, Ayu." */
   header?: string;
+  /** Over the title scene: a slightly see-through fill so the castle shows. */
+  overScene?: boolean;
 }
 
 /**
@@ -26,7 +28,7 @@ interface TitleMenuProps {
  * The cursor follows the pointer on web and the finger on touch, so it always
  * points at what the next tap will do. It holds still under reduced motion.
  */
-export function TitleMenu({ items, header }: TitleMenuProps) {
+export function TitleMenu({ items, header, overScene = false }: TitleMenuProps) {
   const styles = useStyles();
   const { t } = useTranslation();
   const reduceMotion = useSettingsStore((state) => state.reduceMotion);
@@ -41,7 +43,7 @@ export function TitleMenu({ items, header }: TitleMenuProps) {
   }, [reduceMotion]);
 
   return (
-    <View style={styles.frame}>
+    <View style={[styles.frame, overScene && styles.frameOverScene]}>
       <View style={styles.inner}>
         {header !== undefined && <Text style={styles.header}>{header}</Text>}
 
@@ -83,6 +85,7 @@ const useStyles = makeStyles((colors) => ({
     backgroundColor: colors.windowFill,
     borderRadius: border.radius,
   },
+  frameOverScene: { backgroundColor: colors.windowFillScene },
   inner: {
     margin: border.width,
     borderWidth: border.width,

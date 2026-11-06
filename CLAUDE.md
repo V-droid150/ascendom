@@ -17,8 +17,10 @@ skipped. Accounts and cloud sync were added later on Supabase; see **Backend**.
 
 Since then: light/dark theme (Settings, dark default on true black), crown
 welcome screen, daily rotating side quests, and chibi NES-style sprites.
+The title screen stands on a code-painted castle (`sprites/titleScene.ts`,
+night in dark theme, day in light) with courtyard NPCs (`sprites/npcs.ts`).
 
-425 tests across 21 suites. Engine coverage: 98.89% statements, 96.07% branches,
+466 tests across 23 suites. Engine coverage: 98.89% statements, 96.07% branches,
 100% functions, 99.67% lines.
 
 Verified end to end in a browser: onboarding, completion with level-up and
