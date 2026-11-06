@@ -5,7 +5,8 @@
  * Painted from code like `landscape.ts`, but sized to the screen rather than
  * fixed: the caller passes the screen size in scene pixels and gets back a
  * grid exactly that big. Sky fills the top, the castle's spire stops at
- * `SPIRE_TOP` of the height so the logo always sits on plain sky, and the
+ * the row the caller asks for (by default `SPIRE_TOP` of the height) so the
+ * logo always sits on plain sky, and the
  * courtyard (`TITLE_LANE_ROWS` deep) is where the NPCs walk.
  *
  * One piece of art, two palettes: night for the dark theme, day for the
@@ -28,6 +29,26 @@ const MIN_HEIGHT = 120;
 
 /** Fraction of the height above which only sky, stars and the moon appear. */
 export const SPIRE_TOP = 0.36;
+
+/** The spire's flag rises this many rows above its tip. */
+export const SPIRE_FLAG_ROWS = 7;
+
+/** The castle never gets shorter than this from spire tip to wall. */
+const MIN_CASTLE_SPAN = 60;
+
+/** Local hours that count as day; the scene is night outside them. */
+export const DAY_HOURS = { start: 6, end: 18 } as const;
+
+/** Whether the title scene shows day at this local hour (0-23). */
+export function isDaytimeHour(hour: number): boolean {
+  return hour >= DAY_HOURS.start && hour < DAY_HOURS.end;
+}
+
+/** Per scene: the top sky colour (behind the logo) and the logo's drop shadow. */
+export const TITLE_SKY = {
+  night: { sky: PALETTE[0], titleShadow: PALETTE[2] },
+  day: { sky: PALETTE[9], titleShadow: PALETTE[0] },
+} as const;
 
 /** Sky band boundaries, as fractions of the height. */
 const SKY_TOP_END = 0.5;
@@ -120,7 +141,15 @@ function painter(canvas: Canvas, width: number) {
   return { set, fill, stone, battlements, cone, flag };
 }
 
-export function paintTitleScene(requestedWidth: number, requestedHeight: number): TitleScene {
+/**
+ * Paints the scene. `requestedSpireTip` is the highest row the castle may
+ * reach (its flag excluded), so the caller can keep it below the logo.
+ */
+export function paintTitleScene(
+  requestedWidth: number,
+  requestedHeight: number,
+  requestedSpireTip?: number,
+): TitleScene {
   const width = Math.max(MIN_WIDTH, Math.round(requestedWidth));
   const height = Math.max(MIN_HEIGHT, Math.round(requestedHeight));
   const groundY = height - TITLE_LANE_ROWS;
@@ -130,8 +159,14 @@ export function paintTitleScene(requestedWidth: number, requestedHeight: number)
   const p = painter(canvas, width);
 
   // Sky: three bands with a checker-dithered seam, as on the Hero screen.
-  const topEnd = Math.floor(height * SKY_TOP_END);
-  const midEnd = Math.floor(height * SKY_MID_END);
+  const wallTop = groundY - WALL_HEIGHT;
+  const spireTip = Math.min(
+    wallTop - MIN_CASTLE_SPAN,
+    Math.max(SPIRE_FLAG_ROWS, Math.round(requestedSpireTip ?? height * SPIRE_TOP)),
+  );
+  // The logo's band of sky reaches at least down to the spire.
+  const topEnd = Math.max(Math.floor(height * SKY_TOP_END), spireTip);
+  const midEnd = Math.max(Math.floor(height * SKY_MID_END), topEnd + 8);
   for (let y = 0; y < groundY; y += 1) {
     for (let x = 0; x < width; x += 1) {
       let band = y < topEnd ? 'a' : y < midEnd ? 'b' : 'c';
@@ -187,7 +222,6 @@ export function paintTitleScene(requestedWidth: number, requestedHeight: number)
 
   const cx = Math.floor(width / 2);
   const halfWall = Math.min(46, Math.max(28, Math.floor(width * 0.36)));
-  const wallTop = groundY - WALL_HEIGHT;
 
   // Townhouses on both flanks, outside the castle wall.
   const house = (x0: number, w: number): void => {
@@ -209,7 +243,6 @@ export function paintTitleScene(requestedWidth: number, requestedHeight: number)
   for (let x = cx + halfWall + 3; x < width; x += 13) house(x, 10);
 
   // Castle heights, all measured from the spire's tip down to the wall.
-  const spireTip = Math.floor(height * SPIRE_TOP);
   const span = wallTop - spireTip;
   const spireBodyTop = spireTip + SPIRE_ROOF;
   const keepTop = Math.max(spireBodyTop + 6, spireTip + Math.round(span * 0.3));

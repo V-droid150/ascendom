@@ -5,12 +5,13 @@ import { useTranslation } from 'react-i18next';
 import { TitleBackdrop } from '@/components/TitleBackdrop';
 import { TitleMenu, type TitleMenuItem } from '@/components/TitleMenu';
 import { useToast } from '@/components/ToastProvider';
+import { useDaytime } from '@/hooks/useDaytime';
 import { useGameHydrated, useSyncHydrated } from '@/hooks/useGameHydrated';
 import { useHero } from '@/hooks/useHero';
 import { GOOGLE_SUPPORTED, PASSWORD_MIN_LENGTH, signInWithGoogle } from '@/services/auth';
 import { PixelArt } from '@/sprites/PixelArt';
 import { CROWN_ART, CROWN_COLORS } from '@/sprites/scenes';
-import { titleCourtyardClearance } from '@/sprites/titleScene';
+import { TITLE_SKY, titleCourtyardClearance } from '@/sprites/titleScene';
 import { useSettingsStore } from '@/store/settingsStore';
 import { useSyncStore } from '@/store/syncStore';
 import { duration, fonts, fontSize, makeStyles, spacing, useColors, useThemeMode } from '@/theme';
@@ -22,10 +23,11 @@ const CROWN_SCALE = { compact: 6, roomy: 9 } as const;
 /**
  * The title screen, opened on every launch.
  *
- * Built like a pixel RPG's: a bobbing crown and a drop-shadowed logo on the
- * night (or day) sky, a fairy-tale castle behind the JRPG menu window, and
- * townsfolk strolling through the courtyard below it. The logo sits at the
- * top and the menu just above the courtyard, so neither covers the walkers.
+ * Built like a pixel RPG's: a bobbing crown and a drop-shadowed logo above a
+ * JRPG menu window, centred together over a fairy-tale castle, with townsfolk
+ * strolling through the courtyard below. The castle is night or day by the
+ * device's real clock, and is painted to stop just under the logo, so the
+ * title and tagline always sit on plain sky.
  */
 export default function WelcomeScreen() {
   const styles = useStyles();
@@ -43,7 +45,10 @@ export default function WelcomeScreen() {
   // A first visit (no account, no guest choice yet) offers sign-in before play.
   const choosingAccount = accountKnown && !userId && !guest;
 
+  const daytime = useDaytime();
+  const sky = daytime ? TITLE_SKY.day : TITLE_SKY.night;
   const [size, setSize] = useState({ width: 0, height: 0 });
+  const [logoBottom, setLogoBottom] = useState(0);
   const [bobUp, setBobUp] = useState(false);
 
   useEffect(() => {
@@ -55,6 +60,12 @@ export default function WelcomeScreen() {
   const onLayout = (event: LayoutChangeEvent): void => {
     const { width, height } = event.nativeEvent.layout;
     if (width !== size.width || height !== size.height) setSize({ width, height });
+  };
+
+  const onLogoLayout = (event: LayoutChangeEvent): void => {
+    const { y, height } = event.nativeEvent.layout;
+    const bottom = Math.round(y + height);
+    if (bottom !== logoBottom) setLogoBottom(bottom);
   };
 
   const crownColors = useMemo(() => ({ ...CROWN_COLORS, k: colors.sceneTextShadow }), [colors]);
@@ -126,11 +137,12 @@ export default function WelcomeScreen() {
   ];
 
   return (
-    <View style={styles.screen} onLayout={onLayout}>
+    <View style={[styles.screen, { backgroundColor: sky.sky }]} onLayout={onLayout}>
       <TitleBackdrop
         width={size.width}
         height={size.height}
-        mode={themeMode}
+        daytime={daytime}
+        skyBottom={logoBottom}
         reduceMotion={settings.reduceMotion}
       />
       <View
@@ -139,7 +151,7 @@ export default function WelcomeScreen() {
           { paddingBottom: titleCourtyardClearance(size.height) + spacing.sm },
         ]}
       >
-        <View style={styles.logo}>
+        <View style={styles.logo} onLayout={onLogoLayout}>
           <View style={{ transform: [{ translateY: bobUp ? -crownScale : 0 }] }}>
             <PixelArt
               art={CROWN_ART}
@@ -148,7 +160,14 @@ export default function WelcomeScreen() {
               accessibilityLabel={t('app.name')}
             />
           </View>
-          <Text style={[styles.title, compact && styles.titleCompact]} accessibilityRole="header">
+          <Text
+            style={[
+              styles.title,
+              compact && styles.titleCompact,
+              { textShadowColor: sky.titleShadow },
+            ]}
+            accessibilityRole="header"
+          >
             {t('app.name')}
           </Text>
           <Text style={styles.tagline}>{t('app.tagline')}</Text>
@@ -169,14 +188,14 @@ export default function WelcomeScreen() {
 }
 
 const useStyles = makeStyles((colors) => ({
-  screen: { flex: 1, backgroundColor: colors.sceneSky, overflow: 'hidden' },
+  screen: { flex: 1, overflow: 'hidden' },
   content: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     paddingHorizontal: spacing.lg,
-    paddingTop: spacing.xl,
-    gap: spacing.md,
+    paddingTop: spacing.lg,
+    gap: spacing.xl,
   },
   logo: { alignItems: 'center', gap: spacing.sm },
   title: {
@@ -185,7 +204,6 @@ const useStyles = makeStyles((colors) => ({
     color: colors.sceneTitle,
     letterSpacing: 4,
     textAlign: 'center',
-    textShadowColor: colors.sceneTitleShadow,
     textShadowOffset: { width: 3, height: 3 },
     textShadowRadius: 0,
   },

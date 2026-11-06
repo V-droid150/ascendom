@@ -6,6 +6,7 @@ import {
   paintTitleScene,
   TITLE_DAY_COLORS,
   TITLE_NIGHT_COLORS,
+  SPIRE_FLAG_ROWS,
   TITLE_NPC_LANES,
   titleSceneScaleFor,
 } from '@/sprites/titleScene';
@@ -14,7 +15,10 @@ import { duration, makeStyles } from '@/theme';
 interface TitleBackdropProps {
   width: number;
   height: number;
-  mode: 'dark' | 'light';
+  /** Day or night, from the real clock. */
+  daytime: boolean;
+  /** Screen y of the logo's bottom edge; the castle stays below it. 0 = default. */
+  skyBottom: number;
   reduceMotion: boolean;
 }
 
@@ -25,14 +29,25 @@ interface TitleBackdropProps {
  * The NPCs step one scene pixel at a time on a fixed tick, the stepped motion
  * the rest of the app uses, and stand still under reduced motion.
  */
-export function TitleBackdrop({ width, height, mode, reduceMotion }: TitleBackdropProps) {
+export function TitleBackdrop({
+  width,
+  height,
+  daytime,
+  skyBottom,
+  reduceMotion,
+}: TitleBackdropProps) {
   const styles = useStyles();
   const scale = titleSceneScaleFor(height);
   const cols = Math.ceil(width / scale);
   const rows = Math.ceil(height / scale);
 
-  const scene = useMemo(() => paintTitleScene(cols, rows), [cols, rows]);
-  const sceneColors = mode === 'dark' ? TITLE_NIGHT_COLORS : TITLE_DAY_COLORS;
+  // The scene is bottom-anchored, so screen y maps to row y / scale plus the
+  // rows cropped off the top. Keep the flag a couple of pixels under the logo.
+  const cropRows = rows - height / scale;
+  const spireTip =
+    skyBottom > 0 ? Math.ceil(skyBottom / scale + cropRows) + SPIRE_FLAG_ROWS + 2 : undefined;
+  const scene = useMemo(() => paintTitleScene(cols, rows, spireTip), [cols, rows, spireTip]);
+  const sceneColors = daytime ? TITLE_DAY_COLORS : TITLE_NIGHT_COLORS;
   const crowd = useMemo(() => TITLE_NPCS.map((spec) => ({ spec, colors: npcColors(spec) })), []);
 
   const [tick, setTick] = useState(0);

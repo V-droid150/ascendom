@@ -9,7 +9,9 @@ import {
   type NpcSpec,
 } from '../npcs';
 import {
+  isDaytimeHour,
   paintTitleScene,
+  SPIRE_FLAG_ROWS,
   SPIRE_TOP,
   TITLE_DAY_COLORS,
   TITLE_LANE_ROWS,
@@ -54,7 +56,9 @@ describe('the title scene', () => {
   it.each(SIZES)('keeps the logo area to plain sky at %ix%i', (width, height) => {
     const { art } = paintTitleScene(width, height);
     // The spire's flag rises six pixels above its tip.
-    const clearRows = Math.floor(height * SPIRE_TOP) - 7;
+    const wallTop = height - TITLE_LANE_ROWS - 22;
+    const tip = Math.min(Math.floor(height * SPIRE_TOP), wallTop - 60);
+    const clearRows = tip - SPIRE_FLAG_ROWS;
     for (const line of art.slice(0, clearRows)) {
       for (const char of line) expect(SKY.has(char)).toBe(true);
     }
@@ -81,6 +85,35 @@ describe('the title scene', () => {
   it('hides the stars in daylight but not at night', () => {
     expect(TITLE_DAY_COLORS['*']).toBe(TITLE_DAY_COLORS.a);
     expect(TITLE_NIGHT_COLORS['*']).not.toBe(TITLE_NIGHT_COLORS.a);
+  });
+});
+
+describe('the spire below the logo', () => {
+  const firstCastleRow = (art: readonly string[]): number =>
+    art.findIndex((line) => [...line].some((char) => !SKY.has(char)));
+
+  it.each([60, 90, 110])('keeps everything above row %i plain sky', (tip) => {
+    const { art } = paintTitleScene(130, 253, tip);
+    expect(firstCastleRow(art)).toBe(tip - SPIRE_FLAG_ROWS + 1);
+  });
+
+  it('never squashes the castle when the logo sits low', () => {
+    const { art, groundY } = paintTitleScene(130, 253, 240);
+    expect(groundY - firstCastleRow(art)).toBeGreaterThan(60);
+  });
+});
+
+describe('day and night by the clock', () => {
+  it('is day from 06:00 until 18:00', () => {
+    expect([5, 6, 12, 17, 18, 23, 0].map(isDaytimeHour)).toEqual([
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+    ]);
   });
 });
 

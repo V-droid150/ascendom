@@ -96,10 +96,7 @@ const darkColors = {
    * Logo and tagline over the title scene's top sky band: #1a1c2c by night,
    * #3b5dc9 by day. Gold clears 3:1 (large text) and white 4.5:1 on both.
    */
-  /** The title scene's top sky, painted before the scene has measured itself. */
-  sceneSky: PALETTE[0],
   sceneTitle: PALETTE[4],
-  sceneTitleShadow: PALETTE[2],
   sceneText: PALETTE[12],
   sceneTextShadow: PALETTE[0],
 
@@ -151,9 +148,7 @@ const lightColors: ThemeColors = {
   windowTextDim: PALETTE[13],
   windowAccent: PALETTE[4],
   windowFillScene: 'rgba(41, 54, 111, 0.88)',
-  sceneSky: PALETTE[9],
   sceneTitle: PALETTE[4],
-  sceneTitleShadow: PALETTE[0],
   sceneText: PALETTE[12],
   sceneTextShadow: PALETTE[0],
 
