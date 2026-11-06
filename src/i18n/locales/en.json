@@ -240,7 +240,6 @@
     "sectionConsumables": "Supplies",
     "sectionCosmetics": "Finery",
     "cosmeticNote": "Finery is purely decorative. Rank outfits are never for sale.",
-    "capeNote": "Visible from {{rank}} onward.",
     "items": {
       "shield": {
         "name": "Royal Shield",
@@ -276,7 +275,8 @@
       "already_owned": "You own this already.",
       "unknown_item": "No such item in the shop.",
       "hp_already_full": "Your HP is already full."
-    }
+    },
+    "inWardrobe": "In your wardrobe"
   },
   "account": {
     "title": "ACCOUNT & SYNC",
@@ -602,6 +602,14 @@
     "save": "Save look",
     "cancel": "Cancel",
     "saved": "A fine new look, Majesty.",
-    "keepsProgress": "Only your look changes. Level, gold and quests stay exactly as they are."
+    "keepsProgress": "Only your look changes. Level, gold and quests stay exactly as they are.",
+    "finery": "Finery",
+    "noFinery": "Nothing bought yet. Capes and sheens from the Shop will wait for you here.",
+    "toShop": "Visit the Shop",
+    "none": "None",
+    "slot": {
+      "cape": "Cape",
+      "tint": "Sheen"
+    }
   }
 }

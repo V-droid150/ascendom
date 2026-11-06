@@ -240,7 +240,6 @@
     "sectionConsumables": "Perbekalan",
     "sectionCosmetics": "Hiasan",
     "cosmeticNote": "Hiasan hanya mempercantik. Pakaian pangkat tidak dijual.",
-    "capeNote": "Terlihat mulai pangkat {{rank}}.",
     "items": {
       "shield": {
         "name": "Perisai Kerajaan",
@@ -276,7 +275,8 @@
       "already_owned": "Kau sudah memilikinya.",
       "unknown_item": "Barang itu tidak ada di toko.",
       "hp_already_full": "HP-mu masih penuh."
-    }
+    },
+    "inWardrobe": "Ada di lemari"
   },
   "account": {
     "title": "AKUN & SINKRON",
@@ -602,6 +602,14 @@
     "save": "Simpan rupa",
     "cancel": "Batal",
     "saved": "Rupa baru yang menawan, Paduka.",
-    "keepsProgress": "Hanya rupamu yang berubah. Level, emas, dan quest tetap seperti semula."
+    "keepsProgress": "Hanya rupamu yang berubah. Level, emas, dan quest tetap seperti semula.",
+    "finery": "Perhiasan",
+    "noFinery": "Belum ada yang dibeli. Jubah dan kilau dari Toko akan tersimpan di sini.",
+    "toShop": "Ke Toko",
+    "none": "Tanpa",
+    "slot": {
+      "cape": "Jubah",
+      "tint": "Kilau"
+    }
   }
 }

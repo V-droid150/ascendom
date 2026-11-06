@@ -30,6 +30,7 @@ import {
   createHero as engineCreateHero,
   emptyKingdom,
   equipCosmetic as engineEquip,
+  equipLoadout,
   evaluateMissedDays,
   grantCompanions,
   hitBoss,
@@ -120,6 +121,8 @@ interface GameActions {
   buyCosmetic: (id: string) => PurchaseResult;
   equipCosmetic: (id: string) => void;
   unequipCosmetic: (id: string) => void;
+  /** Wears exactly these cosmetics (the wardrobe's save). */
+  setLoadout: (ids: readonly string[]) => void;
 
   buildBuilding: (id: BuildingId) => BuildResult;
   claimBoss: () => { gold: number };
@@ -527,6 +530,12 @@ export const useGameStore = create<GameStore>()(
         const { hero } = get();
         if (!hero) return;
         set({ hero: engineUnequip(hero, id) });
+      },
+
+      setLoadout: (ids) => {
+        const { hero } = get();
+        if (!hero) return;
+        set({ hero: equipLoadout(hero, ids) });
       },
 
       // --- Kingdom ------------------------------------------------------

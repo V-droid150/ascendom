@@ -11,8 +11,12 @@ import {
   buyPotion,
   buyShield,
   cosmeticById,
+  cosmeticInSlot,
   equipCosmetic,
+  equipLoadout,
+  ownedBySlot,
   unequipCosmetic,
+  withCosmeticInSlot,
 } from '../shop';
 import { makeHero, TODAY } from './factories';
 
@@ -164,5 +168,45 @@ describe('equipping cosmetics', () => {
   it('looks cosmetics up by id', () => {
     expect(cosmeticById(capeA.id)).toBe(capeA);
     expect(cosmeticById('nope')).toBeUndefined();
+  });
+});
+
+describe('wardrobe loadouts', () => {
+  const owner = makeHero({
+    ownedCosmetics: ['cape_crimson', 'cape_azure', 'tint_gold'],
+    equippedCosmetics: ['cape_crimson'],
+  });
+
+  it('groups owned finery by slot, in shop order', () => {
+    const slots = ownedBySlot(owner);
+    expect(slots.cape.map((def) => def.id)).toEqual(['cape_crimson', 'cape_azure']);
+    expect(slots.tint.map((def) => def.id)).toEqual(['tint_gold']);
+  });
+
+  it('reads what a slot holds', () => {
+    expect(cosmeticInSlot(['cape_azure', 'tint_gold'], 'cape')).toBe('cape_azure');
+    expect(cosmeticInSlot(['cape_azure'], 'tint')).toBeNull();
+  });
+
+  it('swaps one slot without touching the other', () => {
+    expect(withCosmeticInSlot(['cape_crimson', 'tint_gold'], 'cape', 'cape_azure')).toEqual([
+      'tint_gold',
+      'cape_azure',
+    ]);
+    expect(withCosmeticInSlot(['cape_crimson', 'tint_gold'], 'tint', null)).toEqual([
+      'cape_crimson',
+    ]);
+  });
+
+  it('refuses an item in the wrong slot and drops unknown ids', () => {
+    expect(withCosmeticInSlot(['ghost', 'cape_crimson'], 'tint', 'cape_azure')).toEqual([
+      'cape_crimson',
+    ]);
+  });
+
+  it('wears exactly the loadout, skipping anything not owned', () => {
+    const hero = equipLoadout(owner, ['cape_azure', 'tint_gold', 'tint_frost']);
+    expect(hero.equippedCosmetics).toEqual(['cape_azure', 'tint_gold']);
+    expect(equipLoadout(hero, []).equippedCosmetics).toEqual([]);
   });
 });

@@ -1,3 +1,4 @@
+import { capeLayer } from '../layers/gear';
 import { COSMETICS } from '@/engine/constants';
 import { composeSprite, composeSpriteCached, SPRITE_OUTLINE, toRects } from '../compose';
 import {
@@ -218,23 +219,24 @@ describe('composeSprite', () => {
     }
   });
 
-  it('gives rank 4 and above a cape and lower ranks none', () => {
+  it('shows a bought cape at every rank', () => {
     // Emerald, because crimson also appears in the captain's tabard.
     const emerald = COSMETICS.find((c) => c.id === 'cape_emerald');
     const capeColor = '#38b764';
     const usesColor = (sprite: ReturnType<typeof composeSprite>): boolean =>
       sprite.rects.some((r) => r.color.toLowerCase() === capeColor);
 
-    for (const rank of [4, 5, 6]) {
+    for (const rank of [1, 2, 3, 4, 5, 6]) {
       expect(usesColor(composeSprite({ ...base, rank, cosmetics: [emerald?.id ?? ''] }))).toBe(
         true,
       );
     }
-    for (const rank of [1, 2, 3]) {
-      expect(usesColor(composeSprite({ ...base, rank, cosmetics: [emerald?.id ?? ''] }))).toBe(
-        false,
-      );
-    }
+  });
+
+  it('gives the default cape from rank 4 only', () => {
+    for (const rank of [1, 2, 3]) expect(capeLayer(rank)).toBeNull();
+    for (const rank of [4, 5, 6]) expect(capeLayer(rank)).not.toBeNull();
+    expect(capeLayer(1, true)).not.toBeNull();
   });
 
   it('hangs the cape behind the body rather than over it', () => {

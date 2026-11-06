@@ -3,6 +3,7 @@ import { ScrollView, Text, View } from 'react-native';
 import { Redirect, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { AppearancePicker } from '@/components/AppearancePicker';
+import { FineryPicker } from '@/components/FineryPicker';
 import { PixelButton } from '@/components/PixelButton';
 import { PixelPanel } from '@/components/PixelPanel';
 import { useToast } from '@/components/ToastProvider';
@@ -19,8 +20,8 @@ import type { Appearance, Gender } from '@/types';
  *
  * Unlike onboarding, this never creates a hero. It edits a draft and saves it
  * through `restyle`, which only touches gender and looks, so level, gold, quests,
- * streaks and the kingdom are all untouched. Leaving without saving discards
- * the draft.
+ * streaks and the kingdom are all untouched. Finery bought in the shop can be
+ * put on or taken off here too. Leaving without saving discards the draft.
  */
 export default function WardrobeScreen() {
   const styles = useStyles();
@@ -29,9 +30,11 @@ export default function WardrobeScreen() {
   const toast = useToast();
   const view = useHero();
   const restyle = useGameStore((state) => state.restyle);
+  const setLoadout = useGameStore((state) => state.setLoadout);
   const reduceMotion = useSettingsStore((state) => state.reduceMotion);
   const [draft, setDraft] = useState<Appearance | null>(view?.hero.appearance ?? null);
   const [gender, setGender] = useState<Gender | null>(view?.hero.gender ?? null);
+  const [loadout, setDraftLoadout] = useState<string[]>(view?.hero.equippedCosmetics ?? []);
 
   if (!view || !draft || !gender) return <Redirect href="/" />;
   const { hero } = view;
@@ -43,6 +46,7 @@ export default function WardrobeScreen() {
 
   const save = (): void => {
     restyle({ gender, appearance: draft });
+    setLoadout(loadout);
     toast.show(t('wardrobe.saved'), 'success');
     leave();
   };
@@ -57,7 +61,7 @@ export default function WardrobeScreen() {
             skinTone: draft.skinTone,
             hairStyle: draft.hairStyle,
             hairColor: draft.hairColor,
-            cosmetics: hero.equippedCosmetics,
+            cosmetics: loadout,
             animated: !reduceMotion,
             accessibilityLabel: t('a11y.heroSprite', {
               name: hero.name,
@@ -76,6 +80,15 @@ export default function WardrobeScreen() {
           appearance={draft}
           onChange={(changes) => setDraft({ ...draft, ...changes })}
           onGenderChange={setGender}
+        />
+      </PixelPanel>
+
+      <PixelPanel style={styles.panel}>
+        <FineryPicker
+          hero={hero}
+          loadout={loadout}
+          onChange={setDraftLoadout}
+          onOpenShop={() => router.push('/(tabs)/shop')}
         />
       </PixelPanel>
 

@@ -164,8 +164,12 @@ export function weaponLayer(rank: number): SpriteLayer {
   return WEAPONS[index] ?? emptyLayer();
 }
 
-export function capeLayer(rank: number): SpriteLayer | null {
-  return rank >= MIN_CAPE_RANK ? CAPE : null;
+/**
+ * The cape behind the hero. Every rank from Captain wears one; below that a
+ * hero only has one if they bought it, so a shop cape always shows.
+ */
+export function capeLayer(rank: number, boughtCape = false): SpriteLayer | null {
+  return boughtCape || rank >= MIN_CAPE_RANK ? CAPE : null;
 }
 
 export const GEAR_LAYERS = { HEADGEAR, WEAPONS, CAPE } as const;

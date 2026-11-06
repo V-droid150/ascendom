@@ -92,3 +92,43 @@ export function equipCosmetic(hero: Hero, id: string): Hero {
 export function unequipCosmetic(hero: Hero, id: string): Hero {
   return { ...hero, equippedCosmetics: hero.equippedCosmetics.filter((c) => c !== id) };
 }
+
+export type CosmeticSlot = CosmeticDef['slot'];
+
+/** Owned cosmetics grouped by slot, in shop order, for the wardrobe. */
+export function ownedBySlot(hero: Hero): Record<CosmeticSlot, CosmeticDef[]> {
+  const owned = COSMETICS.filter((def) => hero.ownedCosmetics.includes(def.id));
+  return {
+    cape: owned.filter((def) => def.slot === 'cape'),
+    tint: owned.filter((def) => def.slot === 'tint'),
+  };
+}
+
+/** The id worn in a slot of a loadout, or null when the slot is empty. */
+export function cosmeticInSlot(loadout: readonly string[], slot: CosmeticSlot): string | null {
+  return loadout.find((id) => cosmeticById(id)?.slot === slot) ?? null;
+}
+
+/**
+ * A loadout with `slot` set to `id`, or emptied when `id` is null. Unknown
+ * ids are dropped, so a stale save can never wear two capes.
+ */
+export function withCosmeticInSlot(
+  loadout: readonly string[],
+  slot: CosmeticSlot,
+  id: string | null,
+): string[] {
+  const kept = loadout.filter((worn) => {
+    const def = cosmeticById(worn);
+    return def !== undefined && def.slot !== slot;
+  });
+  return id === null || cosmeticById(id)?.slot !== slot ? kept : [...kept, id];
+}
+
+/**
+ * Wears exactly `loadout`: everything else comes off, and each id goes on
+ * through `equipCosmetic`, so unowned items are ignored and slots stay single.
+ */
+export function equipLoadout(hero: Hero, loadout: readonly string[]): Hero {
+  return loadout.reduce(equipCosmetic, { ...hero, equippedCosmetics: [] });
+}

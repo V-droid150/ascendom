@@ -168,7 +168,7 @@ export function composeSprite(request: SpriteRequest): ComposedSprite {
   // shadow is applied after the bob shift so it stays on the ground.
   let character = emptyGrid();
 
-  const cape = capeLayer(request.rank);
+  const cape = capeLayer(request.rank, cosmetics.cape !== undefined);
   if (cape) paint(character, cape, ctx);
 
   paint(character, bodyLayer(request.gender), ctx);
