@@ -31,6 +31,12 @@ interface SyncState extends PersistedSync {
   /** When this session last finished a sync, for the "Synced at" line. */
   lastSyncFinishedAt: string | null;
   conflict: PendingConflict | null;
+  /**
+   * True once this session's first sync has finished (or failed). The day
+   * rollover waits for it, so a stale device never judges days that another
+   * device already played.
+   */
+  initialSyncDone: boolean;
 }
 
 interface SyncActions {
@@ -40,6 +46,7 @@ interface SyncActions {
   markSynced: (userId: string, cloudUpdatedAt: string) => void;
   setConflict: (conflict: PendingConflict | null) => void;
   setGuest: (guest: boolean) => void;
+  markInitialSyncDone: () => void;
 }
 
 export const SYNC_STORAGE_KEY = 'ascendom:sync:v1';
@@ -57,6 +64,7 @@ export const useSyncStore = create<SyncState & SyncActions>()(
       status: 'signedOut',
       lastSyncFinishedAt: null,
       conflict: null,
+      initialSyncDone: false,
 
       setSession: (session) =>
         set(
@@ -83,6 +91,7 @@ export const useSyncStore = create<SyncState & SyncActions>()(
         }),
       setConflict: (conflict) => set({ conflict, status: 'idle' }),
       setGuest: (guest) => set({ guest }),
+      markInitialSyncDone: () => set({ initialSyncDone: true }),
     }),
     {
       name: SYNC_STORAGE_KEY,

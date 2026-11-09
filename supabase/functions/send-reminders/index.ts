@@ -15,6 +15,7 @@ import { createClient } from 'npm:@supabase/supabase-js@2';
 import webpush from 'npm:web-push@3.6.7';
 import { planReminders, type SaveLike } from '../_shared/reminderPlan.ts';
 import { copyFor } from '../_shared/reminderCopy.ts';
+import { isAllowedPushEndpoint } from '../_shared/pushEndpoint.ts';
 
 const SENT_RETENTION_DAYS = 7;
 const PUSH_TTL_SECONDS = 60 * 60;
@@ -32,8 +33,19 @@ function env(name: string): string {
   return value;
 }
 
+/** Compares secrets by their SHA-256 digests, in constant time, so timing reveals nothing. */
+async function sameSecret(given: string | null, expected: string): Promise<boolean> {
+  if (given === null) return false;
+  const digest = async (text: string): Promise<Uint8Array> =>
+    new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)));
+  const [a, b] = await Promise.all([digest(given), digest(expected)]);
+  let diff = 0;
+  for (let i = 0; i < a.length; i += 1) diff |= a[i] ^ b[i];
+  return diff === 0;
+}
+
 Deno.serve(async (request) => {
-  if (request.headers.get('x-cron-secret') !== env('CRON_SECRET')) {
+  if (!(await sameSecret(request.headers.get('x-cron-secret'), env('CRON_SECRET')))) {
     return new Response('Unauthorized', { status: 401 });
   }
 
@@ -43,7 +55,15 @@ Deno.serve(async (request) => {
   });
 
   const now = new Date();
-  const stats = { players: 0, planned: 0, delivered: 0, expired: 0, failed: 0 };
+  const stats = {
+    players: 0,
+    planned: 0,
+    delivered: 0,
+    expired: 0,
+    failed: 0,
+    rejected: 0,
+    broken: 0,
+  };
 
   const { data: subs, error: subsError } = await db
     .from('push_subscriptions')
@@ -52,6 +72,12 @@ Deno.serve(async (request) => {
 
   const byUser = new Map<string, Subscription[]>();
   for (const sub of (subs ?? []) as Subscription[]) {
+    // Never POST to a URL that isn't a real push service (see pushEndpoint.ts).
+    if (!isAllowedPushEndpoint(sub.endpoint)) {
+      await db.from('push_subscriptions').delete().eq('endpoint', sub.endpoint);
+      stats.rejected += 1;
+      continue;
+    }
     byUser.set(sub.user_id, [...(byUser.get(sub.user_id) ?? []), sub]);
   }
   const userIds = [...byUser.keys()];
@@ -80,13 +106,21 @@ Deno.serve(async (request) => {
     const data = save.data as SaveLike;
     stats.players += 1;
 
-    const planned = planReminders({
-      now,
-      timeZone: zoneOf.get(userId) ?? 'UTC',
-      save: data,
-      copy: copyFor(data.settings?.language),
-      alreadySent: sentOf.get(userId) ?? new Set(),
-    });
+    // One player's broken save must not stop everyone else's reminders.
+    let planned: ReturnType<typeof planReminders>;
+    try {
+      planned = planReminders({
+        now,
+        timeZone: zoneOf.get(userId) ?? 'UTC',
+        save: data,
+        copy: copyFor(data?.settings?.language),
+        alreadySent: sentOf.get(userId) ?? new Set(),
+      });
+    } catch (error) {
+      stats.broken += 1;
+      console.error('could not plan reminders', userId, (error as Error).message);
+      continue;
+    }
 
     for (const push of planned) {
       // Claim first: if another run already inserted this row, skip it.

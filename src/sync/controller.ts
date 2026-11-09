@@ -26,6 +26,12 @@ import { decideSync, UPLOAD_DEBOUNCE_MS } from './policy';
 let applying = false;
 let uploadTimer: ReturnType<typeof setTimeout> | null = null;
 let running: Promise<void> | null = null;
+/**
+ * Bumped on every local edit. An upload remembers the value it exported at; if
+ * the player edited while the request was in flight, the save it sent is
+ * already stale, so the device stays dirty and uploads again.
+ */
+let changeSeq = 0;
 
 export function isApplyingCloudSave(): boolean {
   return applying;
@@ -45,8 +51,26 @@ function applyCloudSave(bundle: ExportBundle): boolean {
   }
 }
 
+/** Marks the sync done, unless edits arrived after `exportedAt`: those still need uploading. */
+function settleUpload(userId: string, updatedAt: string, exportedAt: number): void {
+  useSyncStore.getState().markSynced(userId, updatedAt);
+  if (changeSeq !== exportedAt) {
+    useSyncStore.getState().markDirty();
+    scheduleUpload();
+  }
+}
+
+/**
+ * A downloaded save may have been last played days ago. Settle those days now,
+ * as a normal local change, so the result is uploaded like any other edit.
+ */
+function settleDownloadedDays(): void {
+  if (hasHero()) useGameStore.getState().runRollover();
+}
+
 async function upload(userId: string, cloudExists: boolean): Promise<void> {
   const sync = useSyncStore.getState();
+  const exportedAt = changeSeq;
   const bundle = useGameStore.getState().exportBundle();
 
   const result: WriteResult =
@@ -55,7 +79,7 @@ async function upload(userId: string, cloudExists: boolean): Promise<void> {
       : await insertCloudSave(userId, bundle);
 
   if (result.ok) {
-    useSyncStore.getState().markSynced(userId, result.updatedAt);
+    settleUpload(userId, result.updatedAt, exportedAt);
     return;
   }
 
@@ -92,6 +116,7 @@ async function runSync(): Promise<void> {
       case 'download':
         if (cloud.data && cloud.updatedAt && applyCloudSave(cloud.data)) {
           useSyncStore.getState().markSynced(userId, cloud.updatedAt);
+          settleDownloadedDays();
         } else {
           useSyncStore.getState().setStatus('error');
         }
@@ -112,6 +137,8 @@ async function runSync(): Promise<void> {
     // Offline or a server error. Local play is unaffected and `dirty` is still
     // set, so the next sync picks the changes up.
     useSyncStore.getState().setStatus('error');
+  } finally {
+    useSyncStore.getState().markInitialSyncDone();
   }
 }
 
@@ -125,17 +152,22 @@ export function syncNow(): Promise<void> {
   return running;
 }
 
-/** Records a local change and uploads it shortly after the edits settle. */
-export function noteLocalChange(): void {
-  if (applying) return;
-  useSyncStore.getState().markDirty();
-
+function scheduleUpload(): void {
   if (!useSyncStore.getState().userId) return;
   if (uploadTimer) clearTimeout(uploadTimer);
   uploadTimer = setTimeout(() => {
     uploadTimer = null;
-    void syncNow();
+    // A run already in flight would swallow this one, so wait for it first.
+    void (running ?? Promise.resolve()).then(() => syncNow());
   }, UPLOAD_DEBOUNCE_MS);
+}
+
+/** Records a local change and uploads it shortly after the edits settle. */
+export function noteLocalChange(): void {
+  if (applying) return;
+  changeSeq += 1;
+  useSyncStore.getState().markDirty();
+  scheduleUpload();
 }
 
 /** Settles a conflict with the player's choice. */
@@ -148,14 +180,16 @@ export async function resolveConflict(choice: 'cloud' | 'device'): Promise<void>
     if (choice === 'cloud') {
       if (applyCloudSave(conflict.cloud)) {
         useSyncStore.getState().markSynced(userId, conflict.cloudUpdatedAt);
+        settleDownloadedDays();
       } else {
         useSyncStore.getState().setStatus('error');
       }
       return;
     }
 
+    const exportedAt = changeSeq;
     const updatedAt = await overwriteCloudSave(userId, useGameStore.getState().exportBundle());
-    useSyncStore.getState().markSynced(userId, updatedAt);
+    settleUpload(userId, updatedAt, exportedAt);
   } catch {
     useSyncStore.getState().setStatus('error');
   }

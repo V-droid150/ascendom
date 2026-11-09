@@ -148,3 +148,72 @@ describe('starter quest titles in pushes', () => {
     expect(localizeStarterTitle('Feed the cat', 'id')).toBe('Feed the cat');
   });
 });
+
+describe('planReminders on a broken save', () => {
+  // A save is written by the player's own client; any of these used to throw
+  // and stop the whole cron run for every player.
+  const broken: [string, unknown][] = [
+    ['a null save', null],
+    ['a string game', { game: 'x', settings: { notificationsOn: true } }],
+    [
+      'habits that are not a list',
+      { game: { onboarded: true, habits: 'x', logs: [] }, settings: { notificationsOn: true } },
+    ],
+    [
+      'logs that are not a list',
+      {
+        game: { onboarded: true, habits: [], logs: { a: 1 } },
+        settings: { notificationsOn: true },
+      },
+    ],
+    [
+      'null entries in habits and logs',
+      {
+        game: { onboarded: true, habits: [null, 3], logs: [null, 'x'] },
+        settings: { notificationsOn: true },
+      },
+    ],
+    [
+      'a schedule that is not a list',
+      {
+        game: {
+          onboarded: true,
+          habits: [{ id: 'a', title: 't', type: 'daily', schedule: '4', reminderTime: '07:00' }],
+          logs: [],
+        },
+        settings: { notificationsOn: true },
+      },
+    ],
+    ['an impossible day start hour', save({}, { dayStartHour: 1e12 })],
+    [
+      'a non-string reminder time',
+      save({
+        habits: [{ id: 'a', title: 't', type: 'daily', schedule: [4], reminderTime: 700 as never }],
+      }),
+    ],
+  ];
+
+  it.each(broken)('does not throw on %s', (_label, data) => {
+    expect(() => plan(jakarta('07:03'), data as SaveLike)).not.toThrow();
+  });
+
+  it('treats an impossible day start hour as midnight', () => {
+    expect(plan(jakarta('07:03'), save({}, { dayStartHour: 99 }))).toHaveLength(1);
+  });
+
+  it('trims an absurdly long quest title in the push', () => {
+    const long = save({
+      habits: [
+        {
+          id: 'a',
+          title: 'x'.repeat(500),
+          type: 'daily',
+          schedule: [4],
+          reminderTime: '07:00',
+        },
+      ],
+    });
+    const [push] = plan(jakarta('07:03'), long);
+    expect(push?.body.length).toBeLessThan(200);
+  });
+});

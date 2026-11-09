@@ -428,6 +428,16 @@ export const useGameStore = create<GameStore>()(
             .map((habit) => habit.id),
         );
 
+        // Nothing to settle: leave the state alone, or every call would look
+        // like an edit and send the same save to the cloud again.
+        if (
+          result.dayResults.length === 0 &&
+          result.forgivenDays === 0 &&
+          staleOneTime.size === 0
+        ) {
+          return;
+        }
+
         set({
           hero: result.hero,
           habits: result.habits.map((habit) =>

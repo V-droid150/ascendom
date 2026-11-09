@@ -19,6 +19,8 @@ export const DUE_WINDOW_MINUTES = 15;
 
 const MINUTES_PER_HOUR = 60;
 const MS_PER_HOUR = 3_600_000;
+/** Keeps a push readable even if a save holds an absurdly long quest title. */
+const MAX_TITLE_LENGTH = 80;
 
 /** The parts of the save bundle this module reads. Everything is optional: saves are untrusted input. */
 export interface SaveLike {
@@ -96,8 +98,13 @@ export function localGameTime(now: Date, timeZone: string, dayStartHour: number)
   };
 }
 
-function parseMinutes(value: string | undefined): number | null {
-  const match = /^(\d{1,2}):(\d{2})$/.exec(value ?? '');
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
+function parseMinutes(value: unknown): number | null {
+  if (typeof value !== 'string') return null;
+  const match = /^(\d{1,2}):(\d{2})$/.exec(value);
   if (!match) return null;
   const hour = Number(match[1]);
   const minute = Number(match[2]);
@@ -120,22 +127,32 @@ export function planReminders(input: {
   alreadySent: ReadonlySet<string>;
 }): PlannedPush[] {
   const { now, timeZone, save, copy, alreadySent } = input;
-  const game = save.game;
-  const settings = save.settings;
-  if (!game?.onboarded || !settings?.notificationsOn) return [];
+  if (!isRecord(save) || !isRecord(save.game) || !isRecord(save.settings)) return [];
+  const { game, settings } = save;
+  if (game.onboarded !== true || settings.notificationsOn !== true) return [];
 
-  const dayStartHour = Number.isInteger(settings.dayStartHour) ? Number(settings.dayStartHour) : 0;
+  // The app only offers 0-23; anything else in a hand-edited save is ignored.
+  const rawStart = Number(settings.dayStartHour);
+  const dayStartHour = Number.isInteger(rawStart) && rawStart >= 0 && rawStart <= 23 ? rawStart : 0;
   const time = localGameTime(now, timeZone, dayStartHour);
 
+  // A save is written by the player's own client, so its shape is checked
+  // rather than trusted: one broken save must never throw and stop the run.
+  const logs: unknown[] = Array.isArray(game.logs) ? game.logs : [];
+  const habits: unknown[] = Array.isArray(game.habits) ? game.habits : [];
+
   const doneToday = new Set(
-    (game.logs ?? []).filter((log) => log.dayKey === time.dayKey).map((log) => log.habitId),
+    logs.filter(isRecord).flatMap((log) => (log.dayKey === time.dayKey ? [log.habitId] : [])),
   );
-  const outstanding = (game.habits ?? []).filter(
-    (habit) =>
+  const outstanding = habits.filter(
+    (habit): habit is Record<string, unknown> & { id: string } =>
+      isRecord(habit) &&
+      typeof habit.id === 'string' &&
       habit.type === 'daily' &&
       !habit.archived &&
       !habit.isBad &&
-      (habit.schedule ?? []).includes(time.weekday) &&
+      Array.isArray(habit.schedule) &&
+      habit.schedule.includes(time.weekday) &&
       !doneToday.has(habit.id),
   );
 
@@ -148,7 +165,8 @@ export function planReminders(input: {
   for (const habit of outstanding) {
     const at = parseMinutes(habit.reminderTime);
     if (at !== null && isDue(time.minuteOfDay, at)) {
-      add(`habit:${habit.id}`, copy.reminderTitle, copy.reminderBody(habit.title));
+      const title = typeof habit.title === 'string' ? habit.title.slice(0, MAX_TITLE_LENGTH) : '';
+      add(`habit:${habit.id}`, copy.reminderTitle, copy.reminderBody(title));
     }
   }
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
@@ -28,11 +28,17 @@ export default function ResetPasswordScreen() {
   const [busy, setBusy] = useState(false);
   const stage: Stage = code ? exchange : 'failed';
 
+  // A code can be exchanged once; a re-render must not spend it a second time.
+  const started = useRef(false);
+
   useEffect(() => {
-    if (!code) return;
-    void supabase.auth.exchangeCodeForSession(code).then(({ error }) => {
-      setExchange(error ? 'failed' : 'ready');
-    });
+    if (!code || started.current) return;
+    started.current = true;
+    void (async () => {
+      const { error } = await supabase.auth.exchangeCodeForSession(code);
+      const { data } = await supabase.auth.getSession();
+      setExchange(error && !data.session ? 'failed' : 'ready');
+    })();
   }, [code]);
 
   const save = async (): Promise<void> => {
