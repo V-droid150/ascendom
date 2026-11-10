@@ -67,6 +67,13 @@ export const STREAK_BONUS_MAX = 0.5;
 /** Missed days older than this are forgiven rather than evaluated. */
 export const CATCHUP_MAX_DAYS = 7;
 
+/**
+ * Completion logs older than this are dropped at rollover. Only the catch-up
+ * window and today's undo read the log, so this is generous headroom that
+ * keeps the save (and every cloud upload) from growing forever.
+ */
+export const LOG_RETENTION_DAYS = 90;
+
 export const DEFAULT_DAY_START_HOUR = 0;
 
 // --- Shop ----------------------------------------------------------------
