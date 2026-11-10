@@ -72,7 +72,7 @@ Reanimated 4 requires `react-native-worklets` as a separate package, and
 
 ## Backend (Supabase)
 
-Project ref `tiqmqniuaeknfpjpytmz` (ap-southeast-1). The public URL and
+Project ref `uzlbqwncgptreitbtgwf` (ap-southeast-1). The public URL and
 publishable key live in `src/config/supabase.ts` (public by design; RLS guards
 the data). Never put a secret or service-role key in the app.
 

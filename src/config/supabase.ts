@@ -8,8 +8,8 @@
  * project. The secret key is never used by the app.
  */
 export const SUPABASE_URL =
-  process.env.EXPO_PUBLIC_SUPABASE_URL ?? 'https://tiqmqniuaeknfpjpytmz.supabase.co';
+  process.env.EXPO_PUBLIC_SUPABASE_URL ?? 'https://uzlbqwncgptreitbtgwf.supabase.co';
 
 export const SUPABASE_PUBLISHABLE_KEY =
   process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
-  'sb_publishable_l5AT2OT3GV5E6Kx5T2UQwA_gQzrj4SW';
+  'sb_publishable_mSL_JcODn38eSp8bBP3nrQ_JaoUXE2q';
