@@ -29,6 +29,12 @@ travel (grace days, the 30/day cap, weekday-only schedules, the level-1 floor),
 plus state surviving a full dev-server restart.
 
 Live at https://ascendom.vercel.app (auto-deploys on push to `main`).
+
+Responsive (web): below 768px the phone layout; from 768px (`BREAKPOINTS`,
+`src/theme/layout.ts`) tabs become a side rail (material variant on tablet,
+labels beside icons from 1200px) and tab screens use `ResponsiveColumns`
+(main + aside, phone order unchanged). Forms and onboarding sit in a 560px
+`ReadingColumn` via Stack `screenLayout`; the title screen stays full width.
 Remaining: EAS Android APK, Lighthouse audit, native SFX.
 
 The game is local-first and works fully offline. Since 2026-11-04 there is an

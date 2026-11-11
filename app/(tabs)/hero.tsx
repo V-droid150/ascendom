@@ -5,8 +5,10 @@ import { HeroNameEditor } from '@/components/HeroNameEditor';
 import { LandscapeScene } from '@/components/LandscapeScene';
 import { PixelBar } from '@/components/PixelBar';
 import { PixelPanel } from '@/components/PixelPanel';
+import { ResponsiveColumns, useWideContentStyle } from '@/components/ResponsiveColumns';
 import { StatsDiamond } from '@/components/StatsDiamond';
 import { useHero } from '@/hooks/useHero';
+import { useLayout } from '@/hooks/useLayout';
 import { localizedHabitTitle } from '@/i18n/starterTitles';
 import { useGameStore } from '@/store/gameStore';
 import { useSettingsStore } from '@/store/settingsStore';
@@ -21,6 +23,8 @@ export default function HeroScreen() {
   const dayResults = useGameStore((state) => state.dayResults);
   const todayKey = useGameStore((state) => state.todayKey);
   const reduceMotion = useSettingsStore((state) => state.reduceMotion);
+  const { isWide } = useLayout();
+  const wideContent = useWideContentStyle();
 
   if (!view) return null;
   const { hero } = view;
@@ -31,104 +35,113 @@ export default function HeroScreen() {
     .slice(0, 5);
 
   return (
-    <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
-      <View style={styles.portrait}>
-        <LandscapeScene
-          hero={{
-            gender: hero.gender,
-            rank: view.rankNumber,
-            skinTone: hero.appearance.skinTone,
-            hairStyle: hero.appearance.hairStyle,
-            hairColor: hero.appearance.hairColor,
-            cosmetics: hero.equippedCosmetics,
-            animated: !reduceMotion,
-            accessibilityLabel: t('a11y.heroSprite', {
-              name: hero.name,
-              rank: view.rankTitle,
-              level: hero.level,
-            }),
-          }}
-        />
+    <ScrollView style={styles.screen} contentContainerStyle={[styles.content, wideContent]}>
+      <ResponsiveColumns
+        main={
+          <>
+            <View style={[styles.portrait, isWide && styles.portraitWide]}>
+              <LandscapeScene
+                hero={{
+                  gender: hero.gender,
+                  rank: view.rankNumber,
+                  skinTone: hero.appearance.skinTone,
+                  hairStyle: hero.appearance.hairStyle,
+                  hairColor: hero.appearance.hairColor,
+                  cosmetics: hero.equippedCosmetics,
+                  animated: !reduceMotion,
+                  accessibilityLabel: t('a11y.heroSprite', {
+                    name: hero.name,
+                    rank: view.rankTitle,
+                    level: hero.level,
+                  }),
+                }}
+              />
 
-        {/* Rank and name read as one nameplate, so they sit close together. */}
-        <View style={styles.identity}>
-          <View style={styles.banner}>
-            <Text style={styles.rankTitle}>{view.rankTitle}</Text>
-          </View>
-          <View style={styles.nameRow}>
-            <HeroNameEditor name={hero.name} />
-          </View>
-        </View>
-      </View>
-
-      <PixelPanel tone="dark" style={styles.panel}>
-        <PixelBar
-          ratio={view.hpRatio}
-          fill={colors.hp}
-          shade={colors.hpDark}
-          label={`${t('common.hp')} ${hero.hp} / ${view.hpMax}`}
-          accessibilityLabel={t('a11y.hpBar', { current: hero.hp, max: view.hpMax })}
-        />
-        <PixelBar
-          ratio={view.xpRatio}
-          fill={colors.xp}
-          shade={colors.xpDark}
-          label={t('hero.xpToNext', { current: hero.xp, needed: view.xpNeeded })}
-          accessibilityLabel={t('a11y.xpBar', { current: hero.xp, needed: view.xpNeeded })}
-        />
-        <Text style={styles.progressNote}>
-          {view.levelsToNextRank === null || view.nextRankTitle === null
-            ? t('hero.atMaxRank')
-            : t('hero.toNextRank', {
-                count: view.levelsToNextRank,
-                rank: view.nextRankTitle,
-              })}
-        </Text>
-      </PixelPanel>
-
-      <PixelPanel tone="dark" style={styles.panel}>
-        <Text style={styles.sectionTitle}>{t('hero.stats')}</Text>
-        <StatsDiamond stats={hero.stats} />
-      </PixelPanel>
-
-      <PixelPanel tone="dark" style={styles.panel}>
-        <Text style={styles.sectionTitle}>{t('hero.bestStreaks')}</Text>
-        {bestStreaks.length === 0 ? (
-          <Text style={styles.muted}>{t('hero.noStreaks')}</Text>
-        ) : (
-          bestStreaks.map((habit) => (
-            <View key={habit.id} style={styles.statRow}>
-              <Text style={styles.statLabel} numberOfLines={1}>
-                {localizedHabitTitle(habit.title, t)}
-              </Text>
-              <Text style={styles.statValue}>
-                {habit.bestStreak} {t('hero.days')}
-              </Text>
+              {/* Rank and name read as one nameplate, so they sit close together. */}
+              <View style={styles.identity}>
+                <View style={styles.banner}>
+                  <Text style={styles.rankTitle}>{view.rankTitle}</Text>
+                </View>
+                <View style={styles.nameRow}>
+                  <HeroNameEditor name={hero.name} />
+                </View>
+              </View>
             </View>
-          ))
-        )}
-      </PixelPanel>
 
-      <PixelPanel tone="dark" style={styles.panel}>
-        <View style={styles.statRow}>
-          <Text style={styles.statLabel}>{t('hero.fallCount')}</Text>
-          <Text style={styles.statValue}>{hero.fallCount}</Text>
-        </View>
-        <View style={styles.statRow}>
-          <Text style={styles.statLabel}>{t('hero.shields')}</Text>
-          <Text style={styles.statValue}>{hero.shields}</Text>
-        </View>
-      </PixelPanel>
+            <PixelPanel tone="dark" style={styles.panel}>
+              <PixelBar
+                ratio={view.hpRatio}
+                fill={colors.hp}
+                shade={colors.hpDark}
+                label={`${t('common.hp')} ${hero.hp} / ${view.hpMax}`}
+                accessibilityLabel={t('a11y.hpBar', { current: hero.hp, max: view.hpMax })}
+              />
+              <PixelBar
+                ratio={view.xpRatio}
+                fill={colors.xp}
+                shade={colors.xpDark}
+                label={t('hero.xpToNext', { current: hero.xp, needed: view.xpNeeded })}
+                accessibilityLabel={t('a11y.xpBar', { current: hero.xp, needed: view.xpNeeded })}
+              />
+              <Text style={styles.progressNote}>
+                {view.levelsToNextRank === null || view.nextRankTitle === null
+                  ? t('hero.atMaxRank')
+                  : t('hero.toNextRank', {
+                      count: view.levelsToNextRank,
+                      rank: view.nextRankTitle,
+                    })}
+              </Text>
+            </PixelPanel>
 
-      <PixelPanel tone="dark" style={styles.panel}>
-        <Text style={styles.sectionTitle}>{t('hero.chronicle')}</Text>
-        <Text style={styles.muted}>{t('hero.chronicleLegend')}</Text>
-        {dayResults.length === 0 ? (
-          <Text style={styles.muted}>{t('hero.chronicleEmpty')}</Text>
-        ) : (
-          <ChronicleHeatmap dayResults={dayResults} todayKey={todayKey()} />
-        )}
-      </PixelPanel>
+            <PixelPanel tone="dark" style={styles.panel}>
+              <Text style={styles.sectionTitle}>{t('hero.stats')}</Text>
+              <StatsDiamond stats={hero.stats} />
+            </PixelPanel>
+          </>
+        }
+        aside={
+          <>
+            <PixelPanel tone="dark" style={styles.panel}>
+              <Text style={styles.sectionTitle}>{t('hero.bestStreaks')}</Text>
+              {bestStreaks.length === 0 ? (
+                <Text style={styles.muted}>{t('hero.noStreaks')}</Text>
+              ) : (
+                bestStreaks.map((habit) => (
+                  <View key={habit.id} style={styles.statRow}>
+                    <Text style={styles.statLabel} numberOfLines={1}>
+                      {localizedHabitTitle(habit.title, t)}
+                    </Text>
+                    <Text style={styles.statValue}>
+                      {habit.bestStreak} {t('hero.days')}
+                    </Text>
+                  </View>
+                ))
+              )}
+            </PixelPanel>
+
+            <PixelPanel tone="dark" style={styles.panel}>
+              <View style={styles.statRow}>
+                <Text style={styles.statLabel}>{t('hero.fallCount')}</Text>
+                <Text style={styles.statValue}>{hero.fallCount}</Text>
+              </View>
+              <View style={styles.statRow}>
+                <Text style={styles.statLabel}>{t('hero.shields')}</Text>
+                <Text style={styles.statValue}>{hero.shields}</Text>
+              </View>
+            </PixelPanel>
+
+            <PixelPanel tone="dark" style={styles.panel}>
+              <Text style={styles.sectionTitle}>{t('hero.chronicle')}</Text>
+              <Text style={styles.muted}>{t('hero.chronicleLegend')}</Text>
+              {dayResults.length === 0 ? (
+                <Text style={styles.muted}>{t('hero.chronicleEmpty')}</Text>
+              ) : (
+                <ChronicleHeatmap dayResults={dayResults} todayKey={todayKey()} />
+              )}
+            </PixelPanel>
+          </>
+        }
+      />
     </ScrollView>
   );
 }
@@ -143,6 +156,8 @@ const useStyles = makeStyles((colors) => ({
     marginTop: -spacing.md,
     marginHorizontal: -spacing.md,
   },
+  // In a column the scene sits inside the panel grid instead of bleeding out.
+  portraitWide: { marginTop: 0, marginHorizontal: 0 },
   // Pushed clear of the scene so the rank plate doesn't sit on the grass.
   identity: { alignItems: 'center', marginTop: spacing.md },
   // The name keeps its full 44px touch target; this only pulls the text up.

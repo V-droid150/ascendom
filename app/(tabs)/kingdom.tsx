@@ -6,6 +6,7 @@ import { PixelArt } from '@/sprites/PixelArt';
 import { CASTLE_ART, CASTLE_COLORS, FOGGY_CASTLE_COLORS } from '@/sprites/scenes';
 import { PixelButton } from '@/components/PixelButton';
 import { PixelPanel } from '@/components/PixelPanel';
+import { ResponsiveColumns, useWideContentStyle } from '@/components/ResponsiveColumns';
 import { useToast } from '@/components/ToastProvider';
 import { WeeklyBossPanel } from '@/components/WeeklyBossPanel';
 import { useGameStore } from '@/store/gameStore';
@@ -15,6 +16,7 @@ export default function KingdomScreen() {
   const styles = useStyles();
   const { t } = useTranslation();
   const toast = useToast();
+  const wideContent = useWideContentStyle();
 
   const kingdom = useGameStore((state) => state.kingdom);
   const habits = useGameStore((state) => state.habits);
@@ -39,90 +41,118 @@ export default function KingdomScreen() {
     }
   };
 
-  return (
-    <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
-      <View style={styles.scene}>
-        <PixelArt
-          art={CASTLE_ART}
-          colors={hasBuilt ? CASTLE_COLORS : FOGGY_CASTLE_COLORS}
-          scale={6}
-          accessibilityLabel={t('kingdom.title')}
-        />
-        {!hasBuilt && <Text style={styles.fogNote}>{t('kingdom.lockedNote')}</Text>}
-      </View>
+  const scene = (
+    <View style={styles.scene}>
+      <PixelArt
+        art={CASTLE_ART}
+        colors={hasBuilt ? CASTLE_COLORS : FOGGY_CASTLE_COLORS}
+        scale={6}
+        accessibilityLabel={t('kingdom.title')}
+      />
+      {!hasBuilt && <Text style={styles.fogNote}>{t('kingdom.lockedNote')}</Text>}
+    </View>
+  );
+  const buildingPanel = (
+    <PixelPanel tone="dark" style={styles.panel}>
+      <Text style={styles.sectionTitle}>{t('kingdom.nextBuilding')}</Text>
 
-      <WeeklyBossPanel />
+      {upcoming ? (
+        <>
+          <View style={styles.row}>
+            <Text style={styles.label}>{t(`kingdom.buildings.${upcoming.id}`)}</Text>
+            <Text style={styles.value}>{t('kingdom.buildCost', { cost: upcoming.cost })}</Text>
+          </View>
+          <PixelButton
+            label={t('kingdom.build')}
+            onPress={onBuild}
+            disabled={hero.gold < upcoming.cost}
+          />
+        </>
+      ) : (
+        <Text style={styles.muted}>{t('kingdom.allBuilt')}</Text>
+      )}
 
-      <PixelPanel tone="dark" style={styles.panel}>
-        <Text style={styles.sectionTitle}>{t('kingdom.nextBuilding')}</Text>
-
-        {upcoming ? (
-          <>
-            <View style={styles.row}>
-              <Text style={styles.label}>{t(`kingdom.buildings.${upcoming.id}`)}</Text>
-              <Text style={styles.value}>{t('kingdom.buildCost', { cost: upcoming.cost })}</Text>
-            </View>
-            <PixelButton
-              label={t('kingdom.build')}
-              onPress={onBuild}
-              disabled={hero.gold < upcoming.cost}
-            />
-          </>
-        ) : (
-          <Text style={styles.muted}>{t('kingdom.allBuilt')}</Text>
-        )}
-
-        <View style={styles.chips}>
-          {BUILDINGS.map((building) => {
-            const built = kingdom.buildings.includes(building.id);
-            return (
-              <View key={building.id} style={[styles.chip, built && styles.chipOn]}>
-                <Text style={[styles.chipText, built && styles.chipTextOn]}>
-                  {built ? '✓ ' : ''}
-                  {t(`kingdom.buildings.${building.id}`)}
-                </Text>
-              </View>
-            );
-          })}
-        </View>
-      </PixelPanel>
-
-      <PixelPanel tone="dark" style={styles.panel}>
-        <Text style={styles.sectionTitle}>{t('kingdom.companions')}</Text>
-        {kingdom.companions.length === 0 && (
-          <Text style={styles.muted}>{t('kingdom.companionsEmpty')}</Text>
-        )}
-        {COMPANIONS.map((companion) => {
-          const owned = kingdom.companions.includes(companion.id);
+      <View style={styles.chips}>
+        {BUILDINGS.map((building) => {
+          const built = kingdom.buildings.includes(building.id);
           return (
-            <View key={companion.id} style={styles.row}>
-              <Text style={[styles.label, !owned && styles.muted]}>
-                {owned ? '✓ ' : ''}
-                {t(`kingdom.companionNames.${companion.id}`)}
-              </Text>
-              <Text style={styles.value}>
-                {owned
-                  ? `${bestStreak} ${t('hero.days')}`
-                  : t('kingdom.companionLocked', { days: companion.streakRequired })}
+            <View key={building.id} style={[styles.chip, built && styles.chipOn]}>
+              <Text style={[styles.chipText, built && styles.chipTextOn]}>
+                {built ? '✓ ' : ''}
+                {t(`kingdom.buildings.${building.id}`)}
               </Text>
             </View>
           );
         })}
-      </PixelPanel>
+      </View>
+    </PixelPanel>
+  );
+  const companionsPanel = (
+    <PixelPanel tone="dark" style={styles.panel}>
+      <Text style={styles.sectionTitle}>{t('kingdom.companions')}</Text>
+      {kingdom.companions.length === 0 && (
+        <Text style={styles.muted}>{t('kingdom.companionsEmpty')}</Text>
+      )}
+      {COMPANIONS.map((companion) => {
+        const owned = kingdom.companions.includes(companion.id);
+        return (
+          <View key={companion.id} style={styles.row}>
+            <Text style={[styles.label, !owned && styles.muted]}>
+              {owned ? '✓ ' : ''}
+              {t(`kingdom.companionNames.${companion.id}`)}
+            </Text>
+            <Text style={styles.value}>
+              {owned
+                ? `${bestStreak} ${t('hero.days')}`
+                : t('kingdom.companionLocked', { days: companion.streakRequired })}
+            </Text>
+          </View>
+        );
+      })}
+    </PixelPanel>
+  );
+  const trophiesPanel = (
+    <PixelPanel tone="dark" style={styles.panel}>
+      <Text style={styles.sectionTitle}>{t('kingdom.trophies')}</Text>
+      {kingdom.trophies.length === 0 ? (
+        <Text style={styles.muted}>{t('kingdom.trophiesEmpty')}</Text>
+      ) : (
+        kingdom.trophies.map((trophy) => (
+          <View key={`${trophy.bossId}-${trophy.weekKey}`} style={styles.row}>
+            <Text style={styles.label}>🏆 {t(`boss.names.${trophy.bossId}`)}</Text>
+            <Text style={styles.value}>{trophy.weekKey}</Text>
+          </View>
+        ))
+      )}
+    </PixelPanel>
+  );
 
-      <PixelPanel tone="dark" style={styles.panel}>
-        <Text style={styles.sectionTitle}>{t('kingdom.trophies')}</Text>
-        {kingdom.trophies.length === 0 ? (
-          <Text style={styles.muted}>{t('kingdom.trophiesEmpty')}</Text>
-        ) : (
-          kingdom.trophies.map((trophy) => (
-            <View key={`${trophy.bossId}-${trophy.weekKey}`} style={styles.row}>
-              <Text style={styles.label}>🏆 {t(`boss.names.${trophy.bossId}`)}</Text>
-              <Text style={styles.value}>{trophy.weekKey}</Text>
-            </View>
-          ))
-        )}
-      </PixelPanel>
+  return (
+    <ScrollView style={styles.screen} contentContainerStyle={[styles.content, wideContent]}>
+      <ResponsiveColumns
+        phone={
+          <>
+            {scene}
+            <WeeklyBossPanel />
+            {buildingPanel}
+            {companionsPanel}
+            {trophiesPanel}
+          </>
+        }
+        main={
+          <>
+            {scene}
+            {buildingPanel}
+          </>
+        }
+        aside={
+          <>
+            <WeeklyBossPanel />
+            {companionsPanel}
+            {trophiesPanel}
+          </>
+        }
+      />
     </ScrollView>
   );
 }

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useInstallMode } from '@/hooks/useInstallMode';
 import { promptInstall } from '@/services/install';
 import { storage } from '@/services/storage';
-import { fonts, fontSize, makeStyles, spacing, zIndex } from '@/theme';
+import { fonts, fontSize, makeStyles, READING_MAX_WIDTH, spacing, zIndex } from '@/theme';
 import { PixelButton } from './PixelButton';
 import { PixelPanel } from './PixelPanel';
 
@@ -81,6 +81,9 @@ const useStyles = makeStyles((colors) => ({
     right: spacing.md,
     bottom: spacing.md,
     zIndex: zIndex.toast,
+    // On a wide window it stays a card, centred, rather than a full-width strip.
+    maxWidth: READING_MAX_WIDTH,
+    marginHorizontal: 'auto',
   },
   panel: { gap: spacing.sm },
   title: { fontFamily: fonts.display, fontSize: fontSize.displayXs, color: colors.gold },

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, type ReactElement } from 'react';
 import { View } from 'react-native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -9,7 +9,7 @@ import { PixelifySans_400Regular, PixelifySans_700Bold } from '@expo-google-font
 import { ToastProvider, useToast } from '@/components/ToastProvider';
 import { CelebrationHost } from '@/components/CelebrationHost';
 import { SyncConflictModal } from '@/components/SyncConflictModal';
-import { GameWindow } from '@/components/GameWindow';
+import { GameWindow, ReadingColumn } from '@/components/GameWindow';
 import { InstallPrompt } from '@/components/InstallPrompt';
 import { setLanguage } from '@/i18n';
 import { onStorageError } from '@/store/persistAdapter';
@@ -57,6 +57,7 @@ function AppShell() {
           contentStyle: { backgroundColor: colors.night },
           animation: 'fade',
         }}
+        screenLayout={readingLayout}
       >
         <Stack.Screen name="(onboarding)" />
         <Stack.Screen name="(tabs)" />
@@ -108,3 +109,25 @@ export default function RootLayout() {
 const useStyles = makeStyles((colors) => ({
   booting: { flex: 1, backgroundColor: colors.night, maxWidth: APP_MAX_WIDTH },
 }));
+
+/** Forms and single-story screens stay a readable column on wide windows. */
+const READING_ROUTES = new Set([
+  'quest/[id]',
+  'auth/callback',
+  'auth/email',
+  'auth/reset',
+  'auth/google-app',
+  'auth/handoff',
+  'privacy',
+  'wardrobe',
+]);
+
+function readingLayout({
+  route,
+  children,
+}: {
+  route: { name: string };
+  children: ReactElement;
+}): ReactElement {
+  return READING_ROUTES.has(route.name) ? <ReadingColumn>{children}</ReadingColumn> : children;
+}

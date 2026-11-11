@@ -5,6 +5,7 @@ import { HeroStatusBar } from '@/components/HeroStatusBar';
 import { PixelButton } from '@/components/PixelButton';
 import { PixelPanel } from '@/components/PixelPanel';
 import { QuestCard } from '@/components/QuestCard';
+import { ResponsiveColumns, useWideContentStyle } from '@/components/ResponsiveColumns';
 import { SideQuestPanel } from '@/components/SideQuestPanel';
 import { useToast } from '@/components/ToastProvider';
 import { WeeklyBossPanel } from '@/components/WeeklyBossPanel';
@@ -22,6 +23,7 @@ export default function QuestsScreen() {
   const toast = useToast();
   const haptics = useHaptics();
   const playSound = useSound();
+  const wideContent = useWideContentStyle();
 
   const quests = useTodayQuests();
   const complete = useGameStore((state) => state.complete);
@@ -91,30 +93,39 @@ export default function QuestsScreen() {
     <View style={styles.screen}>
       <HeroStatusBar />
 
-      <ScrollView contentContainerStyle={styles.content}>
-        <WeeklyBossPanel />
-        <SideQuestPanel />
-
-        {quests.isEmpty ? (
-          <PixelPanel style={styles.empty}>
-            <Text style={styles.emptyText}>{t('quests.empty')}</Text>
-          </PixelPanel>
-        ) : (
-          <>
-            {quests.allDone && (
-              <PixelPanel tone="dark" style={styles.allDone}>
-                <Text style={styles.allDoneText}>{t('quests.allDone')}</Text>
+      <ScrollView contentContainerStyle={[styles.content, wideContent]}>
+        {/* Wide windows: the day's quests on the left, boss and side quests beside them. */}
+        <ResponsiveColumns
+          asideFirstOnPhone
+          aside={
+            <>
+              <WeeklyBossPanel />
+              <SideQuestPanel />
+            </>
+          }
+          main={
+            quests.isEmpty ? (
+              <PixelPanel style={styles.empty}>
+                <Text style={styles.emptyText}>{t('quests.empty')}</Text>
               </PixelPanel>
-            )}
+            ) : (
+              <>
+                {quests.allDone && (
+                  <PixelPanel tone="dark" style={styles.allDone}>
+                    <Text style={styles.allDoneText}>{t('quests.allDone')}</Text>
+                  </PixelPanel>
+                )}
 
-            {renderSection(t('quests.dailies'), quests.dailies)}
-            {quests.dailies.length === 0 && (
-              <Text style={styles.note}>{t('quests.emptyToday')}</Text>
-            )}
-            {renderSection(t('quests.oneTime'), quests.oneTime)}
-            {renderSection(t('quests.badHabits'), quests.bad)}
-          </>
-        )}
+                {renderSection(t('quests.dailies'), quests.dailies)}
+                {quests.dailies.length === 0 && (
+                  <Text style={styles.note}>{t('quests.emptyToday')}</Text>
+                )}
+                {renderSection(t('quests.oneTime'), quests.oneTime)}
+                {renderSection(t('quests.badHabits'), quests.bad)}
+              </>
+            )
+          }
+        />
       </ScrollView>
 
       <View style={styles.fab}>
