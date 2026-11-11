@@ -37,6 +37,7 @@ import {
   isCompletedOn,
   logBadHabit as engineLogBad,
   newlyUnlockedCompanions,
+  pruneLogs,
   rankForLevel,
   removeLog,
   renameHero,
@@ -430,10 +431,13 @@ export const useGameStore = create<GameStore>()(
 
         // Nothing to settle: leave the state alone, or every call would look
         // like an edit and send the same save to the cloud again.
+        const logs = pruneLogs(state.logs, todayKey);
+
         if (
           result.dayResults.length === 0 &&
           result.forgivenDays === 0 &&
-          staleOneTime.size === 0
+          staleOneTime.size === 0 &&
+          logs === state.logs
         ) {
           return;
         }
@@ -443,6 +447,7 @@ export const useGameStore = create<GameStore>()(
           habits: result.habits.map((habit) =>
             staleOneTime.has(habit.id) ? { ...habit, archived: true } : habit,
           ),
+          logs,
           dayResults: mergeDayResults(state.dayResults, result.dayResults),
           celebrations: [...state.celebrations, ...celebrations],
         });
