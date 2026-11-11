@@ -337,8 +337,8 @@
     "errors": {
       "invalidEmail": "That email address does not look right.",
       "weakPassword": "Password needs at least {{count}} characters.",
-      "wrongCredentials": "Wrong email or password.",
-      "alreadyRegistered": "That email already has an account. Sign in instead.",
+      "wrongCredentials": "Wrong email or password. If you signed up with Google, this account has no password yet: tap Forgot password to set one.",
+      "alreadyRegistered": "That email already has an account (maybe made with Google). Sign in instead, or tap Forgot password to set a password for it.",
       "rateLimited": "Too many emails for now. Wait about an hour, then try again.",
       "network": "Couldn't reach the server. Check your connection.",
       "unknown": "Something went wrong. Try again.",

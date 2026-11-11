@@ -337,8 +337,8 @@
     "errors": {
       "invalidEmail": "Alamat email itu sepertinya tidak benar.",
       "weakPassword": "Password minimal {{count}} karakter.",
-      "wrongCredentials": "Email atau password salah.",
-      "alreadyRegistered": "Email itu sudah punya akun. Masuk saja.",
+      "wrongCredentials": "Email atau password salah. Kalau kamu daftar lewat Google, akun ini belum punya password: tekan Lupa password untuk membuatnya.",
+      "alreadyRegistered": "Email itu sudah punya akun (mungkin dibuat lewat Google). Masuk saja, atau tekan Lupa password untuk membuat password-nya.",
       "rateLimited": "Terlalu banyak email untuk saat ini. Tunggu sekitar satu jam, lalu coba lagi.",
       "network": "Tidak bisa terhubung ke server. Periksa koneksimu.",
       "unknown": "Ada yang salah. Coba lagi.",
