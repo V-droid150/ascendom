@@ -86,6 +86,19 @@ export interface TitleScene {
   height: number;
   /** First courtyard row; the castle wall ends on the row above. */
   groundY: number;
+  /** Rows the drifting clouds and birds use: below the logo, above the far hills. */
+  skyLane: { top: number; bottom: number };
+}
+
+/** Wide scenes (tablet and desktop windows) get the extra sky detail. */
+export const WIDE_SCENE_COLS = 180;
+
+/** Distant snowy range behind the near mountains, as an offset above the ground. */
+const FAR_RANGE = { base: 48, amplitude: 12 } as const;
+
+/** Half-width (scene px) around the centre that high sky detail keeps clear for the logo. */
+export function logoClearHalf(width: number): number {
+  return Math.max(44, Math.round(width * 0.14));
 }
 
 type Canvas = string[][];
@@ -175,12 +188,44 @@ export function paintTitleScene(
     }
   }
 
+  // Softer seams: a sparse row of the next band on either side of each seam.
+  for (const seam of [topEnd, midEnd]) {
+    const above = seam === topEnd ? 'b' : 'c';
+    const below = seam === topEnd ? 'a' : 'b';
+    for (let x = 0; x < width; x += 1) {
+      if (x % 4 === 0) p.set(x, seam - 2, above);
+      if (x % 4 === 2) p.set(x, seam + 2, below);
+    }
+  }
+
+  const wide = width >= WIDE_SCENE_COLS;
+  const clearHalf = logoClearHalf(width);
+  const midX = Math.floor(width / 2);
+  const besideLogo = (x: number): boolean => Math.abs(x - midX) > clearHalf;
+
+  // A band of the galaxy across the top sky on wide screens: a faint haze
+  // (night only; by day it is the sky colour) and many more stars.
+  const inGalaxy = (x: number, y: number): boolean =>
+    wide && Math.abs(y - (topEnd * 0.75 - x * 0.28)) < 7 + 3 * Math.sin(x / 13);
+
   // Stars only in the top band, so in daylight they vanish into it.
   for (let y = 0; y < topEnd - 1; y += 1) {
     for (let x = 0; x < width; x += 1) {
-      const roll = hash(x, y) % 157;
+      // The galaxy stays beside the logo, so the title never sits on a star field.
+      const galaxy = inGalaxy(x, y) && besideLogo(x);
+      if (galaxy && hash(y, x) % 3 === 0) p.set(x, y, 'i');
+      // Behind the logo only a few small stars, so none lands on the lettering.
+      const behindLogo = !besideLogo(x) && y < spireTip;
+      const roll = hash(x, y) % (galaxy ? 47 : behindLogo ? 401 : 157);
       if (roll === 0) p.set(x, y, '*');
-      else if (roll === 1 && hash(y, x) % 3 === 0 && x > 0 && x < width - 1 && y > 0) {
+      else if (
+        roll === 1 &&
+        !behindLogo &&
+        hash(y, x) % 3 === 0 &&
+        x > 0 &&
+        x < width - 1 &&
+        y > 0
+      ) {
         p.set(x, y, '+');
         p.set(x - 1, y, '*');
         p.set(x + 1, y, '*');
@@ -193,6 +238,15 @@ export function paintTitleScene(
   // The moon (the sun by day), top right, clear of the centred logo.
   const moonX = width - 16;
   const moonY = 22;
+  // A dithered halo first, so the disc paints over its inner edge.
+  for (let dy = -10; dy <= 10; dy += 1) {
+    for (let dx = -10; dx <= 10; dx += 1) {
+      const d2 = dx * dx + dy * dy;
+      if (d2 > 34 && d2 <= (wide ? 100 : 64) && (dx + dy) % 2 === 0) {
+        p.set(moonX + dx, moonY + dy, 'z');
+      }
+    }
+  }
   for (let dy = -6; dy <= 6; dy += 1) {
     for (let dx = -6; dx <= 6; dx += 1) {
       const d2 = dx * dx + dy * dy;
@@ -202,15 +256,36 @@ export function paintTitleScene(
     }
   }
 
-  // Clouds drift in the lower sky, below the logo.
-  const cloud = (cx: number, cy: number): void => {
-    p.fill(cx - 4, cy - 2, cx + 1, cy - 2, 'w');
-    p.fill(cx - 7, cy - 1, cx + 5, cy - 1, 'w');
-    p.fill(cx - 9, cy, cx + 8, cy, 'w');
-    p.fill(cx - 8, cy + 1, cx + 7, cy + 1, 'v');
-  };
-  cloud(Math.round(width * 0.16), midEnd - 6);
-  cloud(Math.round(width * 0.82), topEnd + 8);
+  // High, thin cirrus streaks beside the logo on wide screens. The fat
+  // clouds are not painted here: they drift (see `titleClouds`).
+  if (wide) {
+    const count = Math.floor(width / 24);
+    for (let i = 0; i < count; i += 1) {
+      const length = 12 + (hash(i, 31) % 14);
+      const x0 = hash(i, 17) % Math.max(1, width - length);
+      const y = 8 + (hash(i, 23) % Math.max(1, topEnd - 18));
+      const nearMoon = x0 + length > width - 34 && y < 36;
+      if (nearMoon || !besideLogo(x0) || !besideLogo(x0 + length)) continue;
+      p.fill(x0, y, x0 + length, y, 'l');
+      p.fill(x0 + 4, y + 2, x0 + length - 5, y + 2, 'l');
+    }
+  }
+
+  // A distant snowy range behind everything else, with far watchtowers.
+  const farCrestAt = (x: number): number =>
+    groundY -
+    FAR_RANGE.base +
+    Math.round(
+      FAR_RANGE.amplitude * 0.6 * Math.sin(x / 23 + 2) +
+        FAR_RANGE.amplitude * 0.4 * Math.sin(x / 11),
+    );
+  let farTop = groundY;
+  for (let x = 0; x < width; x += 1) {
+    const crest = farCrestAt(x);
+    farTop = Math.min(farTop, crest);
+    const peak = crest < groundY - FAR_RANGE.base;
+    for (let y = crest; y < groundY; y += 1) p.set(x, y, peak && y - crest < 2 ? 'X' : 'x');
+  }
 
   // Far mountains, then a dark treeline in front of them.
   for (let x = 0; x < width; x += 1) {
@@ -222,6 +297,21 @@ export function paintTitleScene(
 
   const cx = Math.floor(width / 2);
   const halfWall = Math.min(46, Math.max(28, Math.floor(width * 0.36)));
+
+  // Watchtowers on the far range, well clear of the castle.
+  if (wide) {
+    for (const offset of [halfWall + 44, halfWall + 118]) {
+      for (const tx of [cx - offset, cx + offset]) {
+        if (tx < 3 || tx > width - 4) continue;
+        const base = farCrestAt(tx) + 1;
+        p.fill(tx - 1, base - 7, tx + 1, base, 'L');
+        p.set(tx, base - 9, 'L');
+        p.fill(tx - 2, base - 8, tx + 2, base - 8, 'L');
+        p.set(tx - 1, base - 9, 'L');
+        p.set(tx + 1, base - 9, 'L');
+      }
+    }
+  }
 
   // Townhouses on both flanks, outside the castle wall.
   const house = (x0: number, w: number): void => {
@@ -323,7 +413,13 @@ export function paintTitleScene(
     }
   }
 
-  return { art: canvas.map((line) => line.join('')), width, height, groundY };
+  return {
+    art: canvas.map((line) => line.join('')),
+    width,
+    height,
+    groundY,
+    skyLane: { top: spireTip - SPIRE_FLAG_ROWS + 2, bottom: Math.max(farTop - 10, spireTip) },
+  };
 }
 
 /** Moonlit, with lit windows: the dark theme's title screen. */
@@ -338,6 +434,14 @@ export const TITLE_NIGHT_COLORS: Readonly<Record<string, string>> = {
   j: PALETTE[13], // moon crater
   w: '#2b3456', // cloud
   v: '#232a47', // cloud underside
+  W: '#3a4570', // cloud top, lit by the moon
+  z: '#262c4e', // halo around the moon
+  i: '#20233d', // the galaxy's haze
+  l: '#262d50', // high cirrus
+  x: '#232d52', // far range
+  X: '#3a4778', // far range snow
+  L: '#1b2240', // far watchtowers
+  B: PALETTE[0], // birds (only flown by day)
   h: '#1c2440', // mountains
   H: '#2b3a63', // mountain crest
   t: '#14283a', // treeline
@@ -378,6 +482,14 @@ export const TITLE_DAY_COLORS: Readonly<Record<string, string>> = {
   j: PALETTE[4],
   w: PALETTE[12],
   v: PALETTE[13],
+  W: PALETTE[12],
+  z: PALETTE[10],
+  i: PALETTE[9],
+  l: PALETTE[13],
+  x: '#5f9fd6',
+  X: PALETTE[12],
+  L: '#4a83b8',
+  B: PALETTE[15],
   h: '#4b8fb8',
   H: '#6cb3d6',
   t: '#1d6b3c',

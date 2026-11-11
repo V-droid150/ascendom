@@ -10,6 +10,18 @@ import {
   TITLE_NPC_LANES,
   titleSceneScaleFor,
 } from '@/sprites/titleScene';
+import {
+  driftX,
+  flockAt,
+  highCloudX,
+  shootingStarArt,
+  shootingStarAt,
+  TITLE_BIRD_ART,
+  TITLE_CLOUD_ART,
+  titleClouds,
+  titleForeground,
+  titleHighClouds,
+} from '@/sprites/titleSky';
 import { duration, makeStyles } from '@/theme';
 
 interface TitleBackdropProps {
@@ -49,6 +61,10 @@ export function TitleBackdrop({
   const scene = useMemo(() => paintTitleScene(cols, rows, spireTip), [cols, rows, spireTip]);
   const sceneColors = daytime ? TITLE_DAY_COLORS : TITLE_NIGHT_COLORS;
   const crowd = useMemo(() => TITLE_NPCS.map((spec) => ({ spec, colors: npcColors(spec) })), []);
+  // Drawn over the clouds and birds, so they pass behind the castle and hills.
+  const foreground = useMemo(() => titleForeground(scene.art), [scene.art]);
+  const clouds = useMemo(() => titleClouds(scene), [scene]);
+  const highClouds = useMemo(() => titleHighClouds(scene), [scene]);
 
   const [tick, setTick] = useState(0);
   useEffect(() => {
@@ -83,6 +99,15 @@ export function TitleBackdrop({
     );
   };
 
+  // Under reduced motion the sky holds still: clouds where they start, no
+  // birds or shooting stars.
+  const skyTick = reduceMotion ? 0 : tick;
+  const at = (x: number, y: number) => [
+    styles.layer,
+    { left: left + x * scale, top: top + y * scale },
+  ];
+  const star = daytime || reduceMotion ? null : shootingStarAt(scene, tick);
+
   return (
     <View
       style={styles.backdrop}
@@ -92,6 +117,35 @@ export function TitleBackdrop({
     >
       <View style={[styles.layer, { left, top }]}>
         <PixelArt art={scene.art} colors={sceneColors} scale={scale} />
+      </View>
+      {clouds.map((cloud, index) => {
+        const art = TITLE_CLOUD_ART[cloud.shape] ?? [];
+        const x = driftX(cloud.start, cloud.speed, skyTick, scene.width, art[0]?.length ?? 0);
+        return (
+          <View key={`cloud-${index}`} style={at(x, cloud.row)}>
+            <PixelArt art={art} colors={sceneColors} scale={scale} />
+          </View>
+        );
+      })}
+      {highClouds.map((cloud, index) => (
+        <View key={`high-${index}`} style={at(highCloudX(cloud, skyTick), cloud.row)}>
+          <PixelArt art={TITLE_CLOUD_ART[cloud.shape] ?? []} colors={sceneColors} scale={scale} />
+        </View>
+      ))}
+      {daytime &&
+        !reduceMotion &&
+        flockAt(scene, tick).map((bird, index) => (
+          <View key={`bird-${index}`} style={at(bird.x, bird.y)}>
+            <PixelArt art={TITLE_BIRD_ART[bird.frame] ?? []} colors={sceneColors} scale={scale} />
+          </View>
+        ))}
+      {star && (
+        <View style={at(star.x, star.y - star.trail)}>
+          <PixelArt art={shootingStarArt(star.trail)} colors={sceneColors} scale={scale} />
+        </View>
+      )}
+      <View style={[styles.layer, { left, top }]}>
+        <PixelArt art={foreground} colors={sceneColors} scale={scale} />
       </View>
       {crowd.map(({ spec, colors }) => walker(spec, colors))}
     </View>

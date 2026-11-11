@@ -28,7 +28,8 @@ const SIZES: [number, number][] = [
   [160, 330],
 ];
 
-const SKY = new Set(['a', 'b', 'c', '*', '+', 'M', 'm', 'j']);
+// Sky and its decoration (halo, galaxy haze, cirrus): never castle.
+const SKY = new Set(['a', 'b', 'c', '*', '+', 'M', 'm', 'j', 'z', 'i', 'l']);
 
 describe('the title scene', () => {
   it.each(SIZES)('fills a %ix%i grid exactly', (width, height) => {
