@@ -17,7 +17,7 @@
         { "key": "X-Frame-Options", "value": "DENY" },
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors 'none'; base-uri 'self'; object-src 'none'; form-action 'self'"
+          "value": "default-src 'self'; script-src 'self' 'sha256-kN6gJGaF+H9aaTYp8AxubWaEu8NU3ZNnDy7zRYmXxOs=' 'sha256-67fhrP0+BkBqmgGGXTtgiVO/9EQs3QruYNU/7fnRkI8='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://uzlbqwncgptreitbtgwf.supabase.co wss://uzlbqwncgptreitbtgwf.supabase.co; worker-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; form-action 'self'; upgrade-insecure-requests"
         },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         {
