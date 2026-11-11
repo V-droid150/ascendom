@@ -21,7 +21,8 @@ export { authErrorKey, type AuthErrorKey };
 /**
  * An app installed to the iPhone home screen opens Google in a separate
  * browser sheet whose storage it can't see, so the PKCE exchange can never
- * finish there. Those players get email + password only.
+ * finish there. Those players sign in with Google through Safari instead
+ * (`services/googleHandoff.ts`, `app/auth/google-app.tsx`).
  */
 function isIosHomeScreenApp(): boolean {
   if (typeof navigator === 'undefined') return false;
@@ -29,14 +30,15 @@ function isIosHomeScreenApp(): boolean {
 }
 
 export const GOOGLE_SUPPORTED = Platform.OS === 'web' && !isIosHomeScreenApp();
-/** True where Google is hidden only because of the iPhone home-screen limit. */
+/** True where Google goes through the Safari handoff because of the iPhone home-screen limit. */
 export const GOOGLE_BLOCKED_BY_IOS_APP = Platform.OS === 'web' && isIosHomeScreenApp();
 export const PASSWORD_MIN_LENGTH = 8;
 export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Where a redirect sign-in should continue once it lands back in the app. */
 const RETURN_KEY = 'ascendom:auth:return';
-export type AuthReturn = 'title' | 'settings';
+/** `handoff`: the Safari tab approving a home-screen app's sign-in. */
+export type AuthReturn = 'title' | 'settings' | 'handoff';
 
 export type AuthResult =
   { ok: true; needsConfirmation?: boolean } | { ok: false; error: AuthErrorKey };
@@ -62,7 +64,7 @@ export async function signInWithGoogle(returnTo: AuthReturn): Promise<AuthResult
 export async function takeAuthReturn(): Promise<AuthReturn> {
   const value = await storage.getItem(RETURN_KEY);
   await storage.removeItem(RETURN_KEY);
-  return value === 'settings' ? 'settings' : 'title';
+  return value === 'settings' || value === 'handoff' ? value : 'title';
 }
 
 export async function signInWithPassword(email: string, password: string): Promise<AuthResult> {

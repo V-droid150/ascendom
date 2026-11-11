@@ -6,6 +6,7 @@ export type AuthErrorKey =
   | 'weakPassword'
   | 'wrongCredentials'
   | 'alreadyRegistered'
+  | 'emailNotConfirmed'
   | 'rateLimited'
   | 'network'
   | 'unknown';
@@ -30,6 +31,9 @@ export function authErrorKey(error: ErrorLike): AuthErrorKey {
     message.includes('already registered')
   ) {
     return 'alreadyRegistered';
+  }
+  if (code === 'email_not_confirmed' || message.includes('email not confirmed')) {
+    return 'emailNotConfirmed';
   }
   if (code === 'weak_password' || message.includes('password should be')) return 'weakPassword';
   if (code === 'email_address_invalid' || code === 'validation_failed') return 'invalidEmail';

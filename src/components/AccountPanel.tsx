@@ -79,13 +79,18 @@ export function AccountPanel() {
       ) : (
         <>
           <Text style={styles.note}>{t('account.pitch')}</Text>
-          {GOOGLE_BLOCKED_BY_IOS_APP && <Text style={styles.note}>{t('auth.googleIosApp')}</Text>}
+          {GOOGLE_BLOCKED_BY_IOS_APP && (
+            <PixelButton
+              label={t('auth.withGoogle')}
+              onPress={() => router.push('/auth/google-app?from=settings')}
+            />
+          )}
           {GOOGLE_SUPPORTED && (
             <PixelButton label={t('auth.withGoogle')} onPress={() => void google()} />
           )}
           <PixelButton
             label={t('auth.withEmail')}
-            variant={GOOGLE_SUPPORTED ? 'secondary' : 'primary'}
+            variant={GOOGLE_SUPPORTED || GOOGLE_BLOCKED_BY_IOS_APP ? 'secondary' : 'primary'}
             onPress={() => router.push('/auth/email?from=settings')}
           />
         </>

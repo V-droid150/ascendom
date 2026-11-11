@@ -45,7 +45,8 @@ export default function AuthCallback() {
         return;
       }
       const next = await takeAuthReturn();
-      router.replace(next === 'settings' ? '/(tabs)/settings' : '/(onboarding)/welcome');
+      if (next === 'handoff') router.replace('/auth/handoff');
+      else router.replace(next === 'settings' ? '/(tabs)/settings' : '/(onboarding)/welcome');
     })();
   }, [code, router]);
 

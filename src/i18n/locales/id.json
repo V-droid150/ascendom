@@ -306,7 +306,6 @@
   "auth": {
     "titleHeader": "Amankan kerajaanmu dengan akun",
     "withGoogle": "Masuk dengan Google",
-    "googleIosApp": "Masuk dengan Google tidak bisa di app yang dipasang di layar utama iPhone. Pakai email & password di sini, atau buka ascendom.vercel.app di Safari untuk masuk dengan Google.",
     "withEmail": "Email & password",
     "asGuest": "Main tanpa akun",
     "backToAccount": "Masuk / buat akun",
@@ -343,7 +342,36 @@
       "rateLimited": "Terlalu banyak email untuk saat ini. Tunggu sekitar satu jam, lalu coba lagi.",
       "network": "Tidak bisa terhubung ke server. Periksa koneksimu.",
       "unknown": "Ada yang salah. Coba lagi.",
-      "resetNeedsEmail": "Ketik email di atas dulu, lalu tekan Lupa password."
+      "resetNeedsEmail": "Ketik email di atas dulu, lalu tekan Lupa password.",
+      "emailNotConfirmed": "Email akun ini belum pernah dikonfirmasi. Tekan Lupa password: link reset-nya sekaligus mengonfirmasi email.",
+      "handoff_invalid": "Kode itu tidak valid. Ketik 6 angka yang muncul di Safari.",
+      "handoff_not_found": "Link ini belum disetujui. Selesaikan langkah Google di Safari dulu, lalu ketik kodenya.",
+      "handoff_wrong_code": "Kode salah. Cek 6 angka di Safari lalu coba lagi.",
+      "handoff_expired": "Link ini sudah kedaluwarsa atau sudah dipakai. Link baru sudah siap: buka Safari lagi.",
+      "handoff_locked": "Terlalu banyak kode salah. Link baru sudah siap: buka Safari lagi."
+    },
+    "handoff": {
+      "appPitch": "App di layar utama iPhone tidak bisa membuka Google langsung, jadi kamu masuk lewat Safari lalu bawa kembali sebuah kode.",
+      "step1": "1. Buka Safari dan masuk dengan Google.",
+      "openSafari": "Buka Safari",
+      "copyLink": "Salin link saja",
+      "copied": "Link disalin. Tempel di Safari.",
+      "copyFailed": "Gagal menyalin. Buka ini di Safari: {{url}}",
+      "openFailed": "Safari tidak bisa dibuka. Salin link lalu tempel di Safari.",
+      "step2": "2. Kembali ke sini dan ketik kode 6 angka dari Safari.",
+      "codePlaceholder": "000000",
+      "expiryNote": "Link dan kode hanya bisa dipakai sekali, selama 10 menit.",
+      "newLink": "Mulai ulang dengan link baru",
+      "restarted": "Link baru siap. Buka Safari lagi.",
+      "safariTitle": "Masuk untuk app",
+      "safariPitch": "App Ascendom di layar utamamu minta masuk dengan Google. Masuk di sini, lalu bawa kodenya kembali ke app.",
+      "confirmPitch": "Lanjutkan hanya kalau kamu sendiri yang baru saja memulai ini dari app Ascendom-mu.",
+      "approve": "Kirim ke app-ku",
+      "switchAccount": "Pakai akun Google lain",
+      "codeIntro": "Kembali ke app Ascendom dan ketik kode ini:",
+      "codeA11y": "Kodemu: {{digits}}",
+      "codeNote": "Hanya bisa dipakai sekali, selama 10 menit. Jangan berikan ke siapa pun. Setelah itu tab ini boleh ditutup.",
+      "invalid": "Link masuk ini rusak atau tidak lengkap. Mulai lagi dari app Ascendom."
     }
   },
   "settings": {

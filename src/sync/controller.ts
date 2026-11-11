@@ -13,6 +13,7 @@ import {
   updateCloudSave,
   type WriteResult,
 } from '@/services/cloudSave';
+import { isHandoffBrowser } from '@/services/googleHandoff';
 import { useGameStore } from '@/store/gameStore';
 import { useSyncStore } from '@/store/syncStore';
 import type { ExportBundle } from '@/store/types';
@@ -144,6 +145,8 @@ async function runSync(): Promise<void> {
 
 /** Syncs now. Concurrent calls share one run instead of racing each other. */
 export function syncNow(): Promise<void> {
+  // A Safari tab that only signed in to hand a login to the home-screen app.
+  if (isHandoffBrowser()) return Promise.resolve();
   if (!running) {
     running = runSync().finally(() => {
       running = null;
@@ -153,7 +156,7 @@ export function syncNow(): Promise<void> {
 }
 
 function scheduleUpload(): void {
-  if (!useSyncStore.getState().userId) return;
+  if (!useSyncStore.getState().userId || isHandoffBrowser()) return;
   if (uploadTimer) clearTimeout(uploadTimer);
   uploadTimer = setTimeout(() => {
     uploadTimer = null;

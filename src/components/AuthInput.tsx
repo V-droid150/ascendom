@@ -5,15 +5,32 @@ interface AuthInputProps {
   value: string;
   onChangeText: (value: string) => void;
   placeholder: string;
-  kind: 'email' | 'password' | 'newPassword';
+  kind: 'email' | 'password' | 'newPassword' | 'code';
   onSubmitEditing?: () => void;
 }
 
-/** A pixel-styled text field for email and password, with the right autofill hints. */
+/** A pixel-styled text field for email, password or a 6-digit code, with the right autofill hints. */
 export function AuthInput({ kind, placeholder, ...props }: AuthInputProps) {
   const colors = useColors();
   const styles = useStyles();
   const isEmail = kind === 'email';
+
+  if (kind === 'code') {
+    return (
+      <TextInput
+        {...props}
+        placeholder={placeholder}
+        accessibilityLabel={placeholder}
+        keyboardType="number-pad"
+        inputMode="numeric"
+        autoComplete="one-time-code"
+        textContentType="oneTimeCode"
+        maxLength={CODE_INPUT_MAX_LENGTH}
+        placeholderTextColor={colors.steel}
+        style={[styles.input, styles.code]}
+      />
+    );
+  }
 
   return (
     <TextInput
@@ -36,6 +53,9 @@ export function AuthInput({ kind, placeholder, ...props }: AuthInputProps) {
   );
 }
 
+/** Six digits, plus room for a pasted space or dash, which the hook strips. */
+const CODE_INPUT_MAX_LENGTH = 7;
+
 const useStyles = makeStyles((colors) => ({
   input: {
     minHeight: MIN_TOUCH_SIZE,
@@ -48,4 +68,5 @@ const useStyles = makeStyles((colors) => ({
     borderColor: colors.charcoal,
     borderRadius: border.radius,
   },
+  code: { fontFamily: fonts.display, textAlign: 'center', letterSpacing: spacing.sm },
 }));

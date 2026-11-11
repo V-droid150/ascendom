@@ -64,6 +64,8 @@ function AppShell() {
         <Stack.Screen name="auth/callback" />
         <Stack.Screen name="auth/email" />
         <Stack.Screen name="auth/reset" />
+        <Stack.Screen name="auth/google-app" />
+        <Stack.Screen name="auth/handoff" />
         <Stack.Screen name="privacy" />
         <Stack.Screen name="wardrobe" />
       </Stack>

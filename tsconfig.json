@@ -15,5 +15,5 @@
     "allowImportingTsExtensions": true
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
-  "exclude": ["node_modules", "dist", ".expo", "supabase/functions/send-reminders"]
+  "exclude": ["node_modules", "dist", ".expo", "supabase/functions/send-reminders", "supabase/functions/redeem-login-handoff"]
 }

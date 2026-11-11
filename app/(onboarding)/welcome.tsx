@@ -8,7 +8,12 @@ import { useToast } from '@/components/ToastProvider';
 import { useDaytime } from '@/hooks/useDaytime';
 import { useGameHydrated, useSyncHydrated } from '@/hooks/useGameHydrated';
 import { useHero } from '@/hooks/useHero';
-import { GOOGLE_SUPPORTED, PASSWORD_MIN_LENGTH, signInWithGoogle } from '@/services/auth';
+import {
+  GOOGLE_BLOCKED_BY_IOS_APP,
+  GOOGLE_SUPPORTED,
+  PASSWORD_MIN_LENGTH,
+  signInWithGoogle,
+} from '@/services/auth';
 import { PixelArt } from '@/sprites/PixelArt';
 import { CROWN_ART, CROWN_COLORS } from '@/sprites/scenes';
 import { TITLE_SKY, titleCourtyardClearance } from '@/sprites/titleScene';
@@ -94,6 +99,15 @@ export default function WelcomeScreen() {
             key: 'google',
             label: t('auth.withGoogle'),
             onPress: () => void google(),
+          },
+        ]
+      : []),
+    ...(GOOGLE_BLOCKED_BY_IOS_APP
+      ? [
+          {
+            key: 'google',
+            label: t('auth.withGoogle'),
+            onPress: () => router.push('/auth/google-app?from=title'),
           },
         ]
       : []),

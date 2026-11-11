@@ -13,6 +13,7 @@ module.exports = defineConfig([
       'public/workbox-*.js',
       // Deno code (npm: specifiers, Deno globals); checked by the Supabase CLI on deploy.
       'supabase/functions/send-reminders/*',
+      'supabase/functions/redeem-login-handoff/*',
     ],
   },
   {

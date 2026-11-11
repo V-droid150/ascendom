@@ -306,7 +306,6 @@
   "auth": {
     "titleHeader": "Keep your kingdom safe with an account",
     "withGoogle": "Sign in with Google",
-    "googleIosApp": "Google sign-in doesn't work inside the app installed on an iPhone home screen. Use email & password here, or open ascendom.vercel.app in Safari to sign in with Google.",
     "withEmail": "Email & password",
     "asGuest": "Play without an account",
     "backToAccount": "Sign in / create account",
@@ -343,7 +342,36 @@
       "rateLimited": "Too many emails for now. Wait about an hour, then try again.",
       "network": "Couldn't reach the server. Check your connection.",
       "unknown": "Something went wrong. Try again.",
-      "resetNeedsEmail": "Type your email above first, then tap Forgot password."
+      "resetNeedsEmail": "Type your email above first, then tap Forgot password.",
+      "emailNotConfirmed": "This account's email was never confirmed. Tap Forgot password: the reset link confirms it too.",
+      "handoff_invalid": "That code isn't valid. Type the 6 digits Safari showed you.",
+      "handoff_not_found": "No approval for this link yet. Finish the Google step in Safari first, then type the code.",
+      "handoff_wrong_code": "Wrong code. Check the 6 digits in Safari and try again.",
+      "handoff_expired": "This link has expired or was already used. A new link is ready: open Safari again.",
+      "handoff_locked": "Too many wrong codes. A new link is ready: open Safari again."
+    },
+    "handoff": {
+      "appPitch": "Apps on the iPhone home screen can't open Google directly, so you'll sign in through Safari and bring back a code.",
+      "step1": "1. Open Safari and sign in with Google.",
+      "openSafari": "Open Safari",
+      "copyLink": "Copy link instead",
+      "copied": "Link copied. Paste it into Safari.",
+      "copyFailed": "Couldn't copy. Open this in Safari: {{url}}",
+      "openFailed": "Couldn't open Safari. Copy the link and paste it into Safari.",
+      "step2": "2. Come back here and type the 6-digit code Safari shows you.",
+      "codePlaceholder": "000000",
+      "expiryNote": "The link and code work once, for 10 minutes.",
+      "newLink": "Start over with a new link",
+      "restarted": "New link ready. Open Safari again.",
+      "safariTitle": "Sign in for the app",
+      "safariPitch": "Your Ascendom app on the home screen asked to sign in with Google. Sign in here, then take the code back to the app.",
+      "confirmPitch": "Only continue if you started this from your own Ascendom app just now.",
+      "approve": "Send to my app",
+      "switchAccount": "Use a different Google account",
+      "codeIntro": "Go back to the Ascendom app and type this code:",
+      "codeA11y": "Your code: {{digits}}",
+      "codeNote": "Works once, for 10 minutes. Never share it with anyone. You can close this tab afterwards.",
+      "invalid": "This sign-in link is broken or incomplete. Start again from the Ascendom app."
     }
   },
   "settings": {

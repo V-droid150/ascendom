@@ -105,6 +105,17 @@ the data). Never put a secret or service-role key in the app.
   Workbox worker via importScripts. Deploy: `npx supabase functions deploy
   send-reminders --no-verify-jwt --use-api`.
 
+- Google on the iPhone home-screen app (PKCE can't finish there) goes through
+  Safari: `app/auth/google-app.tsx` opens `/auth/handoff?id&h` via
+  `x-safari-https://`; Safari signs in, `approve_login_handoff` RPC returns a
+  6-digit code; the app sends id + secret + code to the `redeem-login-handoff`
+  Edge Function (`--no-verify-jwt`), which claims it (`claim_login_handoff`,
+  service role only, 5 tries, 10 min) and returns a magic-link token hash for
+  `verifyOtp`. No email is sent. Cloud sync is off in the Safari tab
+  (`isHandoffBrowser`). Design + threat model: migration 20261111000000.
+- CSP lives in `vercel.json` (inline scripts by hash). `scripts/check-csp.mjs`
+  fails `build:web` if a hash goes stale; refresh with `--print`.
+
 ## Hard architectural rules
 
 1. **`src/engine/` is pure.** Zero imports from React, React Native, Expo, or
